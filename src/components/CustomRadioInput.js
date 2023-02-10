@@ -1,25 +1,85 @@
-import React from 'react';
+import moment from 'moment';
+import React, {useState} from 'react';
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 const CustomRadioInput = ({
   options,
   is_reading = true,
+  meter_reading_value,
+  onChangeReading,
   label,
   cameraimage = [],
   value,
   onChangeText,
+  img1,
+  onChangeImg1,
+  img2,
+  onChangeImg2,
 }) => {
+  const [uploadingindex, setUploadingIndex] = useState(null);
+  const [uploading, setUpLoading] = useState(false);
+
+  const Pickimage = index => {
+    setUploadingIndex(index);
+    ImagePicker.openPicker({
+      width: 500,
+      height: 500,
+      cropping: true,
+    })
+      .then(image => {
+        uploadUImage(image, index);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const uploadUImage = (image, index) => {
+    setUpLoading(true);
+    let name = image.path.split('/').pop();
+    var formdata = new FormData();
+    formdata.append('file', {
+      uri: `${image.path}`,
+      name: `${moment().unix()}_.${name}`,
+      type: `${image.mime}`,
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow',
+    };
+
+    fetch(UPLOAD_IMAGE, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        if (index == 1) {
+          onChangeImg1(result.path);
+        } else {
+          onChangeImg2(result.path);
+        }
+        setUpLoading(false);
+        setUploadingIndex(null);
+      })
+      .catch(error => {
+        console.log('error', error);
+        setUpLoading(false);
+        setUploadingIndex(null);
+      });
+  };
   return (
     <View style={styles.textinputContainer}>
       <Text style={styles.label}>{label}</Text>
@@ -32,14 +92,12 @@ const CustomRadioInput = ({
               key={`${index}`}
               style={{
                 ...styles.RadioButton,
-
                 backgroundColor:
                   item == value ? colors.primaryColor : colors.white,
               }}>
               <Text
                 style={{
                   color: item == value ? colors.white : colors.textColor,
-
                   fontSize: moderateScale(12),
                   fontFamily: fonts.Medium,
                 }}>
@@ -50,7 +108,8 @@ const CustomRadioInput = ({
         })}
         {is_reading && (
           <TextInput
-            value={'123123'}
+            value={meter_reading_value}
+            onChangeText={text => onChangeReading(text)}
             style={{
               backgroundColor: colors.primaryColor,
               width: moderateScale(80),
@@ -61,20 +120,26 @@ const CustomRadioInput = ({
             }}
           />
         )}
-        {cameraimage.map(item => {
+        {cameraimage.map((item, index) => {
           return (
             <TouchableOpacity
+              onPress={() => Pickimage(index)}
+              key={`${index}`}
               style={{
                 ...styles.RadioButton,
                 backgroundColor: colors.white,
                 opacity: item == 0 ? 0 : 1,
                 paddingHorizontal: moderateScale(10),
               }}>
-              <Entypo
-                name={'camera'}
-                size={moderateScale(22)}
-                color={colors.primaryColor}
-              />
+              {uploading && index == uploadingindex ? (
+                <ActivityIndicator />
+              ) : (
+                <Entypo
+                  name={'camera'}
+                  size={moderateScale(22)}
+                  color={colors.primaryColor}
+                />
+              )}
             </TouchableOpacity>
           );
         })}

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Modal from 'react-native-modal';
 import SignatureCapture from 'react-native-signature-capture';
@@ -13,8 +13,8 @@ const SignatureComponent = ({title, onChangeText}) => {
   const onDragEvent = () => {};
 
   const onSaveEvent = base64DataUrl => {
-    onChangeText(base64DataUrl);
-    setImage(base64DataUrl);
+    onChangeText(`data:image/png;base64,${base64DataUrl.encoded}`);
+    setImage(`data:image/png;base64,${base64DataUrl.encoded}`);
     setIsModal(false);
   };
 
@@ -30,7 +30,11 @@ const SignatureComponent = ({title, onChangeText}) => {
       <TouchableOpacity onPress={() => setIsModal(true)} style={styles.button}>
         {image !== null && (
           <Image
-            style={{width: moderateScale(20), height: moderateScale(20)}}
+            style={{
+              width: moderateScale(50),
+              alignSelf: 'center',
+              height: moderateScale(50),
+            }}
             source={{uri: image}}
           />
         )}

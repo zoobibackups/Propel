@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
@@ -7,12 +7,12 @@ import fonts from '../constants/fonts';
 import colors from '../constants/theme';
 const GettingStartedScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LOGO width={moderateScale(400)} heigth={moderateScale(300)} />
       <View style={{position: 'absolute', bottom: moderateScale(20)}}>
         <CustomButton onPress={() => navigation.replace('LoginScreen')} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

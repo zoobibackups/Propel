@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/Entypo';
-import {LIST_PROPERTY} from '../apis';
+import {LIST_PROPERTY, USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
 import fonts from '../constants/fonts';
@@ -34,9 +34,10 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${LIST_PROPERTY}`, requestOptions)
+    fetch(`${USER_LIST_PROPERTY}`, requestOptions)
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         setProperty(result.rows);
         setData(result.rows);
         setLoading(false);

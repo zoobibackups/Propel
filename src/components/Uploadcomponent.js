@@ -21,20 +21,14 @@ const UpLoadComponent = ({data, onChangeText}) => {
     {
       id: 1,
       path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
     },
     {
       id: 2,
       path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
     },
     {
       id: 3,
       path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
     },
   ]);
   const Pickimage = index => {
@@ -49,10 +43,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
         let temp_images = [...images];
         uploadUImage(image);
         temp_images[index].path = image.path;
-        temp_images[index].name = image.path.split('/').pop();
-        temp_images[index].ext = image.mime;
         setImages(temp_images);
-        onChangeText(image.path, index);
       })
       .catch(err => {
         console.log(err);
@@ -78,11 +69,11 @@ const UpLoadComponent = ({data, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
+        onChangeText(`https://propelinspections.com/${result.path}`, index);
         setUpLoading(false);
         setUploadingIndex(null);
       })
       .catch(error => {
-        console.log('error', error);
         setUpLoading(false);
         setUploadingIndex(null);
       });

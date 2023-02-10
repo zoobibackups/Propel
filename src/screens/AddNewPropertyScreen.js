@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useSelector} from 'react-redux';
+import {ADD_PROPERTY} from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
@@ -20,20 +22,29 @@ import fonts from '../constants/fonts';
 import colors from '../constants/theme';
 import {
   CO_ALARAM,
+  CO_ALARAM_IMG_URL1,
+  CO_ALARAM_IMG_URL2,
   ECIR_EXPIRY_DATE,
   ECP_EXPIRY_DATE,
+  ELECTRICY_METER_IMG_URL,
   ELECTRICY_METER_READING,
   FINAL_REMAKRS,
+  GAS_METER_IMG_URL,
   GAS_METER_READING,
   GAS_SAFETY_METER_DATE,
+  HEATING_IMG_URL,
   HEATING_SYSTEM,
   INSPECTOR_SIGNATURE,
   IS_ELECTRY_METER,
   IS_GAS_METER,
   SET_INSPECTION_DATE,
   SMOKE_ALARAM,
+  SMOKE_IMG_URL1,
+  SMOKE_IMG_URL2,
   TENANT_SIGNATURE,
   WATER_METER,
+  WATER_METER_IMG_URL,
+  WATER_METER_READING,
 } from './types';
 const initialState = {
   propertyaddress: 'MY PROPERTY ADDREESS',
@@ -61,7 +72,7 @@ const initialState = {
   user_id: '5',
 
   main_img: '',
-  water_meter_reading: '',
+  water_meter_reading: '23',
   electricty_meter_img: '',
   gas_meter_img: '',
   water_meter_img: '',
@@ -179,6 +190,52 @@ const reducer = (state, action) => {
         ...state,
         signature_inspector: action.payload,
       };
+    case WATER_METER_READING:
+      return {
+        ...state,
+        water_meter_reading: action.payload,
+      };
+    case ELECTRICY_METER_IMG_URL:
+      return {
+        ...state,
+        electricty_meter_img: action.payload,
+      };
+    case GAS_METER_IMG_URL:
+      return {
+        ...state,
+        gas_meter_img: action.payload,
+      };
+    case WATER_METER_IMG_URL:
+      return {
+        ...state,
+        water_meter_img: action.payload,
+      };
+    case SMOKE_IMG_URL1:
+      return {
+        ...state,
+        smoke_alarm_front_img: action.payload,
+      };
+    case SMOKE_IMG_URL2:
+      return {
+        ...state,
+        smoke_alarm_back_img: action.payload,
+      };
+    case CO_ALARAM_IMG_URL1:
+      return {
+        ...state,
+        co_alarm_font_img: action.payload,
+      };
+    case CO_ALARAM_IMG_URL2:
+      return {
+        ...state,
+        co_alram_back_img: action.payload,
+      };
+    case HEATING_IMG_URL:
+      return {
+        ...state,
+        heating_system_img: action.payload,
+      };
+
     default:
       return state;
   }
@@ -251,10 +308,36 @@ const AddNewPropertyScreen = () => {
     });
     if (empty_filed == true) {
       alert('Please check all input fileds');
+      return;
     }
+
+    UploadProperty();
   };
 
-  //
+  const UploadProperty = () => {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    var data = {
+      ...property_data,
+      user_id: 5,
+      property_details: images_data,
+    };
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: 'follow',
+    };
+
+    fetch(ADD_PROPERTY, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result, 'I am resultt of the data Aded');
+      })
+      .catch(error => console.log('error', error));
+  };
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
       <ScrollView
@@ -347,43 +430,91 @@ const AddNewPropertyScreen = () => {
           }
         />
         <CustomRadioInput
-          label={'Electricity Meter      \t\t\t Reading'}
+          label={'Electricity Meter      \t\t    Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.electricity_meter}
+          meter_reading_value={property_data.electricity_meter_reading}
+          onChangeReading={text => {
+            setPropertydata({
+              type: ELECTRICY_METER_READING,
+              payload: text,
+            });
+          }}
           onChangeText={type =>
             setPropertydata({
               type: IS_ELECTRY_METER,
               payload: type,
             })
           }
+          img1={property_data.electricty_meter_img}
+          onChangeImg1={url => {
+            setPropertydata({
+              type: ELECTRICY_METER_IMG_URL,
+              payload: url,
+            });
+          }}
+          img2={null}
+          onChangeImg2={() => {}}
         />
 
         <CustomRadioInput
-          label={'Gas Meter       \t\t\t\tReading'}
+          label={'Gas Meter       \t\t\t   Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.gas_meter}
+          meter_reading_value={property_data.gas_meter_reading}
+          onChangeReading={text => {
+            setPropertydata({
+              type: GAS_METER_READING,
+              payload: text,
+            });
+          }}
           onChangeText={type =>
             setPropertydata({
               type: IS_GAS_METER,
               payload: type,
             })
           }
+          img1={property_data.gas_meter_img}
+          onChangeImg1={url => {
+            setPropertydata({
+              type: GAS_METER_IMG_URL,
+              payload: url,
+            });
+          }}
+          img2={null}
+          onChangeImg2={() => {}}
         />
 
         <CustomRadioInput
-          label={'Water Meter        \t\t\t\tReading'}
+          label={'Water Meter        \t\t\t   Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.water_meter}
           is_reading={true}
+          meter_reading_value={property_data.water_meter_reading}
+          onChangeReading={text => {
+            setPropertydata({
+              type: WATER_METER_READING,
+              payload: text,
+            });
+          }}
           onChangeText={type =>
             setPropertydata({
               type: WATER_METER,
               payload: type,
             })
           }
+          img1={property_data.water_meter_img}
+          onChangeImg1={url => {
+            setPropertydata({
+              type: WATER_METER_IMG_URL,
+              payload: url,
+            });
+          }}
+          img2={null}
+          onChangeImg2={() => {}}
         />
         <CustomRadioInput
           label={'Smoke Alarm'}
@@ -397,6 +528,20 @@ const AddNewPropertyScreen = () => {
               payload: type,
             })
           }
+          img1={property_data.smoke_alarm_front_img}
+          onChangeImg1={url => {
+            setPropertydata({
+              type: SMOKE_IMG_URL1,
+              payload: url,
+            });
+          }}
+          img2={property_data.smoke_alarm_front_img}
+          onChangeImg2={() => {
+            setPropertydata({
+              type: SMOKE_IMG_URL2,
+              payload: url,
+            });
+          }}
         />
         <CustomRadioInput
           label={'CO Alarm'}
@@ -410,6 +555,20 @@ const AddNewPropertyScreen = () => {
               payload: type,
             })
           }
+          img1={property_data.co_alarm_font_img}
+          onChangeImg1={url => {
+            setPropertydata({
+              type: CO_ALARAM_IMG_URL1,
+              payload: url,
+            });
+          }}
+          img2={property_data.co_alram_back_img}
+          onChangeImg2={() => {
+            setPropertydata({
+              type: CO_ALARAM_IMG_URL2,
+              payload: url,
+            });
+          }}
         />
         <CustomRadioInput
           label={'Heating System'}
@@ -423,6 +582,13 @@ const AddNewPropertyScreen = () => {
               payload: type,
             })
           }
+          img2={property_data.heating_system_img}
+          onChangeImg2={() => {
+            setPropertydata({
+              type: HEATING_IMG_URL,
+              payload: url,
+            });
+          }}
         />
         {images_data.map((item, index) => {
           return (
