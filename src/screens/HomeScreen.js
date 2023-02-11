@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/Entypo';
+import {useSelector} from 'react-redux';
 import {LIST_PROPERTY, USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
@@ -18,8 +19,8 @@ import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-
 const HomeScreen = ({navigation}) => {
+  const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
@@ -34,10 +35,9 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${USER_LIST_PROPERTY}`, requestOptions)
+    fetch(`${LIST_PROPERTY}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         setProperty(result.rows);
         setData(result.rows);
         setLoading(false);
@@ -108,14 +108,20 @@ const HomeScreen = ({navigation}) => {
         showsVerticalScrollIndicator={true}
         ListEmptyComponent={() => {
           return (
-            <View>
+            <View
+              style={{
+                flex: 1,
+                paddingTop: moderateScale(100),
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
               <Text
                 style={{
                   color: colors.primaryColor,
                   fontFamily: fonts.Bold,
                   paddingLeft: moderateScale(10),
                 }}>
-                No Data FOund
+                No Data Found
               </Text>
             </View>
           );

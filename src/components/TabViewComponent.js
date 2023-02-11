@@ -15,9 +15,9 @@ const TabViewComponent = ({data}) => {
           fontSize: moderateScale(14),
           marginBottom: moderateScale(5),
         }}>
-        {data.name} Details
+        {data?.name} Details
       </Text>
-      <Text style={styles.text}>{data.description}</Text>
+      <Text style={styles.text}>{data?.description}</Text>
       <Text style={styles.text}>Images</Text>
       <View style={styles.Row}>
         {data.property_images.map((item, index) => {

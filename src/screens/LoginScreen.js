@@ -13,8 +13,8 @@ import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [useremail, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [useremail, setEmail] = useState('engr.aftabufaq@gmail.com');
+  const [password, setPassword] = useState('Tikt0k@1');
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);
@@ -40,9 +40,14 @@ const LoginScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
+        console.log(data, 'DATA');
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
         } else {
+          console.log({
+            user: data,
+            token: data.jwtToken,
+          });
           dispatch(
             userLogin({
               user: data,

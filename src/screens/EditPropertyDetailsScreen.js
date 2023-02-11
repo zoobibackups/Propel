@@ -46,42 +46,6 @@ import {
   WATER_METER_IMG_URL,
   WATER_METER_READING,
 } from './types';
-const initialState = {
-  propertyaddress: '',
-  tenant_name: '',
-  inspector_name: '',
-  asked_landord_to: '',
-  advised_tenant_to: 'WE ALL HAVE THIS',
-  contractor_instructed_to: 'THIS IS THE PROPERY DAT',
-  inspectiondate: moment().format('DD-MMM-YYYY'),
-  epc_expiry_date: moment().format('DD-MMM-YYYY'),
-  ecir_expirydate: moment().format('DD-MMM-YYYY'),
-  gas_safety_certificate_expiry_date: moment().format('DD-MMM-YYYY'),
-  electricity_meter: 'Yes',
-  electricity_meter_reading: '150',
-  gas_meter: 'Yes',
-  gas_meter_reading: '120',
-  water_meter: 'Yes',
-  smoke_alarm: 'Yes',
-  co_alarm: 'Yes',
-  heating_system: 'Yes',
-  signature_inspector: '',
-  signature_tenant: '',
-  types: 'inspection',
-  final_remarks: 'THIS IS FINAL REMARKS',
-  user_id: '5',
-
-  main_img: '',
-  water_meter_reading: '23',
-  electricty_meter_img: '',
-  gas_meter_img: '',
-  water_meter_img: '',
-  smoke_alarm_front_img: '',
-  smoke_alarm_back_img: '',
-  co_alarm_font_img: '',
-  co_alram_back_img: '',
-  heating_system_img: '',
-};
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -240,15 +204,16 @@ const reducer = (state, action) => {
       return state;
   }
 };
-const AddNewPropertyScreen = () => {
-  const [property_data, setPropertydata] = useReducer(reducer, initialState);
-  const [images_data, setImagesdata] = useState([]);
+const EditPropertyScreen = ({navigation, route}) => {
+  let item = route.params.item;
+  const [property_data, setPropertydata] = useReducer(reducer, item);
+  const [images_data, setImagesdata] = useState(item.property_details);
 
   const addNewItem = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
       description: 'This is the room Desctiption',
-      images: ['', '', ''],
+      property_images: ['', '', ''],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -645,7 +610,7 @@ const AddNewPropertyScreen = () => {
   );
 };
 
-export default AddNewPropertyScreen;
+export default EditPropertyScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,12 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import Feather from 'react-native-vector-icons/Feather';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-const DeleteModal = ({isVisible, onCancel, onDelete}) => {
+const DeleteModal = ({isVisible, onCancel, onDelete, isDeleting}) => {
   return (
     <Modal
       style={styles.ModalView}
@@ -26,27 +32,36 @@ const DeleteModal = ({isVisible, onCancel, onDelete}) => {
           Are you sure to delete this property?
         </Text>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            width: SCREEN_WIDTH,
-          }}>
-          <TouchableOpacity
-            style={styles.Button}
-            onPress={() => {
-              onCancel('Cancel');
-            }}>
-            <Text style={styles.whitetext}>CANCEL</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{...styles.Button, backgroundColor: 'red'}}
-            onPress={() => {
-              onDelete();
-            }}>
-            <Text style={styles.whitetext}>DELETE</Text>
-          </TouchableOpacity>
-        </View>
+        {isDeleting ? (
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={{
+                ...styles.Button,
+                flexDirection: 'row',
+                width: SCREEN_WIDTH - moderateScale(20),
+              }}>
+              <ActivityIndicator color={'#fff'} />
+              <Text style={styles.whitetext}>Deleting</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.Button}
+              onPress={() => {
+                onCancel('Cancel');
+              }}>
+              <Text style={styles.whitetext}>CANCEL</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{...styles.Button, backgroundColor: 'red'}}
+              onPress={() => {
+                onDelete();
+              }}>
+              <Text style={styles.whitetext}>DELETE</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </Modal>
   );
@@ -85,6 +100,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(20),
     color: colors.white,
     fontSize: scale(12),
-    fontFamily: fonts.Medium,
+    fontFamily: fonts.Bold,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: SCREEN_WIDTH,
   },
 });

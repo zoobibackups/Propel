@@ -243,7 +243,7 @@ const reducer = (state, action) => {
 const AddNewPropertyScreen = () => {
   const [property_data, setPropertydata] = useReducer(reducer, initialState);
   const [images_data, setImagesdata] = useState([]);
-
+  const [isloading, setIsLoading] = useState(false);
   const addNewItem = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
@@ -315,6 +315,7 @@ const AddNewPropertyScreen = () => {
   };
 
   const UploadProperty = () => {
+    setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -331,12 +332,20 @@ const AddNewPropertyScreen = () => {
       redirect: 'follow',
     };
 
-    fetch(ADD_PROPERTY, requestOptions)
+    fetch(
+      'https://6559-2407-d000-d-f108-c2df-68d4-6e72-58e4.ap.ngrok.io/properties',
+      requestOptions,
+    )
       .then(response => response.json())
       .then(result => {
+        console.log(result);
+        setIsLoading(false);
         console.log('I am resultt of the data Aded');
       })
-      .catch(error => console.log('error', error));
+      .catch(error => {
+        setIsLoading(false);
+        console.log('error', error);
+      });
   };
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
@@ -563,7 +572,7 @@ const AddNewPropertyScreen = () => {
             });
           }}
           img2={property_data.co_alram_back_img}
-          onChangeImg2={() => {
+          onChangeImg2={url => {
             setPropertydata({
               type: CO_ALARAM_IMG_URL2,
               payload: url,
@@ -583,7 +592,7 @@ const AddNewPropertyScreen = () => {
             })
           }
           img2={property_data.heating_system_img}
-          onChangeImg2={() => {
+          onChangeImg2={url => {
             setPropertydata({
               type: HEATING_IMG_URL,
               payload: url,
@@ -636,7 +645,8 @@ const AddNewPropertyScreen = () => {
           }
         />
         <CustomButton
-          title="Upload this Property"
+          isloading={isloading}
+          title="Upload Property"
           onPress={() => validate_data()}
         />
         <View style={{height: moderateScale(20)}} />

@@ -17,21 +17,20 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {API_URL} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
-import ImgDateReadingComponent from '../components/ImgDateReadingComponent';
 import TabViewComponent from '../components/TabViewComponent';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 import html_data from '../Data/html';
 const PropertyDetailsScreen = ({navigation, route}) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   let property_data = route.params.item;
+  delete property_data.signature_tenant;
+  delete property_data.signature_inspector;
 
   const [active_tab_data, setActiveTabData] = useState(
-    property_data.property_details.length > 0
-      ? property_data.property_details[0]
-      : [],
+    property_data.property_details[0],
   );
   const createPDF = async () => {
     let options = {
@@ -51,7 +50,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       setIsVisible(false);
     }, 4000);
   };
-  // console.log(`data:image/png;base64,${property_data?.signature_inspector}`);
   return (
     <ScrollView
       contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
@@ -67,7 +65,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         {property_data?.property_address}
       </Text>
       <Image
-        source={{uri: `${API_URL}${property_data?.main_img}`}}
+        source={{uri: `${API_URL}${property_data.main_img}`}}
         style={{width: wp(86), height: wp(40), margin: moderateScale(10)}}
       />
       <View style={styles.iconRow}>
@@ -109,45 +107,46 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             {moment(property_data?.ecir_exp_date).format('DD-MM-yyyy')}
           </Text>
         </View>
-        <ImgDateReadingComponent
-          title={'Gas Meter'}
-          date={moment(property_data?.gas_safety_certificate_exp_date).format(
-            'DD-MM-yyyy',
-          )}
-          is_meter={property_data?.gas_meter}
-          readging={property_data?.gas_meter_reading}
-          img={property_data.gas_meter_img}
-        />
-        <ImgDateReadingComponent
-          title={'Electricity Meter'}
-          is_meter={property_data?.electricity_meter}
-          readging={property_data?.electricity_meter_reading}
-          img={property_data?.electricity_meter_img}
-        />
 
-        <ImgDateReadingComponent
-          title={'Water Meter'}
-          is_meter={property_data?.water_meter}
-          readging={property_data?.water_meter_reading}
-          img={property_data.water_meter_img}
-        />
-        <ImgDateReadingComponent
-          title={'Smoke Alarm'}
-          is_meter={property_data?.smoke_alarm}
-          img={property_data?.smoke_alarm_front_img}
-          img2={property_data?.smoke_alarm_back_img}
-        />
-        <ImgDateReadingComponent
-          title={'CO Alarm'}
-          is_meter={property_data?.co_alarm}
-          img={property_data?.co_alarm_front_img}
-          img2={property_data?.co_alarm_back_img}
-        />
-        <ImgDateReadingComponent
-          title={'Heating System'}
-          is_meter={property_data?.smoke_alarm}
-          img={property_data?.heating_system_img}
-        />
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Gas Exp Date : </Text>
+          <Text style={styles.title}>
+            {moment(property_data?.gas_safety_certificate_exp_date).format(
+              'DD-MM-yyyy',
+            )}
+          </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Gas Meter : </Text>
+          <Text style={styles.title}>{property_data?.gas_meter}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Gas Meter Reading : </Text>
+          <Text style={styles.title}>
+            {property_data?.gas_meter_reading} Units
+          </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Electricity Meter : </Text>
+          <Text style={styles.title}>{property_data?.electricity_meter}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Electricity Meter Reading : </Text>
+          <Text style={styles.title}>
+            {property_data?.electricity_meter_reading} Units
+          </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Smoke Alarm : </Text>
+          <Text style={styles.title}>{property_data?.smoke_alarm}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>CO Alarm : </Text>
+          <Text style={styles.title}>{property_data?.co_alarm}</Text>
+        </View>
       </View>
       <FlatList
         horizontal={true}
@@ -167,9 +166,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
           );
         }}
       />
-      {active_tab_data.length > 0 && (
-        <TabViewComponent data={active_tab_data} />
-      )}
+      <TabViewComponent data={active_tab_data} />
       <View
         style={{
           ...styles.row,
@@ -256,7 +253,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: moderateScale(20),
   },
-  ImageCardView: {
+  cardView: {
     width: SCREEN_WIDTH + moderateScale(10),
     borderRadius: moderateScale(10),
     margin: moderateScale(10),
@@ -267,30 +264,11 @@ const styles = StyleSheet.create({
     borderColor: colors.borderColor,
     elevation: 0,
   },
-  cardView: {
-    width: SCREEN_WIDTH + moderateScale(10),
-    borderRadius: moderateScale(10),
-    alignSelf: 'center',
-    backgroundColor: '#fff',
-    paddingVertical: moderateScale(10),
-    borderWidth: moderateScale(0),
-    borderColor: colors.borderColor,
-    elevation: 0,
-  },
   row: {
     flexDirection: 'row',
     borderBottomColor: colors.borderColor,
-    width: SCREEN_WIDTH + moderateScale(10),
     borderBottomWidth: moderateScale(1),
-    paddingVertical: moderateScale(10),
-  },
-  row2: {
-    flexDirection: 'row',
-    borderBottomColor: colors.white,
-    borderBottomWidth: moderateScale(1),
-    paddingVertical: moderateScale(5),
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    paddingVertical: moderateScale(3),
   },
   bluetxt: {
     fontFamily: fonts.Bold,
