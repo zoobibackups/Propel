@@ -10,13 +10,12 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useSelector} from 'react-redux';
 import {ADD_PROPERTY} from '../apis';
-import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
 import DataInput from '../components/DateInput';
+import EditPropertyImages from '../components/EditPropertyImages';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
@@ -52,7 +51,7 @@ const reducer = (state, action) => {
     case 'ADDRESS_ADD':
       return {
         ...state,
-        propertyaddress: action.payload,
+        property_address: action.payload,
       };
     case 'TENANT_NAME':
       return {
@@ -72,27 +71,27 @@ const reducer = (state, action) => {
     case 'ASKED_LANDLORD_TO':
       return {
         ...state,
-        asked_landord_to: action.payload,
+        asked_landlord_to: action.payload,
       };
     case 'CONSTRACTED_INSTRUCTED_TO':
       return {
         ...state,
-        contractor_instructed_to: action.payload,
+        contractor_instructed: action.payload,
       };
     case SET_INSPECTION_DATE:
       return {
         ...state,
-        inspectiondate: action.payload,
+        inspection_date: action.payload,
       };
     case ECP_EXPIRY_DATE:
       return {
         ...state,
-        epc_expiry_date: action.payload,
+        ecp_exp_date: action.payload,
       };
     case ECIR_EXPIRY_DATE:
       return {
         ...state,
-        ecir_expirydate: action.payload,
+        ecir_exp_date: action.payload,
       };
     case GAS_SAFETY_METER_DATE:
       return {
@@ -162,7 +161,7 @@ const reducer = (state, action) => {
     case ELECTRICY_METER_IMG_URL:
       return {
         ...state,
-        electricty_meter_img: action.payload,
+        electricity_meter_img: action.payload,
       };
     case GAS_METER_IMG_URL:
       return {
@@ -222,7 +221,7 @@ const EditPropertyScreen = ({navigation, route}) => {
 
   const validate_data = () => {
     let empty_filed = false;
-    if (property_data.propertyaddress == '') {
+    if (property_data.property_address == '') {
       alert("Property Address can't be empty");
       return;
     }
@@ -234,7 +233,7 @@ const EditPropertyScreen = ({navigation, route}) => {
       alert("Inspector name can't be empty");
       return;
     }
-    if (property_data.asked_landord_to == '') {
+    if (property_data.asked_landlord_to == '') {
       alert("Ask to Landlord can't be empty");
       return;
     }
@@ -242,7 +241,7 @@ const EditPropertyScreen = ({navigation, route}) => {
       alert("Tenant advice can't be empty");
       return;
     }
-    if (property_data.contractor_instructed_to == '') {
+    if (property_data.contractor_instructed == '') {
       alert("Contractor Instruction can't be empty");
       return;
     }
@@ -312,7 +311,7 @@ const EditPropertyScreen = ({navigation, route}) => {
 
         <CustomInput
           label={'Property Address'}
-          value={property_data.propertyaddress}
+          value={property_data.property_address}
           onChangeText={text =>
             setPropertydata({type: 'ADDRESS_ADD', payload: text})
           }
@@ -326,7 +325,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <CustomInput
           label={'Asked Landord To'}
-          value={property_data.asked_landord_to}
+          value={property_data.asked_landlord_to}
           onChangeText={text =>
             setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
           }
@@ -341,7 +340,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <CustomInput
           label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed_to}
+          value={property_data.contractor_instructed}
           onChangeText={text =>
             setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }
@@ -356,7 +355,7 @@ const EditPropertyScreen = ({navigation, route}) => {
 
         <DataInput
           label={'Inspection Date'}
-          value={property_data.inspectiondate}
+          value={moment(property_data.inspection_date).format('DD-MM-YYYY')}
           onChangeText={date =>
             setPropertydata({
               type: SET_INSPECTION_DATE,
@@ -366,7 +365,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <DataInput
           label={'ECP Expiry Date'}
-          value={property_data.epc_expiry_date}
+          value={moment(property_data.ecp_exp_date).format('DD-MM-YYYY')}
           onChangeText={date =>
             setPropertydata({
               type: ECP_EXPIRY_DATE,
@@ -376,7 +375,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <DataInput
           label={'ECIR Expiry Date'}
-          value={property_data.ecir_expirydate}
+          value={moment(property_data.ecir_exp_date).format('dd-mm-yyyy')}
           onChangeText={date =>
             setPropertydata({
               type: ECIR_EXPIRY_DATE,
@@ -386,7 +385,9 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <DataInput
           label={'Gas Safety Certificate Expiry Date'}
-          value={property_data.gas_safety_certificate_expiry_date}
+          value={moment(property_data.gas_safety_certificate_exp_date).format(
+            'dd-mm-yyyy',
+          )}
           onChangeText={date =>
             setPropertydata({
               type: GAS_SAFETY_METER_DATE,
@@ -412,7 +413,7 @@ const EditPropertyScreen = ({navigation, route}) => {
               payload: type,
             })
           }
-          img1={property_data.electricty_meter_img}
+          img1={property_data.electricity_meter_img}
           onChangeImg1={url => {
             setPropertydata({
               type: ELECTRICY_METER_IMG_URL,
@@ -500,8 +501,8 @@ const EditPropertyScreen = ({navigation, route}) => {
               payload: url,
             });
           }}
-          img2={property_data.smoke_alarm_front_img}
-          onChangeImg2={() => {
+          img2={property_data.smoke_alarm_back_img}
+          onChangeImg2={url => {
             setPropertydata({
               type: SMOKE_IMG_URL2,
               payload: url,
@@ -520,15 +521,15 @@ const EditPropertyScreen = ({navigation, route}) => {
               payload: type,
             })
           }
-          img1={property_data.co_alarm_font_img}
+          img1={property_data.co_alarm_front_img}
           onChangeImg1={url => {
             setPropertydata({
               type: CO_ALARAM_IMG_URL1,
               payload: url,
             });
           }}
-          img2={property_data.co_alram_back_img}
-          onChangeImg2={() => {
+          img2={property_data.co_alarm_back_img}
+          onChangeImg2={url => {
             setPropertydata({
               type: CO_ALARAM_IMG_URL2,
               payload: url,
@@ -548,7 +549,7 @@ const EditPropertyScreen = ({navigation, route}) => {
             })
           }
           img2={property_data.heating_system_img}
-          onChangeImg2={() => {
+          onChangeImg2={url => {
             setPropertydata({
               type: HEATING_IMG_URL,
               payload: url,
@@ -557,7 +558,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         {images_data.map((item, index) => {
           return (
-            <AddNewPropertyImages
+            <EditPropertyImages
               item={item}
               key={`${index}`}
               setItem={data => {

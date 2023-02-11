@@ -47,20 +47,20 @@ import {
   WATER_METER_READING,
 } from './types';
 const initialState = {
-  propertyaddress: 'MY PROPERTY ADDREESS',
-  tenant_name: 'MY ENEAT NAE',
-  inspector_name: 'AQEEL SQLAIN',
-  asked_landord_to: 'ALL THINGS DONE',
-  advised_tenant_to: 'WE ALL HAVE THIS',
-  contractor_instructed_to: 'THIS IS THE PROPERY DAT',
+  property_address: '',
+  tenant_name: '',
+  inspector_name: '',
+  asked_landlord_to: '',
+  advised_tenant_to: '',
+  contractor_instructed: '',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
   gas_safety_certificate_expiry_date: moment().format('DD-MMM-YYYY'),
   electricity_meter: 'Yes',
-  electricity_meter_reading: '150',
+  electricity_meter_reading: '',
   gas_meter: 'Yes',
-  gas_meter_reading: '120',
+  gas_meter_reading: '',
   water_meter: 'Yes',
   smoke_alarm: 'Yes',
   co_alarm: 'Yes',
@@ -68,18 +68,17 @@ const initialState = {
   signature_inspector: '',
   signature_tenant: '',
   types: 'inspection',
-  final_remarks: 'THIS IS FINAL REMARKS',
+  final_remarks: '',
   user_id: '5',
-
   main_img: '',
-  water_meter_reading: '23',
-  electricty_meter_img: '',
+  water_meter_reading: '',
+  electricity_meter_img: '',
   gas_meter_img: '',
   water_meter_img: '',
   smoke_alarm_front_img: '',
   smoke_alarm_back_img: '',
-  co_alarm_font_img: '',
-  co_alram_back_img: '',
+  co_alarm_front_img: '',
+  co_alarm_back_img: '',
   heating_system_img: '',
 };
 
@@ -88,7 +87,7 @@ const reducer = (state, action) => {
     case 'ADDRESS_ADD':
       return {
         ...state,
-        propertyaddress: action.payload,
+        property_address: action.payload,
       };
     case 'TENANT_NAME':
       return {
@@ -108,12 +107,12 @@ const reducer = (state, action) => {
     case 'ASKED_LANDLORD_TO':
       return {
         ...state,
-        asked_landord_to: action.payload,
+        asked_landlord_to: action.payload,
       };
     case 'CONSTRACTED_INSTRUCTED_TO':
       return {
         ...state,
-        contractor_instructed_to: action.payload,
+        contractor_instructed: action.payload,
       };
     case SET_INSPECTION_DATE:
       return {
@@ -198,7 +197,7 @@ const reducer = (state, action) => {
     case ELECTRICY_METER_IMG_URL:
       return {
         ...state,
-        electricty_meter_img: action.payload,
+        electricity_meter_img: action.payload,
       };
     case GAS_METER_IMG_URL:
       return {
@@ -223,12 +222,12 @@ const reducer = (state, action) => {
     case CO_ALARAM_IMG_URL1:
       return {
         ...state,
-        co_alarm_font_img: action.payload,
+        co_alarm_front_img: action.payload,
       };
     case CO_ALARAM_IMG_URL2:
       return {
         ...state,
-        co_alram_back_img: action.payload,
+        co_alarm_back_img: action.payload,
       };
     case HEATING_IMG_URL:
       return {
@@ -242,13 +241,18 @@ const reducer = (state, action) => {
 };
 const AddNewPropertyScreen = () => {
   const [property_data, setPropertydata] = useReducer(reducer, initialState);
+  const {user} = useSelector(state => state.userReducer);
   const [images_data, setImagesdata] = useState([]);
   const [isloading, setIsLoading] = useState(false);
   const addNewItem = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
-      description: 'This is the room Desctiption',
-      images: ['', '', ''],
+      description: '',
+      property_images: [
+        {id: '1', url: 'https://via.placeholder.com/640x360'},
+        {id: '1', url: 'https://via.placeholder.com/640x360'},
+        {id: '1', url: 'https://via.placeholder.com/640x360'},
+      ],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -257,7 +261,7 @@ const AddNewPropertyScreen = () => {
 
   const validate_data = () => {
     let empty_filed = false;
-    if (property_data.propertyaddress == '') {
+    if (property_data.property_address == '') {
       alert("Property Address can't be empty");
       return;
     }
@@ -269,7 +273,7 @@ const AddNewPropertyScreen = () => {
       alert("Inspector name can't be empty");
       return;
     }
-    if (property_data.asked_landord_to == '') {
+    if (property_data.asked_landlord_to == '') {
       alert("Ask to Landlord can't be empty");
       return;
     }
@@ -277,7 +281,7 @@ const AddNewPropertyScreen = () => {
       alert("Tenant advice can't be empty");
       return;
     }
-    if (property_data.contractor_instructed_to == '') {
+    if (property_data.contractor_instructed == '') {
       alert("Contractor Instruction can't be empty");
       return;
     }
@@ -332,13 +336,9 @@ const AddNewPropertyScreen = () => {
       redirect: 'follow',
     };
 
-    fetch(
-      'https://6559-2407-d000-d-f108-c2df-68d4-6e72-58e4.ap.ngrok.io/properties',
-      requestOptions,
-    )
+    fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         setIsLoading(false);
         console.log('I am resultt of the data Aded');
       })
@@ -356,7 +356,7 @@ const AddNewPropertyScreen = () => {
 
         <CustomInput
           label={'Property Address'}
-          value={property_data.propertyaddress}
+          value={property_data.property_address}
           onChangeText={text =>
             setPropertydata({type: 'ADDRESS_ADD', payload: text})
           }
@@ -370,7 +370,7 @@ const AddNewPropertyScreen = () => {
         />
         <CustomInput
           label={'Asked Landord To'}
-          value={property_data.asked_landord_to}
+          value={property_data.asked_landlord_to}
           onChangeText={text =>
             setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
           }
@@ -385,7 +385,7 @@ const AddNewPropertyScreen = () => {
         />
         <CustomInput
           label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed_to}
+          value={property_data.contractor_instructed}
           onChangeText={text =>
             setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }
@@ -456,7 +456,7 @@ const AddNewPropertyScreen = () => {
               payload: type,
             })
           }
-          img1={property_data.electricty_meter_img}
+          img1={property_data.electricity_meter_img}
           onChangeImg1={url => {
             setPropertydata({
               type: ELECTRICY_METER_IMG_URL,
@@ -544,8 +544,8 @@ const AddNewPropertyScreen = () => {
               payload: url,
             });
           }}
-          img2={property_data.smoke_alarm_front_img}
-          onChangeImg2={() => {
+          img2={property_data.smoke_alarm_back_img}
+          onChangeImg2={url => {
             setPropertydata({
               type: SMOKE_IMG_URL2,
               payload: url,
@@ -564,14 +564,14 @@ const AddNewPropertyScreen = () => {
               payload: type,
             })
           }
-          img1={property_data.co_alarm_font_img}
+          img1={property_data.co_alarm_front_img}
           onChangeImg1={url => {
             setPropertydata({
               type: CO_ALARAM_IMG_URL1,
               payload: url,
             });
           }}
-          img2={property_data.co_alram_back_img}
+          img2={property_data.co_alarm_back_img}
           onChangeImg2={url => {
             setPropertydata({
               type: CO_ALARAM_IMG_URL2,

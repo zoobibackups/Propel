@@ -17,20 +17,7 @@ import colors from '../constants/theme';
 const UpLoadComponent = ({data, onChangeText}) => {
   const [uploadingindex, setUploadingIndex] = useState(null);
   const [uploading, setUpLoading] = useState(false);
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      path: 'https://via.placeholder.com/640x360',
-    },
-    {
-      id: 2,
-      path: 'https://via.placeholder.com/640x360',
-    },
-    {
-      id: 3,
-      path: 'https://via.placeholder.com/640x360',
-    },
-  ]);
+  const [images, setImages] = useState(data);
   const Pickimage = index => {
     setUploadingIndex(index);
 
@@ -42,7 +29,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
       .then(image => {
         let temp_images = [...images];
         uploadUImage(image, index);
-        temp_images[index].path = image.path;
+        temp_images[index].url = image.path;
         setImages(temp_images);
       })
       .catch(err => {
@@ -98,7 +85,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
                     borderRadius: moderateScale(5),
                     height: moderateScale(60),
                   }}
-                  source={{uri: item.path}}
+                  source={{uri: item.url}}
                   color={colors.primaryColor}
                 />
               )}

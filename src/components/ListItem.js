@@ -1,45 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import moment from 'moment';
-import {useState} from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {DELETE_PROPERTY} from '../apis';
+import {API_URL} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-import DeleteModal from './DeleteModal';
-const ListItem = ({item, index, onDeleteAnItem}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [is_deleting, setIsDeleting] = useState(false);
+const ListItem = ({item, index}) => {
   const navigation = useNavigation();
-  const onDeleteItem = () => {
-    setIsVisible(false);
-    setIsDeleting(true);
-    var requestOptions = {
-      method: 'DELETE',
-      redirect: 'follow',
-    };
-
-    fetch(`${DELETE_PROPERTY}/${item.id}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        onDeleteAnItem();
-        alert('Deleted Item Successfully');
-        setIsDeleting(false);
-      })
-      .catch(error => {
-        alert('Error In Deleting Item');
-        setIsDeleting(false);
-      });
-  };
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('PropertyDetailsScreen', {item})}
@@ -47,9 +15,8 @@ const ListItem = ({item, index, onDeleteAnItem}) => {
       style={styles.item}>
       <View>
         <Image
-          source={{uri: null}}
+          source={{uri: `${API_URL}${item.main_img}`}}
           resizeMode={'cover'}
-          defaultSource={require('../assets/default.jpg')}
           style={{
             borderWidth: moderateScale(0),
             borderColor: colors.primaryColor,

@@ -19,6 +19,8 @@ import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
+StatusBar.setBackgroundColor(colors.primaryColor);
+StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
@@ -35,7 +37,7 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${LIST_PROPERTY}`, requestOptions)
+    fetch(`${USER_LIST_PROPERTY}${user.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         setProperty(result.rows);

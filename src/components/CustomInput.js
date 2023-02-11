@@ -31,7 +31,6 @@ const CustomInput = ({
           placeholderTextColor={'#0006'}
           value={value}
           autoCapitalize={'none'}
-          autoComplete={'email'}
           onChangeText={text => onChangeText(text)}
           style={styles.input}
         />

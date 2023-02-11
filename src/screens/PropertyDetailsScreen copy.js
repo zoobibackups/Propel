@@ -14,7 +14,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {API_URL} from '../apis';
+import {API_URL, DELETE_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
 import TabViewComponent from '../components/TabViewComponent';
@@ -45,6 +45,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
 
   const deleteFunction = () => {
     setIsDeleting(true);
+
     setTimeout(() => {
       setIsDeleting(false);
       setIsVisible(false);

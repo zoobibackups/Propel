@@ -66,7 +66,7 @@ const CustomRadioInput = ({
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
-        if (index == 1) {
+        if (index == 0) {
           onChangeImg1(result.path);
         } else {
           onChangeImg2(result.path);
@@ -75,7 +75,6 @@ const CustomRadioInput = ({
         setUploadingIndex(null);
       })
       .catch(error => {
-        console.log('error', error);
         setUpLoading(false);
         setUploadingIndex(null);
       });
@@ -110,6 +109,7 @@ const CustomRadioInput = ({
           <TextInput
             value={meter_reading_value}
             onChangeText={text => onChangeReading(text)}
+            keyboardType={'numeric'}
             style={{
               backgroundColor: colors.primaryColor,
               width: moderateScale(80),

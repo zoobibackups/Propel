@@ -14,7 +14,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {API_URL} from '../apis';
+import {API_URL, DELETE_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
 import ImgDateReadingComponent from '../components/ImgDateReadingComponent';
@@ -27,6 +27,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   let property_data = route.params.item;
+  delete property_data.signature_tenant;
+  delete property_data.signature_inspector;
 
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
@@ -45,11 +47,22 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   };
 
   const deleteFunction = () => {
-    setIsDeleting(true);
-    setTimeout(() => {
-      setIsDeleting(false);
-      setIsVisible(false);
-    }, 4000);
+    var requestOptions = {
+      method: 'DELETE',
+      redirect: 'follow',
+    };
+    fetch(`${DELETE_PROPERTY}/${property_data.id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        setIsDeleting(false);
+        setIsVisible(false);
+        alert('Deleted Item Successfully');
+      })
+      .catch(error => {
+        alert('Error In Deleting Item');
+        setIsDeleting(true);
+        setIsVisible(false);
+      });
   };
   // console.log(`data:image/png;base64,${property_data?.signature_inspector}`);
   return (
@@ -109,6 +122,23 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             {moment(property_data?.ecir_exp_date).format('DD-MM-yyyy')}
           </Text>
         </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Advised Tenant to : </Text>
+          <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Contractor Instructed : </Text>
+          <Text style={styles.title}>
+            {property_data?.contractor_instructed}
+          </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.bluetxt}>Asked landlord To : </Text>
+          <Text style={styles.title}>{property_data?.asked_landlord_to}</Text>
+        </View>
         <ImgDateReadingComponent
           title={'Gas Meter'}
           date={moment(property_data?.gas_safety_certificate_exp_date).format(
@@ -167,9 +197,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
           );
         }}
       />
-      {active_tab_data.length > 0 && (
-        <TabViewComponent data={active_tab_data} />
-      )}
+      {active_tab_data && <TabViewComponent data={active_tab_data} />}
       <View
         style={{
           ...styles.row,

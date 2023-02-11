@@ -40,14 +40,9 @@ const LoginScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
-        console.log(data, 'DATA');
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
         } else {
-          console.log({
-            user: data,
-            token: data.jwtToken,
-          });
           dispatch(
             userLogin({
               user: data,
@@ -59,7 +54,6 @@ const LoginScreen = ({navigation}) => {
         setLoading(false);
       })
       .catch(err => {
-        console.log(err);
         setLoading(true);
         alert('Some Error');
       });
