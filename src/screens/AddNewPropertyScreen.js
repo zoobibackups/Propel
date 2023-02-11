@@ -322,7 +322,7 @@ const AddNewPropertyScreen = () => {
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-
+    console.log(images_data);
     var data = {
       ...property_data,
       user_id: 5,
@@ -336,7 +336,10 @@ const AddNewPropertyScreen = () => {
       redirect: 'follow',
     };
 
-    fetch(ADD_PROPERTY, requestOptions)
+    fetch(
+      'https://c10b-2407-d000-d-3f0f-325e-1b54-f271-f70f.ap.ngrok.io/properties',
+      requestOptions,
+    )
       .then(response => response.json())
       .then(result => {
         setIsLoading(false);

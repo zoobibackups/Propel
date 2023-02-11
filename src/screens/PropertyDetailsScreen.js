@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -27,9 +27,16 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   let property_data = route.params.item;
-  delete property_data.signature_tenant;
-  delete property_data.signature_inspector;
 
+  arrayBufferToBase64 = buffer => {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return binary;
+  };
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
       ? property_data.property_details[0]
@@ -214,7 +221,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
               height: moderateScale(100),
             }}
             source={{
-              uri: 'https://www.mockofun.com/wp-content/uploads/2021/05/create-transparent-signature-online-38976.jpg',
+              uri: `${arrayBufferToBase64(
+                property_data?.signature_tenant.data,
+              )}`,
             }}
           />
         </View>
@@ -228,7 +237,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
               height: moderateScale(100),
             }}
             source={{
-              uri: 'https://www.mockofun.com/wp-content/uploads/2021/05/create-transparent-signature-online-38976.jpg',
+              uri: `${arrayBufferToBase64(
+                property_data?.signature_inspector.data,
+              )}`,
             }}
           />
         </View>
