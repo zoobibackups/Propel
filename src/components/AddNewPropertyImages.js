@@ -20,9 +20,9 @@ const AddNewPropertyImages = ({index, item, setItem}) => {
       />
       <UpLoadComponent
         data={item.images}
-        onChangeText={(path, index) => {
+        onChangeText={(path, index_local) => {
           let temp_images = item.images;
-          temp_images[index] = path;
+          temp_images[index_local] = path;
           setItem({
             ...item,
             images: temp_images,

@@ -334,7 +334,7 @@ const AddNewPropertyScreen = () => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result, 'I am resultt of the data Aded');
+        console.log('I am resultt of the data Aded');
       })
       .catch(error => console.log('error', error));
   };

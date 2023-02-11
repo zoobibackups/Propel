@@ -30,7 +30,7 @@ const TabViewComponent = ({data}) => {
                   borderRadius: moderateScale(5),
                   height: moderateScale(60),
                 }}
-                source={{uri: item.url ? null : null}}
+                source={{uri: item.url}}
                 defaultSource={require('../assets/default.jpg')}
                 color={colors.primaryColor}
               />

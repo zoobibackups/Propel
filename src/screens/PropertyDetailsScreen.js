@@ -68,7 +68,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <TouchableOpacity
           style={{paddingHorizontal: moderateScale(20)}}
           onPress={() =>
-            navigation.navigate('EditPropertyDetailsScreen', {item})
+            navigation.navigate('EditPropertyDetailsScreen', {
+              item: property_data,
+            })
           }>
           <AntDesign color={'#000'} size={moderateScale(20)} name={'edit'} />
         </TouchableOpacity>
@@ -146,7 +148,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         horizontal={true}
         data={property_data?.property_details}
         showsHorizontalScrollIndicator={false}
-        style={{margin: moderateScale(15)}}
+        style={{flex: 1, margin: moderateScale(15)}}
+        contentContainerStyle={{flex: 1, justifyContent: 'flex-start'}}
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity
@@ -163,7 +166,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       <View
         style={{
           ...styles.row,
-
           width: SCREEN_WIDTH,
           justifyContent: 'space-between',
         }}>

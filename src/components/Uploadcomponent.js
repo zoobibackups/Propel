@@ -41,7 +41,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
     })
       .then(image => {
         let temp_images = [...images];
-        uploadUImage(image);
+        uploadUImage(image, index);
         temp_images[index].path = image.path;
         setImages(temp_images);
       })
@@ -50,7 +50,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
       });
   };
 
-  const uploadUImage = image => {
+  const uploadUImage = (image, index) => {
     setUpLoading(true);
     let name = image.path.split('/').pop();
     var formdata = new FormData();
