@@ -14,51 +14,25 @@ import {UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-const UpLoadComponent = ({data, onChangeText}) => {
-  const [uploadingindex, setUploadingIndex] = useState(null);
+const MainImgComponent = ({url, onChangeText}) => {
   const [uploading, setUpLoading] = useState(false);
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-    {
-      id: 2,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-    {
-      id: 3,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-  ]);
-  const Pickimage = index => {
-    setUploadingIndex(index);
+  const [img, setImg] = useState(url);
 
+  const Pickimage = () => {
     ImagePicker.openPicker({
       width: 500,
       height: 500,
       cropping: true,
     })
       .then(image => {
-        let temp_images = [...images];
-        uploadUImage(image, index);
-        temp_images[index].path = image.path;
-        temp_images[index].name = image.path.split('/').pop();
-        temp_images[index].ext = image.mime;
-        setImages(temp_images);
+        uploadUImage(image);
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  const uploadUImage = (image, index) => {
+  const uploadUImage = image => {
     setUpLoading(true);
     let name = image.path.split('/').pop();
     var formdata = new FormData();
@@ -77,48 +51,39 @@ const UpLoadComponent = ({data, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
+        setImg(`https://propelinspections.com/${result.path}`);
+        onChangeText(result.path);
         setUpLoading(false);
-        setUploadingIndex(null);
-        onChangeText(`${result.path}`, index);
       })
       .catch(error => {
-        console.log('error', error);
         setUpLoading(false);
-        setUploadingIndex(null);
       });
   };
   return (
     <View style={styles.mainView}>
-      <Text style={styles.text}>Upload Images</Text>
+      <Text style={styles.text}>Property Main Picture</Text>
       <View style={styles.Row}>
-        {images.map((item, index) => {
-          return (
-            <TouchableOpacity
-              key={`${index}`}
-              onPress={() => Pickimage(index)}
-              style={styles.imagebg}>
-              {uploading && index == uploadingindex ? (
-                <ActivityIndicator />
-              ) : (
-                <Image
-                  style={{
-                    width: moderateScale(90),
-                    resizeMode: 'cover',
-                    borderRadius: moderateScale(5),
-                    height: moderateScale(60),
-                  }}
-                  source={{uri: item.path}}
-                  color={colors.primaryColor}
-                />
-              )}
-            </TouchableOpacity>
-          );
-        })}
+        <TouchableOpacity onPress={() => Pickimage()} style={styles.imagebg}>
+          {uploading ? (
+            <ActivityIndicator />
+          ) : (
+            <Image
+              style={{
+                width: moderateScale(90),
+                resizeMode: 'cover',
+                borderRadius: moderateScale(5),
+                height: moderateScale(60),
+              }}
+              source={{uri: img}}
+              color={colors.primaryColor}
+            />
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
-export default UpLoadComponent;
+export default MainImgComponent;
 
 const styles = StyleSheet.create({
   mainView: {
@@ -140,13 +105,11 @@ const styles = StyleSheet.create({
     borderWidth: moderateScale(1),
     borderRadius: scale(5),
     borderColor: colors.white,
-    paddingHorizontal: moderateScale(10),
+
     width: SCREEN_WIDTH,
     alignItems: 'center',
-    margin: moderateScale(10),
     marginBottom: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   imagebg: {
     width: moderateScale(92),

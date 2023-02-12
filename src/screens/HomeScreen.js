@@ -24,7 +24,7 @@ StatusBar.setBackgroundColor(colors.primaryColor);
 StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
-  console.log(isFocused);
+
   const {user} = useSelector(state => state.userReducer);
 
   const [search, setSearch] = useState('');

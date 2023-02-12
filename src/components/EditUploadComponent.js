@@ -10,33 +10,16 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale} from 'react-native-size-matters';
-import {UPLOAD_IMAGE} from '../apis';
+import {API_URL, UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-const UpLoadComponent = ({data, onChangeText}) => {
+const EditUploadComponent = ({data, onChangeText}) => {
+  console.log(data, 'DATA');
   const [uploadingindex, setUploadingIndex] = useState(null);
   const [uploading, setUpLoading] = useState(false);
-  const [images, setImages] = useState([
-    {
-      id: 1,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-    {
-      id: 2,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-    {
-      id: 3,
-      path: 'https://via.placeholder.com/640x360',
-      ext: '',
-      name: '',
-    },
-  ]);
+  const [images, setImages] = useState(data);
+
   const Pickimage = index => {
     setUploadingIndex(index);
 
@@ -48,9 +31,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
       .then(image => {
         let temp_images = [...images];
         uploadUImage(image, index);
-        temp_images[index].path = image.path;
-        temp_images[index].name = image.path.split('/').pop();
-        temp_images[index].ext = image.mime;
+        temp_images[index].url = image.path;
         setImages(temp_images);
       })
       .catch(err => {
@@ -77,12 +58,11 @@ const UpLoadComponent = ({data, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
+        onChangeText(`${result.path}`, index);
         setUpLoading(false);
         setUploadingIndex(null);
-        onChangeText(`${result.path}`, index);
       })
       .catch(error => {
-        console.log('error', error);
         setUpLoading(false);
         setUploadingIndex(null);
       });
@@ -107,7 +87,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
                     borderRadius: moderateScale(5),
                     height: moderateScale(60),
                   }}
-                  source={{uri: item.path}}
+                  source={{uri: `${API_URL}${item.url}`}}
                   color={colors.primaryColor}
                 />
               )}
@@ -118,7 +98,7 @@ const UpLoadComponent = ({data, onChangeText}) => {
     </View>
   );
 };
-export default UpLoadComponent;
+export default EditUploadComponent;
 
 const styles = StyleSheet.create({
   mainView: {

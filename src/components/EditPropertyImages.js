@@ -4,7 +4,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 import CustomInput from './CustomInput';
-import UpLoadComponent from './Uploadcomponent';
+import EditUploadComponent from './EditUploadComponent';
 const EditPropertyImages = ({index, item, setItem}) => {
   return (
     <View key={`${index}`} style={styles.mainView}>
@@ -18,14 +18,14 @@ const EditPropertyImages = ({index, item, setItem}) => {
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />
-      <UpLoadComponent
-        data={item.property_images}
+      <EditUploadComponent
+        data={item.images}
         onChangeText={(path, index_local) => {
-          let temp_images = item.property_images;
+          let temp_images = item.images;
           temp_images[index_local] = path;
           setItem({
             ...item,
-            property_images: temp_images,
+            images: temp_images,
           });
         }}
       />

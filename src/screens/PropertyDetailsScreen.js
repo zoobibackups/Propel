@@ -78,7 +78,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         setIsVisible(false);
       });
   };
-  // console.log(`data:image/png;base64,${property_data?.signature_inspector}`);
+
   return (
     <ScrollView
       contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}

@@ -17,6 +17,7 @@ import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
 import DataInput from '../components/DateInput';
+import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
@@ -108,6 +109,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         asked_landlord_to: action.payload,
+      };
+    case 'MAIN_IMG':
+      return {
+        ...state,
+        main_img: action.payload,
       };
     case 'CONSTRACTED_INSTRUCTED_TO':
       return {
@@ -248,10 +254,10 @@ const AddNewPropertyScreen = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
       description: '',
-      property_images: [
-        {id: '1', url: 'https://via.placeholder.com/640x360'},
-        {id: '1', url: 'https://via.placeholder.com/640x360'},
-        {id: '1', url: 'https://via.placeholder.com/640x360'},
+      images: [
+        'https://via.placeholder.com/640x360',
+        'https://via.placeholder.com/640x360',
+        'https://via.placeholder.com/640x360',
       ],
     };
     let temp_array = [...images_data];
@@ -329,6 +335,7 @@ const AddNewPropertyScreen = () => {
       property_details: images_data,
     };
 
+    console.log(images_data);
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
@@ -353,7 +360,15 @@ const AddNewPropertyScreen = () => {
         style={styles.container}
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
-
+        <MainImgComponent
+          url={'https://via.placeholder.com/640x360'}
+          onChangeText={url => {
+            setPropertydata({
+              type: 'MAIN_IMG',
+              payload: url,
+            });
+          }}
+        />
         <CustomInput
           label={'Property Address'}
           value={property_data.property_address}

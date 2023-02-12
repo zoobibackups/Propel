@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useReducer, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -206,13 +206,30 @@ const reducer = (state, action) => {
 const EditPropertyScreen = ({navigation, route}) => {
   let item = route.params.item;
   const [property_data, setPropertydata] = useReducer(reducer, item);
-  const [images_data, setImagesdata] = useState(item.property_details);
+
+  useEffect(() => {
+    let my_map_data = item.property_details.map((item, index) => {
+      return {
+        ...item,
+        images: item.property_images.map(itm => itm.url),
+      };
+    });
+    console.log(my_map_data);
+  }, []);
+  const [images_data, setImagesdata] = useState(
+    item.property_details.map((item, index) => {
+      return {
+        ...item,
+        images: item.property_images.map(itm => itm.url),
+      };
+    }),
+  );
 
   const addNewItem = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
       description: 'This is the room Desctiption',
-      property_images: ['', '', ''],
+      images: ['', '', ''],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -227,6 +244,7 @@ const EditPropertyScreen = ({navigation, route}) => {
     }
     return `data:image/png;base64,${binary}`;
   };
+
   const validate_data = () => {
     let empty_filed = false;
     if (property_data.property_address == '') {
@@ -297,7 +315,7 @@ const EditPropertyScreen = ({navigation, route}) => {
     };
 
     var requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: 'follow',

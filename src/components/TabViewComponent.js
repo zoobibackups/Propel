@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {moderateScale, scale} from 'react-native-size-matters';
+import {API_URL} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
@@ -30,7 +31,7 @@ const TabViewComponent = ({data}) => {
                   borderRadius: moderateScale(5),
                   height: moderateScale(60),
                 }}
-                source={{uri: item.url}}
+                source={{uri: `${API_URL}${item.url}`}}
                 defaultSource={require('../assets/default.jpg')}
                 color={colors.primaryColor}
               />
