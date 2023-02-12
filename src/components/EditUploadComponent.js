@@ -15,7 +15,6 @@ import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 const EditUploadComponent = ({data, onChangeText}) => {
-  console.log(data, 'DATA');
   const [uploadingindex, setUploadingIndex] = useState(null);
   const [uploading, setUpLoading] = useState(false);
   const [images, setImages] = useState(data);
@@ -29,10 +28,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
       cropping: true,
     })
       .then(image => {
-        let temp_images = [...images];
         uploadUImage(image, index);
-        temp_images[index].url = image.path;
-        setImages(temp_images);
       })
       .catch(err => {
         console.log(err);
@@ -59,6 +55,9 @@ const EditUploadComponent = ({data, onChangeText}) => {
       .then(response => response.json())
       .then(result => {
         onChangeText(`${result.path}`, index);
+        let temp_images = [...images];
+        temp_images[index] = result.path;
+        setImages(temp_images);
         setUpLoading(false);
         setUploadingIndex(null);
       })
@@ -87,7 +86,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
                     borderRadius: moderateScale(5),
                     height: moderateScale(60),
                   }}
-                  source={{uri: `${API_URL}${item.url}`}}
+                  source={{uri: `${API_URL}${item}`}}
                   color={colors.primaryColor}
                 />
               )}

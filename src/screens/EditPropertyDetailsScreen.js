@@ -206,16 +206,6 @@ const reducer = (state, action) => {
 const EditPropertyScreen = ({navigation, route}) => {
   let item = route.params.item;
   const [property_data, setPropertydata] = useReducer(reducer, item);
-
-  useEffect(() => {
-    let my_map_data = item.property_details.map((item, index) => {
-      return {
-        ...item,
-        images: item.property_images.map(itm => itm.url),
-      };
-    });
-    console.log(my_map_data);
-  }, []);
   const [images_data, setImagesdata] = useState(
     item.property_details.map((item, index) => {
       return {
@@ -228,7 +218,7 @@ const EditPropertyScreen = ({navigation, route}) => {
   const addNewItem = () => {
     let item = {
       name: `Room ${images_data.length + 1}`,
-      description: 'This is the room Desctiption',
+      description: '',
       images: ['', '', ''],
     };
     let temp_array = [...images_data];
@@ -310,12 +300,18 @@ const EditPropertyScreen = ({navigation, route}) => {
 
     var data = {
       ...property_data,
+      signature_inspector: arrayBufferToBase64(
+        property_data.signature_inspector.data,
+      ),
+      signature_tenant: arrayBufferToBase64(
+        property_data.signature_tenant.data,
+      ),
       user_id: 5,
       property_details: images_data,
     };
-
+    console.log(images_data, 'images_dataimages_data');
     var requestOptions = {
-      method: 'PUT',
+      method: 'POST',
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: 'follow',
@@ -324,6 +320,7 @@ const EditPropertyScreen = ({navigation, route}) => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
+        //  console.log(result);
         console.log('I am resultt of the data Aded');
       })
       .catch(error => console.log('error', error));
