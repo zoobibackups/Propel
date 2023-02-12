@@ -633,14 +633,12 @@ const AddNewPropertyScreen = () => {
           }
         />
         <SignatureComponent
-          img={property_data.signature_tenant}
           title={"Inspector's Signature"}
           onChangeText={text =>
             setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
           }
         />
         <SignatureComponent
-          img={property_data.signature_inspector}
           title={"Tenant's Signature"}
           onChangeText={text =>
             setPropertydata({type: TENANT_SIGNATURE, payload: text})
