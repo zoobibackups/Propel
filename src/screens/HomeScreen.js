@@ -1,3 +1,4 @@
+import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -22,14 +23,17 @@ import colors from '../constants/theme';
 StatusBar.setBackgroundColor(colors.primaryColor);
 StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
+  const isFocused = useIsFocused();
+  console.log(isFocused);
   const {user} = useSelector(state => state.userReducer);
+
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
   useEffect(() => {
     updatePropertyList();
-  }, []);
+  }, [isFocused]);
   const updatePropertyList = () => {
     setLoading(true);
     var requestOptions = {

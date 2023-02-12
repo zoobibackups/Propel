@@ -591,12 +591,14 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <SignatureComponent
           title={"Inspector's Signature"}
+          img={property_data.signature_tenant}
           onChangeText={text =>
             setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
           }
         />
         <SignatureComponent
           title={"Tenant's Signature"}
+          img={property_data.signature_inspector}
           onChangeText={text =>
             setPropertydata({type: TENANT_SIGNATURE, payload: text})
           }

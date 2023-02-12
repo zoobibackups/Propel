@@ -322,7 +322,7 @@ const AddNewPropertyScreen = () => {
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    console.log(images_data);
+
     var data = {
       ...property_data,
       user_id: 5,
@@ -336,10 +336,7 @@ const AddNewPropertyScreen = () => {
       redirect: 'follow',
     };
 
-    fetch(
-      'https://c10b-2407-d000-d-3f0f-325e-1b54-f271-f70f.ap.ngrok.io/properties',
-      requestOptions,
-    )
+    fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
         setIsLoading(false);
@@ -636,12 +633,14 @@ const AddNewPropertyScreen = () => {
           }
         />
         <SignatureComponent
+          img={property_data.signature_tenant}
           title={"Inspector's Signature"}
           onChangeText={text =>
             setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
           }
         />
         <SignatureComponent
+          img={property_data.signature_inspector}
           title={"Tenant's Signature"}
           onChangeText={text =>
             setPropertydata({type: TENANT_SIGNATURE, payload: text})

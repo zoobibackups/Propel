@@ -2,7 +2,6 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
-  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -12,7 +11,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {API_URL, UPLOAD_IMAGE} from '../apis';
+import {UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
@@ -134,24 +133,6 @@ const CustomRadioInput = ({
               }}>
               {uploading && index == uploadingindex ? (
                 <ActivityIndicator />
-              ) : index == 0 && img1 !== undefined && img1 !== '' ? (
-                <Image
-                  style={{
-                    borderRadius: moderateScale(5),
-                    width: moderateScale(60),
-                    height: moderateScale(30),
-                  }}
-                  source={{uri: `${API_URL}${img1}`}}
-                />
-              ) : index == 1 && img2 !== undefined && img2 !== '' ? (
-                <Image
-                  style={{
-                    borderRadius: moderateScale(5),
-                    width: moderateScale(60),
-                    height: moderateScale(30),
-                  }}
-                  source={{uri: `${API_URL}${img2}`}}
-                />
               ) : (
                 <Entypo
                   name={'camera'}

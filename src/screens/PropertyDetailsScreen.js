@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, {useEffect, useState} from 'react';
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -27,7 +28,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   let property_data = route.params.item;
-
   arrayBufferToBase64 = buffer => {
     let binary = '';
     let bytes = new Uint8Array(buffer);
@@ -35,17 +35,18 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     for (let i = 0; i < len; i++) {
       binary += String.fromCharCode(bytes[i]);
     }
-    return binary;
+    return `data:image/png;base64,${binary}`;
   };
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
       ? property_data.property_details[0]
       : [],
   );
+
   const createPDF = async () => {
     let options = {
       html: html_data,
-      fileName: `${property_data?.tenant}_${moment().unix()}`,
+      fileName: `${property_data?.tenant_name}_${moment().unix()}`,
       directory: 'Downloads',
     };
 
@@ -63,11 +64,17 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       .then(result => {
         setIsDeleting(false);
         setIsVisible(false);
-        alert('Deleted Item Successfully');
+        Alert.alert('Property Deleted', 'Property Item Successfully', [
+          {
+            text: 'OK',
+            onPress: () => navigation.goBack(),
+          },
+        ]);
       })
       .catch(error => {
+        console.log(error);
         alert('Error In Deleting Item');
-        setIsDeleting(true);
+        setIsDeleting(false);
         setIsVisible(false);
       });
   };
