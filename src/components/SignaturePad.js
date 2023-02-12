@@ -8,10 +8,10 @@ import {SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 const SignatureComponent = ({img = null, title, onChangeText}) => {
   let signRef = SignatureCapture;
+
   const [isModal, setIsModal] = useState(false);
-  const [image, setImage] = useState(
-    img == null ? null : `data:image/png;base64,${img}`,
-  );
+  const [image, setImage] = useState(img == null ? null : img);
+
   const onDragEvent = () => {};
 
   const onSaveEvent = base64DataUrl => {

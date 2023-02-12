@@ -218,7 +218,15 @@ const EditPropertyScreen = ({navigation, route}) => {
     temp_array.push(item);
     setImagesdata(temp_array);
   };
-
+  arrayBufferToBase64 = buffer => {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return `data:image/png;base64,${binary}`;
+  };
   const validate_data = () => {
     let empty_filed = false;
     if (property_data.property_address == '') {
@@ -591,14 +599,14 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <SignatureComponent
           title={"Inspector's Signature"}
-          img={property_data.signature_tenant}
+          img={arrayBufferToBase64(property_data.signature_tenant.data)}
           onChangeText={text =>
             setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
           }
         />
         <SignatureComponent
           title={"Tenant's Signature"}
-          img={property_data.signature_inspector}
+          img={arrayBufferToBase64(property_data.signature_inspector.data)}
           onChangeText={text =>
             setPropertydata({type: TENANT_SIGNATURE, payload: text})
           }
