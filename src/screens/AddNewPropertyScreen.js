@@ -53,7 +53,7 @@ const initialState = {
   inspector_name: '',
   asked_landlord_to: '',
   advised_tenant_to: '',
-  contractor_instructed: '',
+  contractor_instructed_to: '',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
@@ -118,7 +118,7 @@ const reducer = (state, action) => {
     case 'CONSTRACTED_INSTRUCTED_TO':
       return {
         ...state,
-        contractor_instructed: action.payload,
+        contractor_instructed_to: action.payload,
       };
     case SET_INSPECTION_DATE:
       return {
@@ -287,7 +287,7 @@ const AddNewPropertyScreen = () => {
       alert("Tenant advice can't be empty");
       return;
     }
-    if (property_data.contractor_instructed == '') {
+    if (property_data.contractor_instructed_to == '') {
       alert("Contractor Instruction can't be empty");
       return;
     }
@@ -331,11 +331,11 @@ const AddNewPropertyScreen = () => {
 
     var data = {
       ...property_data,
-      user_id: 5,
+      user_id: user.id,
+      account_id: user.id,
       property_details: images_data,
     };
 
-    console.log(images_data);
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
@@ -346,8 +346,9 @@ const AddNewPropertyScreen = () => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         setIsLoading(false);
-        console.log('I am resultt of the data Aded');
+        alert('Your data has been uploaded');
       })
       .catch(error => {
         setIsLoading(false);
@@ -400,7 +401,7 @@ const AddNewPropertyScreen = () => {
         />
         <CustomInput
           label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed}
+          value={property_data.contractor_instructed_to}
           onChangeText={text =>
             setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }

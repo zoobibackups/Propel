@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -20,7 +21,8 @@ import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-StatusBar.setBackgroundColor(colors.primaryColor);
+Platform.OS == 'android' && StatusBar.setBackgroundColor(colors.primaryColor);
+
 StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
@@ -32,8 +34,10 @@ const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
   useEffect(() => {
-    updatePropertyList();
-  }, [isFocused]);
+    console.log(user);
+    if (user != null) updatePropertyList();
+  }, [isFocused, user]);
+
   const updatePropertyList = () => {
     setLoading(true);
     var requestOptions = {
@@ -41,9 +45,10 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${USER_LIST_PROPERTY}${user.id}`, requestOptions)
+    fetch(`${USER_LIST_PROPERTY}5`, requestOptions)
       .then(response => response.json())
       .then(result => {
+        //console.log(result, );
         setProperty(result.rows);
         setData(result.rows);
         setLoading(false);

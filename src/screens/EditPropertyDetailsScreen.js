@@ -206,6 +206,7 @@ const reducer = (state, action) => {
 const EditPropertyScreen = ({navigation, route}) => {
   let item = route.params.item;
   const [property_data, setPropertydata] = useReducer(reducer, item);
+  const [isloading, setIsLoading] = useState(false);
   const [images_data, setImagesdata] = useState(
     item.property_details.map((item, index) => {
       return {
@@ -295,11 +296,22 @@ const EditPropertyScreen = ({navigation, route}) => {
   };
 
   const UploadProperty = () => {
+    setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
     var data = {
       ...property_data,
+      inspectiondate: moment(property_data.inspectiondate).format(
+        'DD-MMM-YYYY',
+      ),
+      epc_expiry_date: moment(property_data.ecp_exp_date).format('DD-MMM-YYYY'),
+      ecir_expirydate: moment(property_data.ecir_expirydate).format(
+        'DD-MMM-YYYY',
+      ),
+      gas_safety_certificate_expiry_date: moment(
+        property_data.gas_safety_certificate_expiry_date,
+      ).format('DD-MMM-YYYY'),
       signature_inspector: arrayBufferToBase64(
         property_data.signature_inspector.data,
       ),
@@ -309,7 +321,6 @@ const EditPropertyScreen = ({navigation, route}) => {
       user_id: 5,
       property_details: images_data,
     };
-    console.log(images_data, 'images_dataimages_data');
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
@@ -320,10 +331,13 @@ const EditPropertyScreen = ({navigation, route}) => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        //  console.log(result);
-        console.log('I am resultt of the data Aded');
+        setIsLoading(false);
+        alert('Your Property Has been Upload');
       })
-      .catch(error => console.log('error', error));
+      .catch(error => {
+        alert('There is some issue with this property');
+        setIsLoading(true);
+      });
   };
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
@@ -627,7 +641,8 @@ const EditPropertyScreen = ({navigation, route}) => {
           }
         />
         <CustomButton
-          title="Upload this Property"
+          isloading={isloading}
+          title="Update Property"
           onPress={() => validate_data()}
         />
         <View style={{height: moderateScale(20)}} />

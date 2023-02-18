@@ -5,11 +5,15 @@ import {PersistGate} from 'redux-persist/integration/react';
 import MainApp from './src/navigation';
 import {persistor, store} from './src/store/index';
 const App = () => {
+  const HideSPlashScreen = () => {
+    SplashScreen.hide();
+    setTimeout(() => {}, 2000);
+  };
   return (
     <Provider store={store}>
       <PersistGate
         loading={null}
-        onBeforeLift={() => SplashScreen.hide()}
+        onBeforeLift={() => HideSPlashScreen()}
         persistor={persistor}>
         <MainApp />
       </PersistGate>
