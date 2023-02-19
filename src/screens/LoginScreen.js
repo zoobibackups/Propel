@@ -13,8 +13,8 @@ import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [useremail, setEmail] = useState('engr.aftabufaq@gmail.com');
-  const [password, setPassword] = useState('Tikt0k@1');
+  const [useremail, setEmail] = useState(''); // engr.aftabufaq@gmail.com
+  const [password, setPassword] = useState(''); // Tikt0k@1
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);
