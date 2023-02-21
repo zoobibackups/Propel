@@ -15,6 +15,7 @@ const AddNewPropertyImages = ({index, item, setItem}) => {
       />
       <CustomInput
         label={'Enter Details'}
+        placeholder={'FLOOR,\n WALLS, CELING, WINDOWS, COMMENT'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />

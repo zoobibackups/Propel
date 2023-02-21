@@ -51,7 +51,7 @@ const MainImgComponent = ({url, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
-        setImg(`https://propelinspections.com/${result.path}`);
+        setImg(`https://api.propelinspections.com/${result.path}`);
         onChangeText(result.path);
         setUpLoading(false);
       })

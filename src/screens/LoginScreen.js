@@ -13,8 +13,8 @@ import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [useremail, setEmail] = useState(''); // engr.aftabufaq@gmail.com
-  const [password, setPassword] = useState(''); // Tikt0k@1
+  const [useremail, setEmail] = useState('engr.aftabufaq@gmail.com'); //
+  const [password, setPassword] = useState('Tikt0k@1'); //
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);
@@ -38,8 +38,9 @@ const LoginScreen = ({navigation}) => {
         password: password,
       }),
     })
-      .then(data => data.json())
+      .then(data => data.text())
       .then(data => {
+        console.log(data);
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
         } else {
@@ -54,7 +55,8 @@ const LoginScreen = ({navigation}) => {
         setLoading(false);
       })
       .catch(err => {
-        setLoading(true);
+        console.log(err);
+        setLoading(false);
         alert('Some Error');
       });
   };

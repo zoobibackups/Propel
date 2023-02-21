@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
   },
   bluetxt: {
     fontFamily: fonts.Bold,
-    minWidth: moderateScale(180),
+    minWidth: moderateScale(140),
     color: colors.primaryColor,
     fontSize: moderateScale(12),
   },

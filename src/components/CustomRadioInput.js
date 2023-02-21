@@ -12,6 +12,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {API_URL, UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
@@ -36,8 +37,8 @@ const CustomRadioInput = ({
   const Pickimage = index => {
     setUploadingIndex(index);
     ImagePicker.openPicker({
-      width: 500,
-      height: 500,
+      width: 800,
+      height: 800,
       cropping: true,
     })
       .then(image => {
@@ -46,6 +47,17 @@ const CustomRadioInput = ({
       .catch(err => {
         console.log(err);
       });
+  };
+  const Pickfromcamera = index => {
+    ImagePicker.openCamera({
+      width: 800,
+      height: 800,
+      cropping: true,
+    })
+      .then(image => {
+        uploadUImage(image, index);
+      })
+      .catch(err => {});
   };
 
   const uploadUImage = (image, index) => {
@@ -123,8 +135,7 @@ const CustomRadioInput = ({
         )}
         {cameraimage.map((item, index) => {
           return (
-            <TouchableOpacity
-              onPress={() => Pickimage(index)}
+            <View
               key={`${index}`}
               style={{
                 ...styles.RadioButton,
@@ -153,13 +164,29 @@ const CustomRadioInput = ({
                   source={{uri: `${API_URL}${img2}`}}
                 />
               ) : (
-                <Entypo
-                  name={'camera'}
-                  size={moderateScale(22)}
-                  color={colors.primaryColor}
-                />
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    flex: 1,
+                    justifyContent: 'space-between',
+                  }}>
+                  <TouchableOpacity onPress={() => Pickfromcamera(index)}>
+                    <Entypo
+                      name={'camera'}
+                      size={moderateScale(17)}
+                      color={colors.primaryColor}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => Pickimage(index)}>
+                    <FontAwesome
+                      name={'photo'}
+                      size={moderateScale(17)}
+                      color={colors.primaryColor}
+                    />
+                  </TouchableOpacity>
+                </View>
               )}
-            </TouchableOpacity>
+            </View>
           );
         })}
       </View>
