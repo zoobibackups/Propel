@@ -49,7 +49,6 @@ const CustomRadioInput = ({
       });
   };
   const Pickfromcamera = index => {
-    console.log('Pickfromcamera', index);
     ImagePicker.openCamera({
       width: 800,
       height: 800,

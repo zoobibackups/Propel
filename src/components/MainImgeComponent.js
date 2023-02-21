@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale} from 'react-native-size-matters';
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
@@ -31,7 +33,17 @@ const MainImgComponent = ({url, onChangeText}) => {
         console.log(err);
       });
   };
-
+  const Pickfromcamera = () => {
+    ImagePicker.openCamera({
+      width: 800,
+      height: 800,
+      cropping: true,
+    })
+      .then(image => {
+        uploadUImage(image);
+      })
+      .catch(err => {});
+  };
   const uploadUImage = image => {
     setUpLoading(true);
     let name = image.path.split('/').pop();
@@ -63,10 +75,10 @@ const MainImgComponent = ({url, onChangeText}) => {
     <View style={styles.mainView}>
       <Text style={styles.text}>Property Main Picture</Text>
       <View style={styles.Row}>
-        <TouchableOpacity onPress={() => Pickimage()} style={styles.imagebg}>
+        <View onPress={() => Pickimage()} style={styles.imagebg}>
           {uploading ? (
-            <ActivityIndicator />
-          ) : (
+            <ActivityIndicator color={colors.white} size={'small'} />
+          ) : img ? (
             <Image
               style={{
                 width: moderateScale(90),
@@ -77,8 +89,32 @@ const MainImgComponent = ({url, onChangeText}) => {
               source={{uri: img}}
               color={colors.primaryColor}
             />
+          ) : (
+            <View
+              style={{
+                flexDirection: 'row',
+                flex: 1,
+                width: moderateScale(80),
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <TouchableOpacity onPress={() => Pickfromcamera()}>
+                <Entypo
+                  name={'camera'}
+                  size={moderateScale(27)}
+                  color={colors.primaryColor}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => Pickimage()}>
+                <FontAwesome
+                  name={'photo'}
+                  size={moderateScale(27)}
+                  color={colors.primaryColor}
+                />
+              </TouchableOpacity>
+            </View>
           )}
-        </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -119,7 +155,6 @@ const styles = StyleSheet.create({
     borderWidth: moderateScale(2),
     margin: moderateScale(2),
     borderRadius: moderateScale(2),
-
     overflow: 'hidden',
     justifyContent: 'center',
     height: moderateScale(62),
