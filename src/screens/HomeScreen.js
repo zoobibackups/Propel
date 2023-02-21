@@ -26,7 +26,6 @@ Platform.OS == 'android' && StatusBar.setBackgroundColor(colors.primaryColor);
 StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
-
   const {user} = useSelector(state => state.userReducer);
 
   const [search, setSearch] = useState('');
@@ -34,9 +33,8 @@ const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
   useEffect(() => {
-    console.log(user);
-    if (user != null) updatePropertyList();
-  }, [isFocused, user]);
+    updatePropertyList();
+  }, [isFocused]);
 
   const updatePropertyList = () => {
     setLoading(true);
@@ -45,7 +43,7 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${USER_LIST_PROPERTY}5`, requestOptions)
+    fetch(`${USER_LIST_PROPERTY}${user.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         //console.log(result, );
