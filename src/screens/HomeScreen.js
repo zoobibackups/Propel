@@ -91,22 +91,22 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
-  if (laoding) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <ActivityIndicator color={colors.primaryColor} />
-      </View>
-    );
-  }
+  // if (laoding) {
+  //   return (
+  //     <View
+  //       style={{
+  //         flex: 1,
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //       }}>
+  //       <ActivityIndicator color={colors.primaryColor} />
+  //     </View>
+  //   );
+  // }
   return (
     <View style={styles.container}>
       <View style={{marginVertical: moderateScale(20)}}>
-        <LOGO width={moderateScale(400)} heigth={moderateScale(300)} />
+        <LOGO width={moderateScale(300)} height={moderateScale(120)} />
       </View>
       <FlatList
         data={data}
