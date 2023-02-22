@@ -362,7 +362,7 @@ const AddNewPropertyScreen = () => {
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
         <MainImgComponent
-          url={'https://via.placeholder.com/640x360'}
+          url={null}
           onChangeText={url => {
             setPropertydata({
               type: 'MAIN_IMG',
@@ -389,28 +389,6 @@ const AddNewPropertyScreen = () => {
           value={property_data.asked_landlord_to}
           onChangeText={text =>
             setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
-          }
-        />
-
-        <CustomInput
-          label={'Advised Tenant To'}
-          value={property_data.advised_tenant_to}
-          onChangeText={text =>
-            setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
-          }
-        />
-        <CustomInput
-          label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed_to}
-          onChangeText={text =>
-            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
-          }
-        />
-        <CustomInput
-          label={'Inspector Name'}
-          value={property_data.inspector_name}
-          onChangeText={text =>
-            setPropertydata({type: 'INSPECTOR_NAME', payload: text})
           }
         />
 
@@ -641,6 +619,27 @@ const AddNewPropertyScreen = () => {
             Add New
           </Text>
         </TouchableOpacity>
+        <CustomInput
+          label={'Advised Tenant To'}
+          value={property_data.advised_tenant_to}
+          onChangeText={text =>
+            setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
+          }
+        />
+        <CustomInput
+          label={'Contractor Instructed to'}
+          value={property_data.contractor_instructed_to}
+          onChangeText={text =>
+            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
+          }
+        />
+        <CustomInput
+          label={'Inspector Name'}
+          value={property_data.inspector_name}
+          onChangeText={text =>
+            setPropertydata({type: 'INSPECTOR_NAME', payload: text})
+          }
+        />
         <CustomInput
           label={'Final Remarks'}
           value={property_data.final_remarks}

@@ -13,6 +13,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {API_URL, UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
@@ -145,24 +146,48 @@ const CustomRadioInput = ({
               }}>
               {uploading && index == uploadingindex ? (
                 <ActivityIndicator />
-              ) : index == 0 && img1 !== undefined && img1 !== '' ? (
-                <Image
-                  style={{
-                    borderRadius: moderateScale(5),
-                    width: moderateScale(60),
-                    height: moderateScale(30),
-                  }}
-                  source={{uri: `${API_URL}${img1}`}}
-                />
-              ) : index == 1 && img2 !== undefined && img2 !== '' ? (
-                <Image
-                  style={{
-                    borderRadius: moderateScale(5),
-                    width: moderateScale(60),
-                    height: moderateScale(30),
-                  }}
-                  source={{uri: `${API_URL}${img2}`}}
-                />
+              ) : index == 0 &&
+                img1 !== undefined &&
+                img1 !== '' &&
+                img1 !== null ? (
+                <TouchableOpacity onPress={() => onChangeImg1(null)}>
+                  <View style={styles.iconView}>
+                    <MaterialCommunityIcons
+                      name={'delete'}
+                      color={'red'}
+                      size={moderateScale(12)}
+                    />
+                  </View>
+                  <Image
+                    style={{
+                      borderRadius: moderateScale(5),
+                      width: moderateScale(60),
+                      height: moderateScale(30),
+                    }}
+                    source={{uri: `${API_URL}${img1}`}}
+                  />
+                </TouchableOpacity>
+              ) : index == 1 &&
+                img2 !== undefined &&
+                img2 !== '' &&
+                img2 !== null ? (
+                <TouchableOpacity onPress={() => onChangeImg2(null)}>
+                  <View style={styles.iconView}>
+                    <MaterialCommunityIcons
+                      name={'delete'}
+                      color={'red'}
+                      size={moderateScale(12)}
+                    />
+                  </View>
+                  <Image
+                    style={{
+                      borderRadius: moderateScale(5),
+                      width: moderateScale(60),
+                      height: moderateScale(30),
+                    }}
+                    source={{uri: `${API_URL}${img2}`}}
+                  />
+                </TouchableOpacity>
               ) : (
                 <View
                   style={{
@@ -248,5 +273,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffff',
+  },
+  iconView: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: moderateScale(60),
+    height: moderateScale(30),
   },
 });

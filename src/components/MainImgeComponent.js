@@ -12,6 +12,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
@@ -79,16 +80,32 @@ const MainImgComponent = ({url, onChangeText}) => {
           {uploading ? (
             <ActivityIndicator color={colors.white} size={'small'} />
           ) : img ? (
-            <Image
-              style={{
-                width: moderateScale(90),
-                resizeMode: 'cover',
-                borderRadius: moderateScale(5),
-                height: moderateScale(60),
-              }}
-              source={{uri: img}}
-              color={colors.primaryColor}
-            />
+            <View>
+              <Image
+                style={{
+                  width: moderateScale(200),
+                  resizeMode: 'cover',
+                  borderRadius: moderateScale(5),
+                  height: moderateScale(100),
+                }}
+                source={{uri: img}}
+                color={colors.primaryColor}
+              />
+              <TouchableOpacity
+                onPress={() => setImg(null)}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  padding: 10,
+                }}>
+                <MaterialCommunityIcons
+                  name={'delete'}
+                  color={'red'}
+                  size={moderateScale(20)}
+                />
+              </TouchableOpacity>
+            </View>
           ) : (
             <View
               style={{
@@ -148,15 +165,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imagebg: {
-    width: moderateScale(92),
+    width: moderateScale(200),
     alignItems: 'center',
     borderColor: colors.borderColor,
     backgroundColor: colors.white,
     borderWidth: moderateScale(2),
     margin: moderateScale(2),
-    borderRadius: moderateScale(2),
+    borderRadius: moderateScale(10),
     overflow: 'hidden',
     justifyContent: 'center',
-    height: moderateScale(62),
+    height: moderateScale(100),
   },
 });
