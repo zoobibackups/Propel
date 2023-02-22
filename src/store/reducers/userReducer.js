@@ -9,7 +9,7 @@ const userReducer = (state = initialState, action) => {
     case USER_LOGIN:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
         is_logged_in: true,
       };
 

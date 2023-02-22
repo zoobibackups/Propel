@@ -43,11 +43,7 @@ const LoginScreen = ({navigation}) => {
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
         } else {
-          dispatch(
-            userLogin({
-              user: data,
-            }),
-          );
+          dispatch(userLogin(data));
         }
 
         setLoading(false);

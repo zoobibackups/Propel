@@ -26,8 +26,7 @@ Platform.OS == 'android' && StatusBar.setBackgroundColor(colors.primaryColor);
 StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
-  const user = useSelector(state => state);
-  console.log(user);
+  const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
@@ -43,7 +42,7 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${USER_LIST_PROPERTY}5`, requestOptions)
+    fetch(`${USER_LIST_PROPERTY}${user.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
@@ -53,7 +52,7 @@ const HomeScreen = ({navigation}) => {
       })
       .catch(error => {
         setLoading(false);
-        alert('Some Error');
+        alert('Plase Check Your Internet Connection. Or Try again');
       });
   };
   const searchPropertyData = text => {
