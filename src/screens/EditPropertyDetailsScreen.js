@@ -10,12 +10,13 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {ADD_PROPERTY} from '../apis';
+import {ADD_PROPERTY, API_URL} from '../apis';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
 import DataInput from '../components/DateInput';
 import EditPropertyImages from '../components/EditPropertyImages';
+import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
@@ -345,7 +346,15 @@ const EditPropertyScreen = ({navigation, route}) => {
         style={styles.container}
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
-
+        <MainImgComponent
+          url={`${API_URL}${property_data?.main_img}`}
+          onChangeText={url => {
+            setPropertydata({
+              type: 'MAIN_IMG',
+              payload: url,
+            });
+          }}
+        />
         <CustomInput
           label={'Property Address'}
           value={property_data.property_address}
@@ -360,28 +369,7 @@ const EditPropertyScreen = ({navigation, route}) => {
             setPropertydata({type: 'TENANT_NAME', payload: text})
           }
         />
-        <CustomInput
-          label={'Asked Landord To'}
-          value={property_data.asked_landlord_to}
-          onChangeText={text =>
-            setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
-          }
-        />
 
-        <CustomInput
-          label={'Advised Tenant To'}
-          value={property_data.advised_tenant_to}
-          onChangeText={text =>
-            setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
-          }
-        />
-        <CustomInput
-          label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed}
-          onChangeText={text =>
-            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
-          }
-        />
         <CustomInput
           label={'Inspector Name'}
           value={property_data.inspector_name}
@@ -619,6 +607,28 @@ const EditPropertyScreen = ({navigation, route}) => {
             Add New
           </Text>
         </TouchableOpacity>
+        <CustomInput
+          label={'Asked Landord To'}
+          value={property_data.asked_landlord_to}
+          onChangeText={text =>
+            setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
+          }
+        />
+
+        <CustomInput
+          label={'Advised Tenant To'}
+          value={property_data.advised_tenant_to}
+          onChangeText={text =>
+            setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
+          }
+        />
+        <CustomInput
+          label={'Contractor Instructed to'}
+          value={property_data.contractor_instructed}
+          onChangeText={text =>
+            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
+          }
+        />
         <CustomInput
           label={'Final Remarks'}
           value={property_data.final_remarks}

@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale, scale} from 'react-native-size-matters';
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {API_URL, UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
@@ -34,7 +37,17 @@ const EditUploadComponent = ({data, onChangeText}) => {
         console.log(err);
       });
   };
-
+  const Pickfromcamera = index => {
+    ImagePicker.openCamera({
+      width: 800,
+      height: 800,
+      cropping: true,
+    })
+      .then(image => {
+        uploadUImage(image, index);
+      })
+      .catch(err => {});
+  };
   const uploadUImage = (image, index) => {
     setUpLoading(true);
     let name = image.path.split('/').pop();
@@ -66,31 +79,67 @@ const EditUploadComponent = ({data, onChangeText}) => {
         setUploadingIndex(null);
       });
   };
+  const deleteImage = index => {
+    let temp = [...images];
+    temp[index] = '';
+    setImages(temp);
+  };
   return (
     <View style={styles.mainView}>
       <Text style={styles.text}>Upload Images</Text>
       <View style={styles.Row}>
         {images.map((item, index) => {
           return (
-            <TouchableOpacity
-              key={`${index}`}
-              onPress={() => Pickimage(index)}
-              style={styles.imagebg}>
+            <View key={`${index}`} style={styles.imagebg}>
               {uploading && index == uploadingindex ? (
                 <ActivityIndicator />
-              ) : (
-                <Image
+              ) : item == '' || item == null || item == undefined ? (
+                <View
                   style={{
-                    width: moderateScale(90),
-                    resizeMode: 'cover',
-                    borderRadius: moderateScale(5),
-                    height: moderateScale(60),
-                  }}
-                  source={{uri: `${API_URL}${item}`}}
-                  color={colors.primaryColor}
-                />
+                    flexDirection: 'row',
+                    flex: 1,
+                    width: moderateScale(92),
+                    padding: moderateScale(10),
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}>
+                  <TouchableOpacity onPress={() => Pickfromcamera(index)}>
+                    <Entypo
+                      name={'camera'}
+                      size={moderateScale(25)}
+                      color={colors.primaryColor}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => Pickimage(index)}>
+                    <FontAwesome
+                      name={'photo'}
+                      size={moderateScale(25)}
+                      color={colors.primaryColor}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <TouchableOpacity onPress={() => deleteImage(index)}>
+                  <View style={styles.iconView}>
+                    <MaterialCommunityIcons
+                      name={'delete'}
+                      color={'red'}
+                      size={moderateScale(20)}
+                    />
+                  </View>
+                  <Image
+                    style={{
+                      width: moderateScale(90),
+                      resizeMode: 'cover',
+                      borderRadius: moderateScale(5),
+                      height: moderateScale(60),
+                    }}
+                    source={{uri: `${API_URL}${item}`}}
+                    color={colors.primaryColor}
+                  />
+                </TouchableOpacity>
               )}
-            </TouchableOpacity>
+            </View>
           );
         })}
       </View>
@@ -138,6 +187,16 @@ const styles = StyleSheet.create({
 
     overflow: 'hidden',
     justifyContent: 'center',
+    height: moderateScale(62),
+  },
+  iconView: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: moderateScale(92),
     height: moderateScale(62),
   },
 });
