@@ -588,7 +588,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         />
 
         <ImgDateReadingComponent
-          title={'Pre-Paid Water Meter'}
+          title={'Water Meter'}
           is_meter={property_data?.water_meter}
           readging={property_data?.water_meter_reading}
           img={property_data.water_meter_img}

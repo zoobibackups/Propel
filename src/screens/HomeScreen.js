@@ -27,6 +27,7 @@ StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
+  console.log(user, 'USERRR');
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
@@ -91,18 +92,18 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
-  // if (laoding) {
-  //   return (
-  //     <View
-  //       style={{
-  //         flex: 1,
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}>
-  //       <ActivityIndicator color={colors.primaryColor} />
-  //     </View>
-  //   );
-  // }
+  if (laoding) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator color={colors.primaryColor} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={{marginVertical: moderateScale(20)}}>

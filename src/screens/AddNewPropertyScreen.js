@@ -377,6 +377,7 @@ const AddNewPropertyScreen = () => {
             setPropertydata({type: 'ADDRESS_ADD', payload: text})
           }
         />
+
         <CustomInput
           label={'Tenant Name'}
           value={property_data.tenant_name}
@@ -385,13 +386,12 @@ const AddNewPropertyScreen = () => {
           }
         />
         <CustomInput
-          label={'Asked Landord To'}
-          value={property_data.asked_landlord_to}
+          label={'Inspector Name'}
+          value={property_data.inspector_name}
           onChangeText={text =>
-            setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
+            setPropertydata({type: 'INSPECTOR_NAME', payload: text})
           }
         />
-
         <DataInput
           label={'Inspection Date'}
           value={property_data.inspectiondate}
@@ -433,7 +433,7 @@ const AddNewPropertyScreen = () => {
           }
         />
         <CustomRadioInput
-          label={'Electricity Meter      \t\t    Reading'}
+          label={'Pre-Paid Electricity Meter\t  Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.electricity_meter}
@@ -462,7 +462,7 @@ const AddNewPropertyScreen = () => {
         />
 
         <CustomRadioInput
-          label={'Gas Meter       \t\t\t   Reading'}
+          label={'Pre-Paid Gas Meter       \t\t   Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.gas_meter}
@@ -620,6 +620,14 @@ const AddNewPropertyScreen = () => {
           </Text>
         </TouchableOpacity>
         <CustomInput
+          label={'Asked Landord To'}
+          value={property_data.asked_landlord_to}
+          onChangeText={text =>
+            setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
+          }
+        />
+
+        <CustomInput
           label={'Advised Tenant To'}
           value={property_data.advised_tenant_to}
           onChangeText={text =>
@@ -633,13 +641,7 @@ const AddNewPropertyScreen = () => {
             setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }
         />
-        <CustomInput
-          label={'Inspector Name'}
-          value={property_data.inspector_name}
-          onChangeText={text =>
-            setPropertydata({type: 'INSPECTOR_NAME', payload: text})
-          }
-        />
+
         <CustomInput
           label={'Final Remarks'}
           value={property_data.final_remarks}

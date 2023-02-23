@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: moderateScale(5),
-    color: colors.textSecondaryColor,
+    color: colors.textColor,
     fontSize: moderateScale(12),
     fontFamily: fonts.Medium,
   },

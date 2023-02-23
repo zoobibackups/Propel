@@ -421,7 +421,7 @@ const EditPropertyScreen = ({navigation, route}) => {
           }
         />
         <CustomRadioInput
-          label={'Electricity Meter      \t\t    Reading'}
+          label={'Pre-Paid Electricity Meter\t  Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.electricity_meter}
@@ -450,7 +450,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
 
         <CustomRadioInput
-          label={'Gas Meter       \t\t\t   Reading'}
+          label={'Pre-Paid Gas Meter       \t\t   Reading'}
           options={['Yes', 'No']}
           cameraimage={['1']}
           value={property_data.gas_meter}

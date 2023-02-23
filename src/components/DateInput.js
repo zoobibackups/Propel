@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: moderateScale(5),
     fontSize: moderateScale(12),
-    color: colors.textSecondaryColor,
+    color: colors.textColor,
     fontFamily: fonts.Medium,
   },
   input: {
