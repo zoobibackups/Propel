@@ -27,7 +27,7 @@ StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
-  console.log(user, 'USERRR');
+
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
