@@ -1,7 +1,6 @@
 //
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {USER_REGISTER} from '../apis';
 
@@ -9,14 +8,13 @@ import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {moderateScale, SCREEN_WIDTH} from '../constants/scaling';
+import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 const RegisterScreen = ({navigation}) => {
   const [first_name, setFirstName] = useState('');
-  const [first_nameErrorMessage, setFirstNameErrorMessage] = useState('');
+  const [isloading, setLoading] = useState(false);
 
   const [last_name, setLastName] = useState('');
-  const [last_nameErrorMessage, setLastNameErrorMessage] = useState('');
 
   const [useremail, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,6 +22,7 @@ const RegisterScreen = ({navigation}) => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
   const registerUser = () => {
+    setLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -42,15 +41,21 @@ const RegisterScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
-        console.log(data, 'DATa');
-        alert('Register Successfully');
+        setLoading(false);
+        Alert.alert(
+          'Registeration Successfull',
+          'Your Accout has been registered successful',
+        );
       })
       .catch(err => {
+        setLoading(false);
         console.log(err);
       });
   };
   return (
-    <KeyboardAwareScrollView bounces={false}>
+    <KeyboardAwareScrollView
+      style={{flex: 1, backgroundColor: '#fff'}}
+      bounces={false}>
       <View
         style={{
           flex: 1,
@@ -58,7 +63,7 @@ const RegisterScreen = ({navigation}) => {
           alignItems: 'center',
         }}>
         <View style={styles.logoContainer}>
-          <LOGO width={moderateScale(300)} heigth={moderateScale(200)} />
+          <LOGO width={wp(80)} height={moderateScale(200)} />
         </View>
         <CustomInput
           label={'First Name'}
@@ -73,7 +78,7 @@ const RegisterScreen = ({navigation}) => {
           onChangeText={text => setLastName(text)}
         />
         <CustomInput
-          label={'Username'}
+          label={'Email'}
           value={useremail}
           errorMessage={emailErrorMessage}
           onChangeText={text => setEmail(text)}
@@ -87,7 +92,11 @@ const RegisterScreen = ({navigation}) => {
         />
         <View style={{height: moderateScale(10)}}></View>
 
-        <CustomButton title={'Register'} onPress={() => registerUser()} />
+        <CustomButton
+          isloading={isloading}
+          title={'Register'}
+          onPress={() => registerUser()}
+        />
         <View style={{height: moderateScale(10)}}></View>
         <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
           <Text style={styles.forgotpassword}>Already have account? Login</Text>

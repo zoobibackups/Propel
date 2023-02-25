@@ -59,6 +59,7 @@ function AuthStack() {
         component={LoginScreen}
         options={{
           headerShown: true,
+
           title: 'Login',
         }}
       />

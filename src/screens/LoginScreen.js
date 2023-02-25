@@ -1,14 +1,14 @@
 //
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+
 import {useDispatch} from 'react-redux';
 import {USER_LOGIN} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {moderateScale, SCREEN_WIDTH} from '../constants/scaling';
+import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
@@ -40,6 +40,7 @@ const LoginScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
+        console.log(data);
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
         } else {
@@ -62,7 +63,7 @@ const LoginScreen = ({navigation}) => {
         alignItems: 'center',
       }}>
       <View style={styles.logoContainer}>
-        <LOGO width={moderateScale(300)} heigth={moderateScale(200)} />
+        <LOGO width={wp(80)} height={moderateScale(200)} />
       </View>
       <CustomInput
         label={'Username'}

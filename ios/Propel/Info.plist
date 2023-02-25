@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Propel</string>
+	<string>InventoryWise</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -38,13 +38,13 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Inventory wise want to access storage to save pdf reports</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Propel want to access your camera to upload a picture.</string>
+	<string>InventoryWise want to access your camera to upload a picture.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Propel want to access your location for best results.</string>
+	<string>InventoryWise want to access your location for best results.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Propel want to access your photo to upload a picture.</string>
+	<string>InventoryWise want to access your photo to upload a picture.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Inventory wise want to access your photo to upload a picture.</string>
+	<string>InventoryWise want to access your photo to upload a picture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>
