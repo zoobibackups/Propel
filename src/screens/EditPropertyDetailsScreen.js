@@ -327,13 +327,13 @@ const EditPropertyScreen = ({navigation, route}) => {
       property_details: images_data,
     };
     var requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: 'follow',
     };
 
-    fetch(ADD_PROPERTY, requestOptions)
+    fetch(`${ADD_PROPERTY}/${item.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         setIsLoading(false);
