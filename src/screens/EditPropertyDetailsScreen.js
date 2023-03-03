@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useSelector} from 'react-redux';
 import {ADD_PROPERTY, API_URL} from '../apis';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
@@ -20,6 +21,7 @@ import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
+
 import {
   CO_ALARAM,
   CO_ALARAM_IMG_URL1,
@@ -206,6 +208,7 @@ const reducer = (state, action) => {
 };
 const EditPropertyScreen = ({navigation, route}) => {
   let item = route.params.item;
+  const {user} = useSelector(state => state.userReducer);
   const [property_data, setPropertydata] = useReducer(reducer, item);
   const [isloading, setIsLoading] = useState(false);
   const [images_data, setImagesdata] = useState(
@@ -319,7 +322,8 @@ const EditPropertyScreen = ({navigation, route}) => {
       signature_tenant: arrayBufferToBase64(
         property_data.signature_tenant.data,
       ),
-      user_id: 5,
+      user_id: user.id,
+      account_id: user.id,
       property_details: images_data,
     };
     var requestOptions = {

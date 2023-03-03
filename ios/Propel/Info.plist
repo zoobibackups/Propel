@@ -36,15 +36,15 @@
 		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Inventory wise want to access storage to save pdf reports</string>
+	<string>InventoryWise want to access storage to save pdf reports of your properties and to upload photos of your property to generate reports.InventroyWise does not share or sell your information. the is just for pdf report generation.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>InventoryWise want to access your camera to upload a picture.</string>
+	<string>InventoryWise want to access storage to save pdf reports of your properties and to upload photos of your property to generate reports.InventroyWise does not share or sell your information. the is just for pdf report generation.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>InventoryWise want to access your location for best results.</string>
+	<string>InventoryWise want to access your location to show your the best properties listing for sale or rent in your area.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>InventoryWise want to access your photo to upload a picture.</string>
+	<string>InventoryWise want to access storage to save pdf reports of your properties and to upload photos of your property to generate reports.InventroyWise does not share or sell your information. the is just for pdf report generation.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>InventoryWise want to access your photo to upload a picture.</string>
+	<string>InventoryWise want to access storage to save pdf reports of your properties and to upload photos of your property to generate reports.InventroyWise does not share or sell your information. the is just for pdf report generation.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>

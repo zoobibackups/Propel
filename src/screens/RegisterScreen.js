@@ -42,10 +42,17 @@ const RegisterScreen = ({navigation}) => {
       .then(data => data.json())
       .then(data => {
         setLoading(false);
-        Alert.alert(
-          'Registeration Successfull',
-          'Your Accout has been registered successful',
-        );
+        if (data.message == 'Registration successful.') {
+          Alert.alert(
+            'Registeration Successfull',
+            'Your Accout has been registered successful',
+          );
+        } else {
+          Alert.alert(
+            'Registeration Failed',
+            'There was some issue woth your account registeration',
+          );
+        }
       })
       .catch(err => {
         setLoading(false);

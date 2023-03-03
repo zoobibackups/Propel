@@ -1,7 +1,7 @@
 //
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
 import {USER_LOGIN} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
@@ -40,9 +40,14 @@ const LoginScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
-        console.log(data);
         if (data?.message == 'Email or password is incorrect') {
           alert(data?.message);
+        } else if (
+          data?.message == "Cannot read property 'scope' of undefined"
+        ) {
+          alert(
+            'Please check your email and password. and try again in a while',
+          );
         } else {
           dispatch(userLogin(data));
         }
@@ -56,40 +61,46 @@ const LoginScreen = ({navigation}) => {
       });
   };
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors.white,
-        alignItems: 'center',
-      }}>
-      <View style={styles.logoContainer}>
-        <LOGO width={wp(80)} height={moderateScale(200)} />
-      </View>
-      <CustomInput
-        label={'Username'}
-        value={useremail}
-        errorMessage={emailErrorMessage}
-        onChangeText={text => setEmail(text)}
-      />
-      <CustomInput
-        label={'Password'}
-        secureTextEntry={true}
-        value={password}
-        errorMessage={passwordErrorMessage}
-        onChangeText={text => setPassword(text)}
-      />
-      <View style={{height: moderateScale(10)}}></View>
+    <KeyboardAwareScrollView
+      style={{flex: 1, backgroundColor: '#fff'}}
+      bounces={false}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: colors.white,
+          alignItems: 'center',
+        }}>
+        <View style={styles.logoContainer}>
+          <LOGO width={wp(80)} height={moderateScale(200)} />
+        </View>
+        <CustomInput
+          label={'Username'}
+          value={useremail}
+          errorMessage={emailErrorMessage}
+          onChangeText={text => setEmail(text)}
+        />
+        <CustomInput
+          label={'Password'}
+          secureTextEntry={true}
+          value={password}
+          errorMessage={passwordErrorMessage}
+          onChangeText={text => setPassword(text)}
+        />
+        <View style={{height: moderateScale(10)}}></View>
 
-      <CustomButton
-        isloading={isloading}
-        title={'Login'}
-        onPress={() => UserLogin()}
-      />
-      <View style={{height: moderateScale(10)}}></View>
-      <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-        <Text style={styles.forgotpassword}>Don't have account? Register</Text>
-      </TouchableOpacity>
-    </View>
+        <CustomButton
+          isloading={isloading}
+          title={'Login'}
+          onPress={() => UserLogin()}
+        />
+        <View style={{height: moderateScale(10)}}></View>
+        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+          <Text style={styles.forgotpassword}>
+            Don't have account? Register
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAwareScrollView>
   );
 };
 

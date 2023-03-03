@@ -43,10 +43,12 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(`${USER_LIST_PROPERTY}${user.id}`, requestOptions)
+    fetch(
+      `https://api.propelinspections.com/properties/getByUserId/${user.id}`,
+      requestOptions,
+    )
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         setProperty(result.rows);
         setData(result.rows);
         setLoading(false);
