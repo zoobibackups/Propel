@@ -1,9 +1,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {ActivityIndicator, Easing, StatusBar} from 'react-native';
+import {Easing} from 'react-native';
 import fonts from '../constants/fonts';
 import {moderateScale} from '../constants/scaling';
 import colors from '../constants/theme';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import GettingStartedScreen from '../screens/GettingStartedScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -14,15 +15,15 @@ function AuthStack() {
     <Stack.Navigator
       screenOptions={() => ({
         headerTitleAlign: 'center',
-        headerTintColor: colors.black,
+        headerTintColor: colors.white,
         headerTitleStyle: {
-          color: colors.black,
+          color: colors.white,
 
           fontFamily: fonts.Bold,
           fontSize: moderateScale(14),
         },
         headerStyle: {
-          backgroundColor: colors.white,
+          backgroundColor: colors.primaryColor,
         },
         headerBackTitle: '',
         headerShown: true,
@@ -61,6 +62,15 @@ function AuthStack() {
           headerShown: true,
 
           title: 'Login',
+        }}
+      />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
+        options={{
+          headerShown: true,
+
+          title: 'Forgot Password',
         }}
       />
       <Stack.Screen

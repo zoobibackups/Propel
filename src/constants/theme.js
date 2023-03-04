@@ -1,5 +1,5 @@
 const colors = {
-  statusbar: '#4f9147',
+  statusbar: '#0090FF',
   primaryColor: '#0A80EA',
   white: '#ffffff',
   black: '#000000',

@@ -3,27 +3,20 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Platform,
-  StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/Entypo';
 import {useSelector} from 'react-redux';
-import {LIST_PROPERTY, USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
 import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
-Platform.OS == 'android' && StatusBar.setBackgroundColor(colors.primaryColor);
-
-StatusBar.setBarStyle('light-content');
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
