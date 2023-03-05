@@ -225,7 +225,15 @@ const EditPropertyScreen = ({navigation, route}) => {
     let item = {
       name: `Room ${images_data.length + 1}`,
       description: '',
-      images: ['', '', ''],
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      images: [
+        'uploaded/default.jpg',
+        'uploaded/default.jpg',
+        'uploaded/default.jpg0',
+      ],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -604,6 +612,17 @@ const EditPropertyScreen = ({navigation, route}) => {
             <EditPropertyImages
               item={item}
               key={`${index}`}
+              onDelete={() => {
+                if (images_data.length > 1) {
+                  setImagesdata(
+                    images_data.filter(
+                      (item, item_index) => item_index !== index,
+                    ),
+                  );
+                } else {
+                  alert('There must be atleast one room');
+                }
+              }}
               setItem={data => {
                 let temp = [...images_data];
                 temp[index] = data;

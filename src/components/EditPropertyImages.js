@@ -1,13 +1,36 @@
 import React from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 import CustomInput from './CustomInput';
 import EditUploadComponent from './EditUploadComponent';
-const EditPropertyImages = ({index, item, setItem}) => {
+
+const EditPropertyImages = ({index, item, setItem, onDelete}) => {
   return (
     <View key={`${index}`} style={styles.mainView}>
+      <TouchableOpacity
+        onPress={onDelete}
+        style={{
+          position: 'absolute',
+          right: 0,
+          backgroundColor: '#0001',
+          width: moderateScale(20),
+          height: moderateScale(20),
+        }}>
+        <MaterialCommunityIcons
+          name={'delete'}
+          size={moderateScale(20)}
+          color={'red'}
+        />
+      </TouchableOpacity>
       <CustomInput
         label={item.name}
         value={item.name}
