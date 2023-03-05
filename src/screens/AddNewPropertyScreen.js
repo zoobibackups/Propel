@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, {useReducer, useState} from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -248,7 +249,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-const AddNewPropertyScreen = () => {
+const AddNewPropertyScreen = ({navigation}) => {
   const [property_data, setPropertydata] = useReducer(reducer, initialState);
   const {user} = useSelector(state => state.userReducer);
 
@@ -426,13 +427,24 @@ const AddNewPropertyScreen = () => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         setIsLoading(false);
-        alert('Your data has been uploaded');
+        Alert.alert(
+          'Property Uploading Success',
+          'Your Property has been uploaded',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('HomeScreen'),
+            },
+          ],
+        );
       })
       .catch(error => {
         setIsLoading(false);
-        console.log('error', error);
+        Alert.alert(
+          'Property Uploading Error',
+          'There is some thing went wrong',
+        );
       });
   };
   return (
