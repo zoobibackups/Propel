@@ -48,22 +48,20 @@ import {
   WATER_METER_READING,
 } from './types';
 const initialState = {
-  property_address:
-    'F, Building number #5 2nd Floor Time Square Commercial Phase 7, DHA1-Bahria Town Bridge, Sector Bahria Town, Islamabad, 46220',
-  tenant_name: 'Aqeel Saqlain',
-  inspector_name: 'Inspector Kabir Khan',
-  asked_landlord_to: 'Please paint hour properly and we will do the rest.',
-  advised_tenant_to:
-    'Please tell him to makw sure all the thing are working fine',
-  contractor_instructed_to: 'this is the name of my proptery',
+  property_address: '',
+  tenant_name: '',
+  inspector_name: '',
+  asked_landlord_to: '',
+  advised_tenant_to: '',
+  contractor_instructed_to: '',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
   gas_safety_certificate_expiry_date: moment().format('DD-MMM-YYYY'),
   electricity_meter: 'Yes',
-  electricity_meter_reading: '100',
+  electricity_meter_reading: '',
   gas_meter: 'Yes',
-  gas_meter_reading: '100',
+  gas_meter_reading: '',
   water_meter: 'Yes',
   smoke_alarm: 'Yes',
   co_alarm: 'Yes',
@@ -71,19 +69,18 @@ const initialState = {
   signature_inspector: '',
   signature_tenant: '',
   types: 'inspection',
-  final_remarks:
-    'Some of the final remarks for the landord tent advice all the rando string are genetrate d here for the sake of reort generation and this is just a dumy tet  for all of us',
+  final_remarks: '',
   user_id: '5',
-  main_img: 'uploads/default.jpg',
-  water_meter_reading: '78',
-  electricity_meter_img: 'uploads/default.jpg',
-  gas_meter_img: 'uploads/default.jpg',
-  water_meter_img: 'uploads/default.jpg',
-  smoke_alarm_front_img: 'uploads/default.jpg',
-  smoke_alarm_back_img: 'uploads/default.jpg',
-  co_alarm_front_img: 'uploads/default.jpg',
-  co_alarm_back_img: 'uploads/default.jpg',
-  heating_system_img: 'uploads/default.jpg',
+  main_img: '',
+  water_meter_reading: '',
+  electricity_meter_img: '',
+  gas_meter_img: '',
+  water_meter_img: '',
+  smoke_alarm_front_img: '',
+  smoke_alarm_back_img: '',
+  co_alarm_front_img: '',
+  co_alarm_back_img: '',
+  heating_system_img: '',
 };
 
 const reducer = (state, action) => {
@@ -255,12 +252,11 @@ const AddNewPropertyScreen = () => {
   const [images_data, setImagesdata] = useState([
     {
       name: `Room 1`,
-      description:
-        'Descript of the room one and we are here to gt all the ths a=back',
-      floor: 'floor desciption',
-      walls: 'floor desciption some of the walls ',
-      ceiling: 'this is celing descriptin of mine',
-      windows: 'some of the wincdowsa re here we we are there forwocoes',
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
       images: [
         'https://via.placeholder.com/640x360',
         'https://via.placeholder.com/640x360',
@@ -269,13 +265,7 @@ const AddNewPropertyScreen = () => {
     },
     {
       name: `Room 2`,
-
-      description:
-        'Descript of the room one and we are here to gt all the ths a=back',
-      floor: 'floor desciption',
-      walls: 'floor desciption some of the walls ',
-      ceiling: 'this is celing descriptin of mine',
-      windows: 'some of the wincdowsa re here we we are there forwocoes',
+      description: '',
       images: [
         'https://via.placeholder.com/640x360',
         'https://via.placeholder.com/640x360',
@@ -284,12 +274,11 @@ const AddNewPropertyScreen = () => {
     },
     {
       name: `Room 3`,
-      description:
-        'Descript of the room one and we are here to gt all the ths a=back',
-      floor: 'floor desciption',
-      walls: 'floor desciption some of the walls ',
-      ceiling: 'this is celing descriptin of mine',
-      windows: 'some of the wincdowsa re here we we are there forwocoes',
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
       images: [
         'https://via.placeholder.com/640x360',
         'https://via.placeholder.com/640x360',
@@ -298,12 +287,11 @@ const AddNewPropertyScreen = () => {
     },
     {
       name: `Room 4`,
-      description:
-        'Descript of the room one and we are here to gt all the ths a=back',
-      floor: 'floor desciption',
-      walls: 'floor desciption some of the walls ',
-      ceiling: 'this is celing descriptin of mine',
-      windows: 'some of the wincdowsa re here we we are there forwocoes',
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
       images: [
         'https://via.placeholder.com/640x360',
         'https://via.placeholder.com/640x360',
@@ -312,12 +300,11 @@ const AddNewPropertyScreen = () => {
     },
     {
       name: `Room 5`,
-      description:
-        'Descript of the room one and we are here to gt all the ths a=back',
-      floor: 'floor desciption',
-      walls: 'floor desciption some of the walls ',
-      ceiling: 'this is celing descriptin of mine',
-      windows: 'some of the wincdowsa re here we we are there forwocoes',
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
       images: [
         'https://via.placeholder.com/640x360',
         'https://via.placeholder.com/640x360',

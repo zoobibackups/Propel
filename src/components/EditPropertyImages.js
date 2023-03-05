@@ -14,7 +14,32 @@ const EditPropertyImages = ({index, item, setItem}) => {
         onChangeText={text => setItem({...item, name: text})}
       />
       <CustomInput
-        label={'Enter Details'}
+        label={'Floor Details'}
+        placeholder={'Floor Details'}
+        onChangeText={text => setItem({...item, floor: text})}
+        value={item.floor}
+      />
+      <CustomInput
+        label={'Walls Details'}
+        placeholder={'Walls Details'}
+        onChangeText={text => setItem({...item, walls: text})}
+        value={item.walls}
+      />
+      <CustomInput
+        label={'Ceiling Details'}
+        placeholder={'Ceiling  Details'}
+        onChangeText={text => setItem({...item, ceiling: text})}
+        value={item.ceiling}
+      />
+      <CustomInput
+        label={'Windows Details'}
+        placeholder={'Windows Details'}
+        onChangeText={text => setItem({...item, windows: text})}
+        value={item.windows}
+      />
+      <CustomInput
+        label={'Enter Comments'}
+        placeholder={'Comments'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />

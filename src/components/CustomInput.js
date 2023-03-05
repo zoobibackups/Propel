@@ -31,7 +31,7 @@ const CustomInput = ({
           placeholderTextColor={'#0006'}
           value={value}
           autoCapitalize={'none'}
-          onChangeText={text => onChangeText(text)}
+          onChangeText={onChangeText}
           style={styles.input}
         />
         {secureTextEntry && (

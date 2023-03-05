@@ -1,10 +1,9 @@
 import moment from 'moment';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
   Image,
-  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -25,7 +24,6 @@ import TabViewComponent from '../components/TabViewComponent';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
-import html_data from '../Data/html';
 const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -40,6 +38,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     }
     return `data:image/png;base64,${binary}`;
   };
+  console.log(property_data.property_details.length);
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
       ? property_data.property_details[0]
@@ -402,7 +401,19 @@ const PropertyDetailsScreen = ({navigation, route}) => {
        ${property_data?.property_details.map((item, index) => {
          return `<div class="card2">
         <div class="card-header">
-          <div class="col-1"> <span class="blue2">${item.name}</span>
+          <div class="col-1"> <span class="blue2">${item.name} Details </span>
+            <p class="room-para">
+            ${item.floor}
+            </p>
+            <p class="room-para">
+            ${item.walls}
+            </p>
+            <p class="room-para">
+            ${item.ceiling}
+            </p>
+            <p class="room-para">
+            ${item.windows}
+            </p>
             <p class="room-para">
             ${item.description}
             </p>
@@ -615,8 +626,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         horizontal={true}
         data={property_data?.property_details}
         showsHorizontalScrollIndicator={false}
-        style={{flex: 1, margin: moderateScale(15)}}
-        contentContainerStyle={{flex: 1, justifyContent: 'flex-start'}}
+        style={{margin: moderateScale(15)}}
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity

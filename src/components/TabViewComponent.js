@@ -16,10 +16,31 @@ const TabViewComponent = ({data}) => {
           fontSize: moderateScale(14),
           marginBottom: moderateScale(5),
         }}>
-        {data?.name} Details
+        {data?.name}
       </Text>
-      <Text style={styles.text}>{data?.description}</Text>
-      <Text style={styles.text}>Images</Text>
+      <Text style={styles.text}>
+        <Text style={styles.boldText}>Floor:</Text> {data?.floor}
+      </Text>
+      <Text style={styles.text}>
+        <Text style={styles.boldText}>Walls:</Text> {data?.walls}
+      </Text>
+      <Text style={styles.text}>
+        <Text style={styles.boldText}>Ceiling : </Text>
+        {data?.ceiling}
+      </Text>
+      <Text style={styles.text}>
+        <Text style={styles.boldText}>Windows : </Text>
+        {data?.windows}
+      </Text>
+      <Text style={styles.text}>
+        <Text style={styles.boldText}>Description: </Text>
+        {data?.description}
+      </Text>
+
+      <Text
+        style={{...styles.text, marginVertical: 10, fontFamily: fonts.Bold}}>
+        Images
+      </Text>
       <View style={styles.Row}>
         {data.property_images.map((item, index) => {
           return (
@@ -56,10 +77,17 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH + moderateScale(5),
   },
   text: {
-    fontSize: scale(12),
+    fontSize: scale(11),
     color: colors.textColor,
     alignSelf: 'flex-start',
     fontFamily: fonts.Medium,
+    textAlign: 'justify',
+  },
+  boldText: {
+    fontSize: scale(11),
+    color: colors.textColor,
+    alignSelf: 'flex-start',
+    fontFamily: fonts.Bold,
     textAlign: 'justify',
   },
   Row: {

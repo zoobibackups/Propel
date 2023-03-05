@@ -18,7 +18,6 @@ function AuthStack() {
         headerTintColor: colors.white,
         headerTitleStyle: {
           color: colors.white,
-
           fontFamily: fonts.Bold,
           fontSize: moderateScale(14),
         },

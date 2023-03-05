@@ -5,6 +5,7 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -133,19 +134,18 @@ const HomeScreen = ({navigation}) => {
         ListHeaderComponent={<HeaderComponenet />}
         keyExtractor={(item, index) => index.toString()}
       />
-      <TouchableOpacity
-        onPress={() => navigation.navigate(MainRoutes.AddNewPropertyScreen)}
-        style={styles.button}>
-        <AntDesign name={'plus'} color={'#fff'} size={moderateScale(20)} />
-        <Text
-          style={{
-            color: colors.white,
-            fontFamily: fonts.Bold,
-            paddingLeft: moderateScale(10),
-          }}>
-          Add Property
-        </Text>
-      </TouchableOpacity>
+      {property.length >= 5 ? (
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>Delete Property</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => navigation.navigate(MainRoutes.AddNewPropertyScreen)}
+          style={styles.button}>
+          <AntDesign name={'plus'} color={'#fff'} size={moderateScale(20)} />
+          <Text style={styles.text}>Add Property</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -185,5 +185,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     margin: moderateScale(10),
     backgroundColor: colors.primaryColor,
+  },
+  text: {
+    color: colors.white,
+    fontFamily: fonts.Bold,
+    paddingLeft: moderateScale(10),
   },
 });

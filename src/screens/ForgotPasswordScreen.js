@@ -25,31 +25,24 @@ const ForgotPasswordScreen = ({navigation}) => {
       alert('Enter emial');
       return;
     }
-    if (password.trim() == '' || password == null) {
-      alert('Enter password');
-      return;
-    }
+
     setLoading(true);
-    fetch(USER_LOGIN, {
-      method: 'POST',
-      headers: myHeaders,
-      body: JSON.stringify({
-        email: useremail,
-        password: password,
-      }),
-    })
+    fetch(
+      `https://api.propelinspections.com/accounts/forgot-password?email=${useremail}`,
+      {
+        method: 'GET',
+        headers: myHeaders,
+      },
+    )
       .then(data => data.json())
       .then(data => {
-        if (data?.message == 'Email or password is incorrect') {
-          alert(data?.message);
-        } else if (
-          data?.message == "Cannot read property 'scope' of undefined"
+        if (
+          data.message ==
+          'Please check your email for password reset instructions'
         ) {
-          alert(
-            'Please check your email and password. and try again in a while',
-          );
+          alert(data.message);
         } else {
-          dispatch(userLogin(data));
+          alert('There is some issue. Please try agian later');
         }
 
         setLoading(false);
@@ -74,31 +67,19 @@ const ForgotPasswordScreen = ({navigation}) => {
           <LOGO width={wp(80)} height={moderateScale(200)} />
         </View>
         <CustomInput
-          label={'Username'}
+          label={'Enter your valid email'}
           value={useremail}
           errorMessage={emailErrorMessage}
           onChangeText={text => setEmail(text)}
         />
-        <CustomInput
-          label={'Password'}
-          secureTextEntry={true}
-          value={password}
-          errorMessage={passwordErrorMessage}
-          onChangeText={text => setPassword(text)}
-        />
+
         <View style={{height: moderateScale(10)}}></View>
 
         <CustomButton
           isloading={isloading}
-          title={'Login'}
+          title={'Get Password Reset Link'}
           onPress={() => UserLogin()}
         />
-        <View style={{height: moderateScale(10)}}></View>
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-          <Text style={styles.forgotpassword}>
-            Don't have account? Register
-          </Text>
-        </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>
   );
