@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, {useEffect, useReducer, useState} from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -337,10 +338,23 @@ const EditPropertyScreen = ({navigation, route}) => {
       .then(response => response.json())
       .then(result => {
         setIsLoading(false);
-        alert('Your Property Has been Upload');
+        setIsLoading(false);
+        Alert.alert(
+          'Property Updated Success',
+          'Your property has been updated ',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('HomeScreen'),
+            },
+          ],
+        );
       })
       .catch(error => {
-        alert('There is some issue with this property');
+        Alert.alert(
+          'Property Updating Error',
+          'There is some thing went wrong, Please try again',
+        );
         setIsLoading(true);
       });
   };
