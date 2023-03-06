@@ -30,32 +30,44 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
         value={item.name}
         onChangeText={text => setItem({...item, name: text})}
       />
+      <View
+        style={{
+          width: SCREEN_WIDTH,
+          alignSelf: 'center',
+          borderWidth: moderateScale(1),
+          borderColor: colors.borderColor,
+          borderRadius: moderateScale(5),
+        }}>
+        <CustomInput
+          label={'Floor Details :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, floor: text})}
+          value={item.floor}
+          containerStyle={styles.containerStyle}
+        />
+        <CustomInput
+          label={'Walls Details :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, walls: text})}
+          value={item.walls}
+          containerStyle={styles.containerStyle}
+        />
+        <CustomInput
+          label={'Ceiling  Details :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, ceiling: text})}
+          value={item.ceiling}
+          containerStyle={styles.containerStyle}
+        />
+        <CustomInput
+          label={'Window Details :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, windows: text})}
+          value={item.windows}
+          containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
+        />
+      </View>
       <CustomInput
-        label={'Floor Details'}
-        placeholder={'Floor Details'}
-        onChangeText={text => setItem({...item, floor: text})}
-        value={item.floor}
-      />
-      <CustomInput
-        label={'Walls Details'}
-        placeholder={'Walls Details'}
-        onChangeText={text => setItem({...item, walls: text})}
-        value={item.walls}
-      />
-      <CustomInput
-        label={'Ceiling Details'}
-        placeholder={'Ceiling  Details'}
-        onChangeText={text => setItem({...item, ceiling: text})}
-        value={item.ceiling}
-      />
-      <CustomInput
-        label={'Windows Details'}
-        placeholder={'Windows Details'}
-        onChangeText={text => setItem({...item, windows: text})}
-        value={item.windows}
-      />
-      <CustomInput
-        label={'Enter Comments'}
         placeholder={'Comments'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
@@ -87,5 +99,16 @@ const styles = StyleSheet.create({
     padding: moderateScale(10),
     alignSelf: 'center',
     backgroundColor: colors.white,
+  },
+  containerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: SCREEN_WIDTH - moderateScale(20),
+    alignItems: 'center',
+    borderWidth: 0,
+    height: 40,
+    borderBottomWidth: moderateScale(1),
+    borderBottomColor: '#0000000F',
+    //height: moderateScale(50),
   },
 });

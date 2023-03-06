@@ -95,7 +95,7 @@ android {
 
     namespace "com.propel"
     defaultConfig {
-        applicationId "com.propel"
+        applicationId "com.inventorywise.co.uk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

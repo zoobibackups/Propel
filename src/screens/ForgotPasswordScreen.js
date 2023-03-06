@@ -36,6 +36,7 @@ const ForgotPasswordScreen = ({navigation}) => {
     )
       .then(data => data.json())
       .then(data => {
+        console.log(data);
         if (
           data.message ==
           'Please check your email for password reset instructions'

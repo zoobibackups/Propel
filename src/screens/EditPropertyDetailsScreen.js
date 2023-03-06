@@ -250,65 +250,66 @@ const EditPropertyScreen = ({navigation, route}) => {
   };
 
   const validate_data = () => {
-    let empty_filed = false;
-    if (property_data.property_address == '') {
-      alert("Property Address can't be empty");
-      return;
-    }
-    if (property_data.tenant_name == '') {
-      alert("Tenant Name can't be empty");
-      return;
-    }
-    if (property_data.inspector_name == '') {
-      alert("Inspector name can't be empty");
-      return;
-    }
-    if (property_data.asked_landlord_to == '') {
-      alert("Ask to Landlord can't be empty");
-      return;
-    }
-    if (property_data.advised_tenant_to == '') {
-      alert("Tenant advice can't be empty");
-      return;
-    }
-    if (property_data.contractor_instructed == '') {
-      alert("Contractor Instruction can't be empty");
-      return;
-    }
+    // let empty_filed = false;
+    // if (property_data.property_address == '') {
+    //   alert("Property Address can't be empty");
+    //   return;
+    // }
+    // if (property_data.tenant_name == '') {
+    //   alert("Tenant Name can't be empty");
+    //   return;
+    // }
+    // if (property_data.inspector_name == '') {
+    //   alert("Inspector name can't be empty");
+    //   return;
+    // }
+    // if (property_data.asked_landlord_to == '') {
+    //   alert("Ask to Landlord can't be empty");
+    //   return;
+    // }
+    // if (property_data.advised_tenant_to == '') {
+    //   alert("Tenant advice can't be empty");
+    //   return;
+    // }
+    // if (property_data.contractor_instructed == '') {
+    //   alert("Contractor Instruction can't be empty");
+    //   return;
+    // }
 
-    if (property_data.electricity_meter_reading == '') {
-      alert("Electricity Meter Reading can't be empty");
-      return;
-    }
-    if (property_data.gas_meter_reading == '') {
-      alert("Gas Meter Reading can't be empty");
-      return;
-    }
-    if (property_data.signature_inspector == '') {
-      alert("Inspector Signature can't be empty");
-      return;
-    }
-    if (property_data.signature_tenant == '') {
-      alert("Gas Meter Reading can't be empty");
-      return;
-    }
-    images_data.map(item => {
-      if (item.name == '') {
-        empty_filed = true;
-      }
-      if (item.description == '') {
-        empty_filed = true;
-      }
-    });
-    if (empty_filed == true) {
-      alert('Please check all input fileds');
-      return;
-    }
+    // if (property_data.electricity_meter_reading == '') {
+    //   alert("Electricity Meter Reading can't be empty");
+    //   return;
+    // }
+    // if (property_data.gas_meter_reading == '') {
+    //   alert("Gas Meter Reading can't be empty");
+    //   return;
+    // }
+    // if (property_data.signature_inspector == '') {
+    //   alert("Inspector Signature can't be empty");
+    //   return;
+    // }
+    // if (property_data.signature_tenant == '') {
+    //   alert("Gas Meter Reading can't be empty");
+    //   return;
+    // }
+    // images_data.map(item => {
+    //   if (item.name == '') {
+    //     empty_filed = true;
+    //   }
+    //   if (item.description == '') {
+    //     empty_filed = true;
+    //   }
+    // });
+    // if (empty_filed == true) {
+    //   alert('Please check all input fileds');
+    //   return;
+    // }
 
     UploadProperty();
   };
 
   const UploadProperty = () => {
+    console.log(images_data);
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');

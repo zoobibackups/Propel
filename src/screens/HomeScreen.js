@@ -134,7 +134,7 @@ const HomeScreen = ({navigation}) => {
         ListHeaderComponent={<HeaderComponenet />}
         keyExtractor={(item, index) => index.toString()}
       />
-      {property.length >= 5 ? (
+      {property?.length >= 5 ? (
         <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>Delete Property</Text>
         </TouchableOpacity>

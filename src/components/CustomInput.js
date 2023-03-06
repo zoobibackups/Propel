@@ -13,17 +13,17 @@ import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 const CustomInput = ({
   value,
-  label,
+  label = null,
   placeholder,
   errorMessage,
   secureTextEntry = false,
   onChangeText,
+  containerStyle,
 }) => {
   const [eyeon, setEyeOn] = useState(secureTextEntry);
   return (
-    <View style={styles.textinputContainer}>
+    <View style={{...styles.textinputContainer, ...containerStyle}}>
       <Text style={styles.label}>{label}</Text>
-
       <View>
         <TextInput
           secureTextEntry={eyeon}
@@ -32,7 +32,13 @@ const CustomInput = ({
           value={value}
           autoCapitalize={'none'}
           onChangeText={onChangeText}
-          style={styles.input}
+          style={{
+            ...styles.input,
+            width: placeholder !== null ? SCREEN_WIDTH : SCREEN_WIDTH / 1.4,
+            backgroundColor: '#0000',
+            borderWidth:
+              placeholder !== null ? moderateScale(1) : moderateScale(0),
+          }}
         />
         {secureTextEntry && (
           <TouchableOpacity

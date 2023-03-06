@@ -48,7 +48,7 @@ import {
   WATER_METER_IMG_URL,
   WATER_METER_READING,
 } from './types';
-// const initialState = {
+
 //   property_address:
 //     'F, Building number #5 2nd Floor Time Square Commercial Phase 7, DHA1-Bahria Town Bridge, Sector Bahria Town, Islamabad, 46220',
 //   tenant_name: 'Aqeel Saqlain',
@@ -92,7 +92,7 @@ const initialState = {
   inspector_name: '',
   asked_landlord_to: '',
   advised_tenant_to: '',
-  contractor_instructed_to: '',
+  contractor_instructed: '',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
@@ -156,7 +156,7 @@ const reducer = (state, action) => {
     case 'CONSTRACTED_INSTRUCTED_TO':
       return {
         ...state,
-        contractor_instructed_to: action.payload,
+        contractor_instructed: action.payload,
       };
     case SET_INSPECTION_DATE:
       return {
@@ -375,60 +375,60 @@ const AddNewPropertyScreen = ({navigation}) => {
   };
 
   const validate_data = () => {
-    let empty_filed = false;
-    if (property_data.property_address == '') {
-      alert("Property Address can't be empty");
-      return;
-    }
-    if (property_data.tenant_name == '') {
-      alert("Tenant Name can't be empty");
-      return;
-    }
-    if (property_data.inspector_name == '') {
-      alert("Inspector name can't be empty");
-      return;
-    }
-    if (property_data.asked_landlord_to == '') {
-      alert("Ask to Landlord can't be empty");
-      return;
-    }
-    if (property_data.advised_tenant_to == '') {
-      alert("Tenant advice can't be empty");
-      return;
-    }
-    if (property_data.contractor_instructed_to == '') {
-      alert("Contractor Instruction can't be empty");
-      return;
-    }
+    // let empty_filed = false;
+    // if (property_data.property_address == '') {
+    //   alert("Property Address can't be empty");
+    //   return;
+    // }
+    // if (property_data.tenant_name == '') {
+    //   alert("Tenant Name can't be empty");
+    //   return;
+    // }
+    // if (property_data.inspector_name == '') {
+    //   alert("Inspector name can't be empty");
+    //   return;
+    // }
+    // if (property_data.asked_landlord_to == '') {
+    //   alert("Ask to Landlord can't be empty");
+    //   return;
+    // }
+    // if (property_data.advised_tenant_to == '') {
+    //   alert("Tenant advice can't be empty");
+    //   return;
+    // }
+    // if (property_data.contractor_instructed == '') {
+    //   alert("Contractor Instruction can't be empty");
+    //   return;
+    // }
 
-    if (property_data.electricity_meter_reading == '') {
-      alert("Electricity Meter Reading can't be empty");
-      return;
-    }
-    if (property_data.gas_meter_reading == '') {
-      alert("Gas Meter Reading can't be empty");
-      return;
-    }
-    if (property_data.signature_inspector == '') {
-      alert("Inspector Signature can't be empty");
-      return;
-    }
-    if (property_data.signature_tenant == '') {
-      alert("Gas Meter Reading can't be empty");
-      return;
-    }
-    images_data.map(item => {
-      if (item.name == '') {
-        empty_filed = true;
-      }
-      if (item.description == '') {
-        empty_filed = true;
-      }
-    });
-    if (empty_filed == true) {
-      alert('Please check all input fileds');
-      return;
-    }
+    // if (property_data.electricity_meter_reading == '') {
+    //   alert("Electricity Meter Reading can't be empty");
+    //   return;
+    // }
+    // if (property_data.gas_meter_reading == '') {
+    //   alert("Gas Meter Reading can't be empty");
+    //   return;
+    // }
+    // if (property_data.signature_inspector == '') {
+    //   alert("Inspector Signature can't be empty");
+    //   return;
+    // }
+    // if (property_data.signature_tenant == '') {
+    //   alert("Gas Meter Reading can't be empty");
+    //   return;
+    // }
+    // images_data.map(item => {
+    //   if (item.name == '') {
+    //     empty_filed = true;
+    //   }
+    //   if (item.description == '') {
+    //     empty_filed = true;
+    //   }
+    // });
+    // if (empty_filed == true) {
+    //   alert('Please check all input fileds');
+    //   return;
+    // }
 
     UploadProperty();
   };
@@ -726,7 +726,7 @@ const AddNewPropertyScreen = ({navigation}) => {
                     ),
                   );
                 } else {
-                  alert('There must be atleast one room');
+                  alert('There must be at least one room');
                 }
               }}
               setItem={data => {
@@ -767,7 +767,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         />
         <CustomInput
           label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed_to}
+          value={property_data.contractor_instructed}
           onChangeText={text =>
             setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }

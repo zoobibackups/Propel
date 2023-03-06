@@ -38,7 +38,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     }
     return `data:image/png;base64,${binary}`;
   };
-  console.log(property_data.property_details.length);
+  console.log(property_data);
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
       ? property_data.property_details[0]
