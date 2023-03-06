@@ -624,7 +624,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       </View>
       <FlatList
         horizontal={true}
-        data={property_data?.property_details}
+        data={property_data.property_details}
+        bounces={false}
         showsHorizontalScrollIndicator={false}
         style={{margin: moderateScale(15)}}
         renderItem={({item, index}) => {
@@ -633,7 +634,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
               onPress={() => setActiveTabData(item)}
               style={styles.tabView}>
               <Text style={{fontFamily: fonts.Bold, color: colors.white}}>
-                {item.name}{' '}
+                {item.name}
               </Text>
             </TouchableOpacity>
           );

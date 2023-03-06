@@ -23,7 +23,13 @@ const CustomInput = ({
   const [eyeon, setEyeOn] = useState(secureTextEntry);
   return (
     <View style={{...styles.textinputContainer, ...containerStyle}}>
-      <Text style={styles.label}>{label}</Text>
+      <Text
+        style={{
+          ...styles.label,
+          marginTop: placeholder !== null ? moderateScale(0) : moderateScale(5),
+        }}>
+        {label}
+      </Text>
       <View>
         <TextInput
           secureTextEntry={eyeon}
@@ -36,6 +42,8 @@ const CustomInput = ({
             ...styles.input,
             width: placeholder !== null ? SCREEN_WIDTH : SCREEN_WIDTH / 1.4,
             backgroundColor: '#0000',
+            height:
+              placeholder !== null ? moderateScale(45) : moderateScale(30),
             borderWidth:
               placeholder !== null ? moderateScale(1) : moderateScale(0),
           }}
@@ -83,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: colors.borderColor,
     borderRadius: moderateScale(5),
     paddingVertical: 0,
+
     borderWidth: moderateScale(1),
     height: verticalScale(45),
     fontFamily: fonts.Medium,
