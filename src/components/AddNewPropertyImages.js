@@ -38,29 +38,33 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
           borderColor: colors.borderColor,
           borderRadius: moderateScale(5),
         }}>
+        {item.floor !== null && (
+          <CustomInput
+            label={'Floor :'}
+            placeholder={null}
+            onChangeText={text => setItem({...item, floor: text})}
+            value={item.floor}
+            containerStyle={styles.containerStyle}
+          />
+        )}
         <CustomInput
-          label={'Floor Details :'}
-          placeholder={null}
-          onChangeText={text => setItem({...item, floor: text})}
-          value={item.floor}
-          containerStyle={styles.containerStyle}
-        />
-        <CustomInput
-          label={'Walls Details :'}
+          label={'Walls :'}
           placeholder={null}
           onChangeText={text => setItem({...item, walls: text})}
           value={item.walls}
           containerStyle={styles.containerStyle}
         />
+        {item.ceiling !== null && (
+          <CustomInput
+            label={'Ceiling  :'}
+            placeholder={null}
+            onChangeText={text => setItem({...item, ceiling: text})}
+            value={item.ceiling}
+            containerStyle={styles.containerStyle}
+          />
+        )}
         <CustomInput
-          label={'Ceiling  Details :'}
-          placeholder={null}
-          onChangeText={text => setItem({...item, ceiling: text})}
-          value={item.ceiling}
-          containerStyle={styles.containerStyle}
-        />
-        <CustomInput
-          label={'Window Details :'}
+          label={'Window :'}
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
@@ -69,6 +73,7 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
       </View>
       <CustomInput
         placeholder={'Comments'}
+        label={'Comments'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />

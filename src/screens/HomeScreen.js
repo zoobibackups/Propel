@@ -21,11 +21,11 @@ import colors from '../constants/theme';
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
-
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
+
   useEffect(() => {
     updatePropertyList();
   }, [isFocused]);

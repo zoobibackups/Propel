@@ -461,7 +461,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
 
     let options = {
       html: html,
-      fileName: `${property_data?.tenant_name}_${moment().unix()}`,
+      fileName: `${property_data?.tenant_name}_${moment().unix()}.pdf`,
       directory: 'Documents',
       height: 2700,
       width: 900,

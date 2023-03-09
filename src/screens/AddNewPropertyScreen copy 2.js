@@ -634,7 +634,7 @@ const AddNewPropertyScreen = ({navigation}) => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        //console.log(result);
+        console.log(result);
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Success',
@@ -963,9 +963,9 @@ const AddNewPropertyScreen = ({navigation}) => {
         />
         <SignatureComponent
           title={"Inspector's Signature"}
-          onChangeText={text => {
-            setPropertydata({type: INSPECTOR_SIGNATURE, payload: text});
-          }}
+          onChangeText={text =>
+            setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
+          }
         />
         <SignatureComponent
           title={"Tenant's Signature"}
