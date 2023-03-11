@@ -554,7 +554,7 @@ const AddNewPropertyScreen = ({navigation}) => {
   };
 
   const UploadProperty = () => {
-    console.log(property_data.signature_inspector);
+    
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');

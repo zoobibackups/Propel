@@ -2,9 +2,8 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
-  Alert,
+  Alert,Platfrom,
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -31,25 +30,16 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isCreating, setIsCreating] = useState(false);
   let property_data = route.params.item;
   arrayBufferToBase64 = buffer => {
-    if (Platform.OS == 'android') {
-      let binary = '';
-      let bytes = new Uint8Array(buffer);
-      let len = bytes.byteLength;
-      for (let i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-      }
-      return `${binary}`;
-    } else {
-      let binary = '';
-      let bytes = new Uint8Array(buffer);
-      let len = bytes.byteLength;
-      for (let i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-      }
-      return `data:image/png;base64,${binary}`;
+   
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
     }
+    return `data:image/png;base64,${binary}`;
   };
-  console.log(property_data);
+  
   const [active_tab_data, setActiveTabData] = useState(
     property_data.property_details.length > 0
       ? property_data.property_details[0]

@@ -50,21 +50,21 @@ import {
 } from './types';
 
 const initialState = {
-  property_address: '',
-  tenant_name: '',
-  inspector_name: '',
-  asked_landlord_to: '',
+  property_address: 'bahria town phase 8 rawalpindi topwn wazir abad',
+  tenant_name: 'Aqeel Saqalin',
+  inspector_name: 'Aftab Ameen',
+  asked_landlord_to: 'there is some ask to landloard',
   advised_tenant_to:
     'Not to hang wet clothes on the radiators, to heat up the house adequately and to open windows regularly to keep the house ventilated.',
-  contractor_instructed: '',
+  contractor_instructed: 'here is some text',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
   gas_safety_certificate_expiry_date: moment().format('DD-MMM-YYYY'),
   electricity_meter: 'Yes',
-  electricity_meter_reading: '',
+  electricity_meter_reading: '100',
   gas_meter: 'Yes',
-  gas_meter_reading: '',
+  gas_meter_reading: '100',
   water_meter: 'Yes',
   smoke_alarm: 'Yes',
   co_alarm: 'Yes',
@@ -72,18 +72,27 @@ const initialState = {
   signature_inspector: '',
   signature_tenant: '',
   types: 'inspection',
-  final_remarks: '',
-  user_id: '5',
-  main_img: '',
-  water_meter_reading: '',
-  electricity_meter_img: '',
-  gas_meter_img: '',
-  water_meter_img: '',
-  smoke_alarm_front_img: '',
-  smoke_alarm_back_img: '',
-  co_alarm_front_img: '',
-  co_alarm_back_img: '',
-  heating_system_img: '',
+  final_remarks: 'there arethe final remarks',
+
+  main_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  water_meter_reading: '122',
+  electricity_meter_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  gas_meter_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  water_meter_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  smoke_alarm_front_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  smoke_alarm_back_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  co_alarm_front_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  co_alarm_back_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  heating_system_img:
+    'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -254,223 +263,273 @@ const AddNewPropertyScreen = ({navigation}) => {
   const [images_data, setImagesdata] = useState([
     {
       name: `Main Aspect`,
-      description: '',
-      floor: null,
-      walls: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: null,
-      windows: '',
+      windows: 'there are some windows',
+      floor: null,
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Entrance Hall`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Lounge 1`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Lounge 2`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Kitchen`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Landing`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bedroom 1`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bedroom 2`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bedroom 3`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bedroom 4`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bedroom 5`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bathroom 1`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bathroom 2`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bathroom 3`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bathroom 4`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Bathroom 5`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
     {
       name: `Rear Garden  `,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
+      description:
+        'here i am writing some test desctiption for you and all of you',
+      floor:
+        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
+      walls:
+        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
+      ceiling: 'this is just a celing description for a testing string',
+      windows: 'there are some windows',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     },
   ]);
@@ -484,9 +543,9 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+        'uploads/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
       ],
     };
     let temp_array = [...images_data];
@@ -495,7 +554,7 @@ const AddNewPropertyScreen = ({navigation}) => {
   };
 
   const validate_data = () => {
-    // let empty_filed = false;
+    let empty_filed = false;
     if (property_data.property_address == '') {
       alert("Property Address can't be empty");
       return;
@@ -545,16 +604,15 @@ const AddNewPropertyScreen = ({navigation}) => {
     //     empty_filed = true;
     //   }
     // });
-    // if (empty_filed == true) {
-    //   alert('Please check all input fileds');
-    //   return;
-    // }
+    if (empty_filed == true) {
+      alert('Please check all input fileds');
+      return;
+    }
 
     UploadProperty();
   };
 
   const UploadProperty = () => {
-    console.log(property_data.signature_inspector);
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -576,6 +634,7 @@ const AddNewPropertyScreen = ({navigation}) => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Success',
@@ -589,6 +648,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       })
       .catch(error => {
+        console.log(error);
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Error',
