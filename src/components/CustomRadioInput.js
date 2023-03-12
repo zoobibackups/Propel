@@ -38,8 +38,9 @@ const CustomRadioInput = ({
   const Pickimage = index => {
     setUploadingIndex(index);
     ImagePicker.openPicker({
-      width: 800,
-      height: 800,
+      width: 300,
+      compressImageQuality: 0.5,
+      height: 300,
       cropping: true,
     })
       .then(image => {
@@ -50,24 +51,30 @@ const CustomRadioInput = ({
       });
   };
   const Pickfromcamera = index => {
+    setUploadingIndex(index);
     ImagePicker.openCamera({
-      width: 800,
-      height: 800,
+      width: 300,
+      height: 300,
+      compressImageQuality: 0.5,
       cropping: true,
     })
       .then(image => {
         uploadUImage(image, index);
       })
-      .catch(err => {});
+      .catch(err => {
+        setUploadingIndex(null);
+        console.log(err);
+      });
   };
 
   const uploadUImage = (image, index) => {
+    console.log(index);
     setUpLoading(true);
     let name = image.path.split('/').pop();
     var formdata = new FormData();
     formdata.append('file', {
       uri: `${image.path}`,
-      name: `${moment().unix()}_.${name}`,
+      name: `${name}`,
       type: `${image.mime}`,
     });
 
@@ -80,6 +87,7 @@ const CustomRadioInput = ({
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         if (index == 0) {
           onChangeImg1(result.path);
         } else {
@@ -89,6 +97,7 @@ const CustomRadioInput = ({
         setUploadingIndex(null);
       })
       .catch(error => {
+        console.log(error, 'ERROR');
         setUpLoading(false);
         setUploadingIndex(null);
       });

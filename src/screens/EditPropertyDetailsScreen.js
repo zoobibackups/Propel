@@ -1,18 +1,19 @@
 import moment from 'moment';
-import React, {useEffect, useReducer, useState} from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import {
   Alert,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import {moderateScale} from 'react-native-size-matters';
+import { moderateScale } from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useSelector} from 'react-redux';
-import {ADD_PROPERTY, API_URL} from '../apis';
+import { useSelector } from 'react-redux';
+import { ADD_PROPERTY, API_URL } from '../apis';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
@@ -47,7 +48,7 @@ import {
   TENANT_SIGNATURE,
   WATER_METER,
   WATER_METER_IMG_URL,
-  WATER_METER_READING,
+  WATER_METER_READING
 } from './types';
 
 const reducer = (state, action) => {
@@ -190,12 +191,12 @@ const reducer = (state, action) => {
     case CO_ALARAM_IMG_URL1:
       return {
         ...state,
-        co_alarm_font_img: action.payload,
+        co_alarm_front_img: action.payload,
       };
     case CO_ALARAM_IMG_URL2:
       return {
         ...state,
-        co_alram_back_img: action.payload,
+        co_alarm_back_img: action.payload,
       };
     case HEATING_IMG_URL:
       return {
@@ -239,14 +240,15 @@ const EditPropertyScreen = ({navigation, route}) => {
     temp_array.push(item);
     setImagesdata(temp_array);
   };
-  arrayBufferToBase64 = buffer => {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return `data:image/png;base64,${binary}`;
+
+  arrayBufferToBase64 = buffer => { 
+      let binary = '';
+      let bytes = new Uint8Array(buffer);
+      let len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+      return `${binary}`;
   };
 
   const validate_data = () => {
@@ -309,7 +311,6 @@ const EditPropertyScreen = ({navigation, route}) => {
   };
 
   const UploadProperty = () => {
-    console.log(images_data);
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -467,13 +468,16 @@ const EditPropertyScreen = ({navigation, route}) => {
           }
           img1={property_data.electricity_meter_img}
           onChangeImg1={url => {
+            console.log(url, 'IMG 1');
             setPropertydata({
               type: ELECTRICY_METER_IMG_URL,
               payload: url,
             });
           }}
           img2={null}
-          onChangeImg2={() => {}}
+          onChangeImg2={url => {
+            console.log(url, 'IMG 2');
+          }}
         />
 
         <CustomRadioInput
