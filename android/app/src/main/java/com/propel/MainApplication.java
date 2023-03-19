@@ -9,9 +9,12 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
-
-public class MainApplication extends Application implements ReactApplication {
-
+import cl.json.ShareApplication;
+public class MainApplication extends Application implements ShareApplication, ReactApplication {
+  @Override
+  public String getFileProviderAuthority() {
+      return BuildConfig.APPLICATION_ID + ".provider";
+  }
   private final ReactNativeHost mReactNativeHost =
       new DefaultReactNativeHost(this) {
         @Override

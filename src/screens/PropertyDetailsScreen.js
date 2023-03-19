@@ -464,7 +464,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     let options = {
       html: html,
       fileName: `${property_data?.tenant_name}_${moment().unix()}.pdf`,
-      directory: 'Documents',
+      directory: 'Downloads',
       height: 2700,
       width: 900,
     };
@@ -499,23 +499,41 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       });
   };
   async function loadAndSharePDF(filePath) {
-    const options = {
-      type: 'application/pdf',
-      url: filePath,
-    };
-    try {
-      const result = await Share.open(options);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
+    if (Platform.OS == 'android') {
+      const options = {
+        type: 'application/pdf',
+        url: `file:///${filePath}`,
+      };
+      try {
+        const result = await Share.open(options);
+      } catch (error) {
+        console.log(error);
+      }
+      Share.open(options)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          err && console.log(err);
+        });
+    } else {
+      const options = {
+        type: 'application/pdf',
+        url: filePath,
+      };
+      try {
+        const result = await Share.open(options);
+      } catch (error) {
+        console.log(error);
+      }
+      Share.open(options)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          err && console.log(err);
+        });
     }
-    Share.open(options)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        err && console.log(err);
-      });
   }
   return (
     <ScrollView

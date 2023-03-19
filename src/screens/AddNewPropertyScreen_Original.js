@@ -275,7 +275,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: [
         'uploaded/default.jpg',
         'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploaded/default.jpg',
       ],
     },
     {
@@ -288,7 +288,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: [
         'uploaded/default.jpg',
         'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploaded/default.jpg',
       ],
     },
     {
@@ -301,7 +301,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: [
         'uploaded/default.jpg',
         'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploaded/default.jpg',
       ],
     },
     {
@@ -314,7 +314,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: [
         'uploaded/default.jpg',
         'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploaded/default.jpg',
       ],
     },
     {
@@ -327,7 +327,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: [
         'uploaded/default.jpg',
         'uploaded/default.jpg',
-        'uploaded/default.jpg0',
+        'uploaded/default.jpg',
       ],
     },
     {
