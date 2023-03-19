@@ -74,25 +74,16 @@ const initialState = {
   types: 'inspection',
   final_remarks: 'there arethe final remarks',
 
-  main_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  main_img: 'uploads/1024.jpg',
   water_meter_reading: '122',
-  electricity_meter_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  gas_meter_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  water_meter_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  smoke_alarm_front_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  smoke_alarm_back_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  co_alarm_front_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  co_alarm_back_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-  heating_system_img:
-    'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
+  electricity_meter_img: 'uploads/1024.jpg',
+  gas_meter_img: 'uploads/1024.jpg',
+  water_meter_img: 'uploads/1024.jpg',
+  smoke_alarm_front_img: 'uploads/1024.jpg',
+  smoke_alarm_back_img: 'uploads/1024.jpg',
+  co_alarm_front_img: 'uploads/1024.jpg',
+  co_alarm_back_img: 'uploads/1024.jpg',
+  heating_system_img: 'uploads/1024.jpg',
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -270,11 +261,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: null,
       windows: 'there are some windows',
       floor: null,
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Entrance Hall`,
@@ -286,11 +273,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Lounge 1`,
@@ -302,11 +285,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Lounge 2`,
@@ -318,11 +297,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Kitchen`,
@@ -334,11 +309,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Landing`,
@@ -350,11 +321,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bedroom 1`,
@@ -366,11 +333,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bedroom 2`,
@@ -382,11 +345,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bedroom 3`,
@@ -398,11 +357,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bedroom 4`,
@@ -414,11 +369,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bedroom 5`,
@@ -430,11 +381,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bathroom 1`,
@@ -446,11 +393,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bathroom 2`,
@@ -462,11 +405,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bathroom 3`,
@@ -478,11 +417,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bathroom 4`,
@@ -494,11 +429,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Bathroom 5`,
@@ -510,11 +441,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
     {
       name: `Rear Garden  `,
@@ -526,11 +453,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
       ceiling: 'this is just a celing description for a testing string',
       windows: 'there are some windows',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     },
   ]);
   const [isloading, setIsLoading] = useState(false);
@@ -542,11 +465,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       walls: '',
       ceiling: '',
       windows: '',
-      images: [
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-        'uploaded/1678128916484_1678128848_.9602C39D-3C5D-4C87-8924-4716716D868D.jpg',
-      ],
+      images: ['uploads/1024.jpg', 'uploads/1024.jpg', 'uploads/1024.jpg'],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -638,7 +557,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Success',
-          'Your Property has been uploaded',
+          'Your Property has been uploads',
           [
             {
               text: 'OK',

@@ -422,45 +422,6 @@ const AddNewPropertyScreen = ({navigation}) => {
       ],
     },
     {
-      name: `Bathroom 3`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-      ],
-    },
-    {
-      name: `Bathroom 4`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-      ],
-    },
-    {
-      name: `Bathroom 5`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      images: [
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-        'uploaded/default.jpg',
-      ],
-    },
-    {
       name: `Rear Garden  `,
       description: '',
       floor: '',
@@ -554,7 +515,6 @@ const AddNewPropertyScreen = ({navigation}) => {
   };
 
   const UploadProperty = () => {
-    
     setIsLoading(true);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');

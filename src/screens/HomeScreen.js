@@ -10,22 +10,38 @@ import {
   View,
 } from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
+import Entypo from 'react-native-vector-icons/AntDesign';
 import AntDesign from 'react-native-vector-icons/Entypo';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
 import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
+import {userLogOut} from '../store/actions/userActions';
 const HomeScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
-
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <View style={{backgroundColor: '#0000'}}>
+          <TouchableOpacity
+            onPress={() => dispatch(userLogOut(null))}
+            style={styles.button2}>
+            <Entypo name={'logout'} color={'#fff'} size={moderateScale(25)} />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, [navigation]);
   useEffect(() => {
     updatePropertyList();
   }, [isFocused]);
@@ -37,10 +53,7 @@ const HomeScreen = ({navigation}) => {
       redirect: 'follow',
     };
 
-    fetch(
-      `https://api.propelinspections.com/properties/getByUserId/${user.id}`,
-      requestOptions,
-    )
+    fetch(`${USER_LIST_PROPERTY}/${user?.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         setProperty(result.rows);
@@ -48,6 +61,7 @@ const HomeScreen = ({navigation}) => {
         setLoading(false);
       })
       .catch(error => {
+        console.log(error);
         setLoading(false);
         alert('Plase Check Your Internet Connection. Or Try again');
       });
@@ -172,6 +186,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(10),
     color: colors.textColor,
   },
+  button2: {},
   button: {
     width: moderateScale(150),
     height: moderateScale(40),

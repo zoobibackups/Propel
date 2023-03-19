@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
-import {USER_LOGIN} from '../apis';
+import {FORGOT_PASS, USER_LOGIN} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
@@ -22,24 +22,21 @@ const ForgotPasswordScreen = ({navigation}) => {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     if (useremail.trim() == '' || useremail == null) {
-      alert('Enter emial');
+      alert('Enter your email');
       return;
     }
 
     setLoading(true);
-    fetch(
-      `https://api.propelinspections.com/accounts/forgot-password?email=${useremail}`,
-      {
-        method: 'GET',
-        headers: myHeaders,
-      },
-    )
+    fetch(`${FORGOT_PASS}?email=${useremail}`, {
+      method: 'GET',
+      headers: myHeaders,
+    })
       .then(data => data.json())
       .then(data => {
-        console.log(data);
         if (
           data.message ==
-          'Please check your email for password reset instructions'
+            'Please check your email for password reset instructions' ||
+          data.message == 'Unauthorized'
         ) {
           alert(data.message);
         } else {

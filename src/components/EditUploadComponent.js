@@ -26,8 +26,9 @@ const EditUploadComponent = ({data, onChangeText}) => {
     setUploadingIndex(index);
 
     ImagePicker.openPicker({
-      width: 500,
-      height: 500,
+      width: 300,
+      height: 300,
+      compressImageQuality: 0.6,
       cropping: true,
     })
       .then(image => {
@@ -39,8 +40,9 @@ const EditUploadComponent = ({data, onChangeText}) => {
   };
   const Pickfromcamera = index => {
     ImagePicker.openCamera({
-      width: 800,
-      height: 800,
+      width: 300,
+      height: 300,
+      compressImageQuality: 0.6,
       cropping: true,
     })
       .then(image => {

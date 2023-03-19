@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect, useReducer, useState } from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {
   Alert,
   Platform,
@@ -8,12 +8,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useSelector } from 'react-redux';
-import { ADD_PROPERTY, API_URL } from '../apis';
+import {useSelector} from 'react-redux';
+import {ADD_PROPERTY, API_URL} from '../apis';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
@@ -48,7 +48,7 @@ import {
   TENANT_SIGNATURE,
   WATER_METER,
   WATER_METER_IMG_URL,
-  WATER_METER_READING
+  WATER_METER_READING,
 } from './types';
 
 const reducer = (state, action) => {
@@ -148,16 +148,7 @@ const reducer = (state, action) => {
         ...state,
         final_remarks: action.payload,
       };
-    case TENANT_SIGNATURE:
-      return {
-        ...state,
-        signature_tenant: action.payload,
-      };
-    case INSPECTOR_SIGNATURE:
-      return {
-        ...state,
-        signature_inspector: action.payload,
-      };
+
     case WATER_METER_READING:
       return {
         ...state,
@@ -213,6 +204,12 @@ const EditPropertyScreen = ({navigation, route}) => {
   const {user} = useSelector(state => state.userReducer);
   const [property_data, setPropertydata] = useReducer(reducer, item);
   const [isloading, setIsLoading] = useState(false);
+  const [signature_inspector, setSignatureInspector] = useState(
+    arrayBufferToBase64(item.signature_inspector.data),
+  );
+  const [signature_tenant, setSignatureTenant] = useState(
+    arrayBufferToBase64(item.signature_tenant.data),
+  );
   const [images_data, setImagesdata] = useState(
     item.property_details.map((item, index) => {
       return {
@@ -241,30 +238,30 @@ const EditPropertyScreen = ({navigation, route}) => {
     setImagesdata(temp_array);
   };
 
-  arrayBufferToBase64 = buffer => { 
-      let binary = '';
-      let bytes = new Uint8Array(buffer);
-      let len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-          binary += String.fromCharCode(bytes[i]);
-        }
-      return `${binary}`;
+  arrayBufferToBase64 = buffer => {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return `${binary}`;
   };
 
   const validate_data = () => {
-    // let empty_filed = false;
-    // if (property_data.property_address == '') {
-    //   alert("Property Address can't be empty");
-    //   return;
-    // }
-    // if (property_data.tenant_name == '') {
-    //   alert("Tenant Name can't be empty");
-    //   return;
-    // }
-    // if (property_data.inspector_name == '') {
-    //   alert("Inspector name can't be empty");
-    //   return;
-    // }
+    let empty_filed = false;
+    if (property_data.property_address == '') {
+      alert("Property Address can't be empty");
+      return;
+    }
+    if (property_data.tenant_name == '') {
+      alert("Tenant Name can't be empty");
+      return;
+    }
+    if (property_data.inspector_name == '') {
+      alert("Inspector name can't be empty");
+      return;
+    }
     // if (property_data.asked_landlord_to == '') {
     //   alert("Ask to Landlord can't be empty");
     //   return;
@@ -302,10 +299,10 @@ const EditPropertyScreen = ({navigation, route}) => {
     //     empty_filed = true;
     //   }
     // });
-    // if (empty_filed == true) {
-    //   alert('Please check all input fileds');
-    //   return;
-    // }
+    if (empty_filed == true) {
+      alert('Please check all input fileds');
+      return;
+    }
 
     UploadProperty();
   };
@@ -327,12 +324,8 @@ const EditPropertyScreen = ({navigation, route}) => {
       gas_safety_certificate_expiry_date: moment(
         property_data.gas_safety_certificate_expiry_date,
       ).format('DD-MMM-YYYY'),
-      signature_inspector: arrayBufferToBase64(
-        property_data.signature_inspector.data,
-      ),
-      signature_tenant: arrayBufferToBase64(
-        property_data.signature_tenant.data,
-      ),
+      signature_inspector: signature_inspector,
+      signature_tenant: signature_tenant,
       user_id: user.id,
       account_id: user.id,
       property_details: images_data,
@@ -347,8 +340,9 @@ const EditPropertyScreen = ({navigation, route}) => {
     fetch(`${ADD_PROPERTY}/${item.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
+        console.log(result, 'RESULT');
         setIsLoading(false);
-        setIsLoading(false);
+
         Alert.alert(
           'Property Updated Success',
           'Your property has been updated ',
@@ -365,7 +359,7 @@ const EditPropertyScreen = ({navigation, route}) => {
           'Property Updating Error',
           'There is some thing went wrong, Please try again',
         );
-        setIsLoading(true);
+        setIsLoading(false);
       });
   };
   return (
@@ -680,17 +674,13 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
         <SignatureComponent
           title={"Inspector's Signature"}
-          img={arrayBufferToBase64(property_data.signature_tenant.data)}
-          onChangeText={text =>
-            setPropertydata({type: INSPECTOR_SIGNATURE, payload: text})
-          }
+          img={signature_inspector}
+          onChangeText={text => setSignatureInspector(text)}
         />
         <SignatureComponent
           title={"Tenant's Signature"}
-          img={arrayBufferToBase64(property_data.signature_inspector.data)}
-          onChangeText={text =>
-            setPropertydata({type: TENANT_SIGNATURE, payload: text})
-          }
+          img={signature_tenant}
+          onChangeText={text => setSignatureTenant(text)}
         />
         <CustomButton
           isloading={isloading}
