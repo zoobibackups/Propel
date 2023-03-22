@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useEffect, useReducer, useState} from 'react';
 import {
   Alert,
+  FlatList,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -53,6 +54,11 @@ import {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'TYPES':
+      return {
+        ...state,
+        types: action.payload,
+      };
     case 'ADDRESS_ADD':
       return {
         ...state,
@@ -203,6 +209,7 @@ const EditPropertyScreen = ({navigation, route}) => {
   let item = route.params.item;
   const {user} = useSelector(state => state.userReducer);
   const [property_data, setPropertydata] = useReducer(reducer, item);
+  const types = ['Inventory Report', 'Mid-Term Inspection', 'Checkout Report'];
   const [isloading, setIsLoading] = useState(false);
   const [signature_inspector, setSignatureInspector] = useState(
     arrayBufferToBase64(item.signature_inspector.data),
@@ -368,6 +375,40 @@ const EditPropertyScreen = ({navigation, route}) => {
         style={styles.container}
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
+
+        <FlatList
+          data={types}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({item, index}) => (
+            <TouchableOpacity
+              onPress={() => {
+                setPropertydata({
+                  type: 'TYPES',
+                  payload: item,
+                });
+              }}
+              style={{
+                paddingHorizontal: moderateScale(20),
+                paddingVertical: moderateScale(10),
+                borderWidth: 1,
+                borderColor:
+                  property_data.types != item ? '#0090FF' : '#0090FF11',
+                backgroundColor:
+                  property_data.types == item ? '#0090FF' : '#0090FF11',
+                margin: moderateScale(10),
+                borderRadius: moderateScale(5),
+              }}>
+              <Text
+                style={{
+                  color: property_data.types == item ? '#fff' : '#000',
+                  fontFamily: fonts.Bold,
+                }}>
+                {item}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
         <MainImgComponent
           url={`${API_URL}${property_data?.main_img}`}
           onChangeText={url => {

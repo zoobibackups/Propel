@@ -1,22 +1,17 @@
 //
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useDispatch} from 'react-redux';
-import {FORGOT_PASS, USER_LOGIN} from '../apis';
+import {FORGOT_PASS} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
 import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
-import {userLogin} from '../store/actions/userActions';
 const ForgotPasswordScreen = ({navigation}) => {
-  const dispatch = useDispatch();
   const [useremail, setEmail] = useState(''); //
-  const [password, setPassword] = useState(''); //
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);
   const UserLogin = () => {
     var myHeaders = new Headers();

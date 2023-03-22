@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, {useReducer, useState} from 'react';
 import {
+  ActivityIndicator,
   Alert,
   SafeAreaView,
   ScrollView,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
@@ -22,6 +24,7 @@ import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
+import useIsReady from '../Hooks/useIsReady';
 import {
   CO_ALARAM,
   CO_ALARAM_IMG_URL1,
@@ -71,7 +74,7 @@ const initialState = {
   heating_system: 'Yes',
   signature_inspector: '',
   signature_tenant: '',
-  types: 'inspection',
+  types: 'Inventory Report',
   final_remarks: '',
   user_id: '5',
   main_img: '',
@@ -87,6 +90,11 @@ const initialState = {
 };
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'TYPES':
+      return {
+        ...state,
+        types: action.payload,
+      };
     case 'ADDRESS_ADD':
       return {
         ...state,
@@ -250,7 +258,8 @@ const reducer = (state, action) => {
 const AddNewPropertyScreen = ({navigation}) => {
   const [property_data, setPropertydata] = useReducer(reducer, initialState);
   const {user} = useSelector(state => state.userReducer);
-
+  const isReady = useIsReady();
+  const types = ['Inventory Report', 'Mid-Term Inspection', 'Checkout Report'];
   const [images_data, setImagesdata] = useState([
     {
       name: `Main Aspect`,
@@ -556,12 +565,54 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       });
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
+        <Text
+          style={{
+            marginLeft: moderateScale(10),
+            color: '#0090FF',
+            fontFamily: fonts.Bold,
+          }}>
+          Property Report Type
+        </Text>
+        <FlatList
+          data={types}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({item, index}) => (
+            <TouchableOpacity
+              onPress={() => {
+                setPropertydata({
+                  type: 'TYPES',
+                  payload: item,
+                });
+              }}
+              style={{
+                paddingHorizontal: moderateScale(20),
+                paddingVertical: moderateScale(10),
+                borderWidth: 1,
+                borderColor:
+                  property_data.types != item ? '#0090FF' : '#0090FF11',
+                backgroundColor:
+                  property_data.types == item ? '#0090FF' : '#0090FF11',
+                margin: moderateScale(10),
+                borderRadius: moderateScale(5),
+              }}>
+              <Text
+                style={{
+                  color: property_data.types == item ? '#fff' : '#000',
+                  fontFamily: fonts.Bold,
+                }}>
+                {item}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
         <MainImgComponent
           url={null}
           onChangeText={url => {

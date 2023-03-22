@@ -1,7 +1,5 @@
-import moment from 'moment';
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {RFValue} from 'react-native-responsive-fontsize';
 import {moderateScale} from 'react-native-size-matters';
 import {API_URL} from '../apis';
 import fonts from '../constants/fonts';
@@ -16,6 +14,7 @@ const ImgDateReadingComponent = ({
   img,
   img2 = null,
 }) => {
+  console.log(`${API_URL}${img}`);
   return (
     <View style={styles.ImageCardView}>
       <View style={styles.row}>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529.47 154.72">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529.47 354.72">
   <defs>
     <style>
     .h{
@@ -8,14 +8,14 @@
     }
     .l{
       fill:#000000;
-      font-size:53.59px;
+      font-size:36.59px;
       font-family:Montserrat-Medium;
       font-weight:"bold"
     }
     .m{
-      fill:#000000;
+      fill:#0a80ea;
       font-family:Montserrat-Medium;
-      font-size:37.14px;
+      font-size:30px;
       font-weight:"bold"
     }
     </style>
@@ -34,7 +34,7 @@
           <text font-family="Montserrat-Medium, Montserrat-Medium" font-weight="550" class="l" transform="translate(124.47 96.54)">
             <tspan x="0" y="0">InventoryWise</tspan>
           </text>
-          <text  font-family="Montserrat-Medium, Montserrat-Medium" font-weight="550" class="m" transform="translate(24.47 153.98)">
+          <text  font-family="Montserrat-Medium, Montserrat-Medium" font-weight="510" class="m" transform="translate(126.47 133.98)">
             <tspan x="0" y="0">Inventory And Inspections</tspan>
           </text>
           
