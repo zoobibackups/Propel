@@ -230,7 +230,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         </div>
       </header>
       <section>
-        <p class="top-address">${property_data?.types}</p> 
+        <p class="top-address"> Property Report Type: ${property_data?.types}</p> 
         <p class="top-address">${property_data?.property_address}</p> 
           <img class="property-img" src="${API_URL}${
       property_data?.main_img
