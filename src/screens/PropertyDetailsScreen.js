@@ -384,7 +384,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         </div>
         <div class="gas-img2"> 
         ${item.property_images.map((img, index) => {
-          return `<img src="${API_URL}${img?.url}" width="31.5%" height="auto" />`;
+          return `<img src="${API_URL}${img?.url}" width="30.5%" height="auto" />`;
         })}
         </div>
       </div>`;

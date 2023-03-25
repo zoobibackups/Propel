@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -121,7 +122,22 @@ const EditUploadComponent = ({data, onChangeText}) => {
                   </TouchableOpacity>
                 </View>
               ) : (
-                <TouchableOpacity onPress={() => deleteImage(index)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    Alert.alert(
+                      'Delele Image',
+                      'Are you sure to delete image?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => deleteImage(index),
+                        },
+                        {
+                          text: 'Cancel',
+                        },
+                      ],
+                    )
+                  }>
                   <View style={styles.iconView}>
                     <MaterialCommunityIcons
                       name={'delete'}
