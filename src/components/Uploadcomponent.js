@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -35,6 +36,42 @@ const UpLoadComponent = ({data, onChangeText}) => {
     },
     {
       id: 3,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 4,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 5,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 6,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 7,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 8,
+      path: null,
+      ext: '',
+      name: '',
+    },
+    {
+      id: 9,
       path: null,
       ext: '',
       name: '',
@@ -152,7 +189,22 @@ const UpLoadComponent = ({data, onChangeText}) => {
                   </TouchableOpacity>
                 </View>
               ) : (
-                <TouchableOpacity onPress={() => deleteImage(index)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    Alert.alert(
+                      'Delele Image',
+                      'Are you sure to delete image?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => deleteImage(index),
+                        },
+                        {
+                          text: 'Cancel',
+                        },
+                      ],
+                    )
+                  }>
                   <View style={styles.iconView}>
                     <MaterialCommunityIcons
                       name={'delete'}
@@ -208,6 +260,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   imagebg: {
     width: moderateScale(92),

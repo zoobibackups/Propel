@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
     margin: moderateScale(10),
     marginBottom: 0,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   imagebg: {

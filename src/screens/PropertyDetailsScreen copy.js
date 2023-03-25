@@ -51,10 +51,11 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     setIsCreating(true);
     let html = `<!DOCTYPE html>
     <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Report Title</title>
-      </head>
+    
+    <head>
+      <meta charset="UTF-8">
+      <title>Report Title</title>
+    </head>
     <style>
       body {
         width: 90%;
@@ -65,58 +66,86 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         padding: 20px;
         border-radius: 10px;
       }
+    
       .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         /* padding: 40px auto; */
-        background-color: #0090ff00;
+        background-color: #0090ff1a;
         padding: 20px;
         border-radius: 10px;
         /* border: 2px solid #0090ff; */
       }
+    
       .logo img {
         max-width: 200px;
         height: auto;
         margin: 0 20px 0 0;
       }
+    
       .user-info {
         margin: 0 0 20px 0;
         margin-top: 20px;
       }
+    
+      @media (max-width: 600px) {
+        .header-container {
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        .logo {
+          margin: 10px 0;
+        }
+    
+        .user-info {
+          margin: 0;
+          text-align: center;
+        }
+      }
+    
       .top-address {
         font-weight: 600;
-        text-align: left;
-        padding: 10px 30px;
-        background-color:#0090FF;
+        text-align: center;
+        padding: 10px 0px;
+        background-color: #0090ff;
         font-size: 20px;
         color: #fff;
-        border-radius: 0px 0px 0px 0px;
+        border-radius: 10px 10px 0px 0px;
         margin-bottom: 0px;
       }
+    
       .property-img {
         display: block;
         margin: auto;
         width: 100%;
-        height: 300px;
-        border-radius: 0px 0px 0px 0px;
+        height: 200px;
+        border-radius: 0px 0px 10px 10px;
       }
+    
+      .top-margin {
+        /* margin-top: 20px; */
+      }
+    
       table {
         border-collapse: collapse;
-        width: 100%;
-        margin: 10px 0px;
-        table-layout: fixed;
+        width: 98.5%;
+        margin: 20px 10px;
       }
+    
       th,
       td {
         padding: 12px;
         text-align: left;
       }
+    
       thead {
         background-color: #333;
         color: #fff;
       }
+    
       tbody tr:nth-child(even) {
         background-color: #f1f1f1;
       }
@@ -124,36 +153,45 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       tbody tr:hover {
         background-color: #ddd;
       }
+    
       td {
         border: 1px solid #ddd;
       }
+    
       th {
         border: 1px solid #333;
       }
+    
       .parent {
         display: flex;
+       
+        /* margin: 20px 0; */
       }
+    
       .card {
         width: 33%;
         border: 2px solid #eee;
-        margin: 10px 5px;
-        border-radius: 0px;
+        margin: 10px;
+        border-radius: 10px;
         padding: 20px
       }
+    
       .card1 {
         width: 50%;
         border: 2px solid #eee;
-        margin: 10px 5px;
-        border-radius: 0px;
+        margin: 10px;
+        border-radius: 10px;
         padding: 20px
       }
+    
       .card2 {
         /* width: 50%; */
         border: 2px solid #eee;
-        margin: 10px 0px;
-        border-radius: 0px;
+        margin: 10px;
+        border-radius: 10px;
         padding: 20px
       }
+    
       .card-header {
         display: flex;
         justify-content: space-between;
@@ -162,23 +200,24 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         padding-bottom: 10px;
         border-bottom: 1px solid #0090ff;
       }
+    
       .gas {
         color: #0090ff;
         font-weight: 600;
       }
+    
       .gas-img img {
         margin-top: 10px;
         border-radius: 10px;
       }
+    
       .gas-img2 {
         display: flex;
-        flex-wrap: wrap;
       }
     
       .gas-img2 img {
-        margin: 12px;
+        margin: 10px;
         border-radius: 10px;
-        
       }
     .body{
       display: flex;
@@ -213,28 +252,27 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       .signatre {
         width: 100px;
         height: auto;
-       
+        /* align-self: flex-end */
       }
       .blue3{
         color: #0090ff;
-        max-width:'35%';
+        /* width: 100%; */
       }
     </style>
     
     <body>
       <header>
         <div class="header-container">
-          <div class="logo">
-             <img src="https://api.propelinspections.com/inventory/uploads/pdf_logo.png" alt="Logo" /> 
-          </div>
+          <div class="logo"> <img src="https://api.propelinspections.com/inventory/uploads/pdf_logo.jpg"
+              alt="Logo"> </div>
+        
         </div>
       </header>
       <section>
         <p class="top-address">${property_data?.types}</p> 
         <p class="top-address">${property_data?.property_address}</p> 
-          <img class="property-img" src="${API_URL}${
-      property_data?.main_img
-    }" alt="property image" />
+          <img class="property-img" src="${API_URL}${property_data?.main_img}"
+          alt="property image" />
       </section>
       <section class="top-margin">
         <div>
@@ -252,6 +290,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
               <td>${moment(property_data?.inspection_date).format(
                 'DD-MMM-YYYY',
               )}</td>
+              
             </tr>
             <tr>
               <td class="blue3">EPC Expiry Date:</td>
@@ -270,6 +309,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
               <td>${property_data?.contractor_instructed}</td>
               <td class="blue3">Asked Landlord To:</td>
               <td>${property_data?.asked_landlord_to}</td>
+             
             </tr>
           </table>
         </div>
@@ -278,49 +318,37 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <div class="parent">
           <div class="card">
             <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Gas Meter:</span> 
-                <span class="gas">Yes</span> 
-              </div>
-              <div class="col-1"> 
-                <span class="gas">Reading:</span> 
-                <span class="gas">${property_data.gas_meter_reading}</span> 
-              </div>
-              </div>
+              <div class="col-1"> <span class="gas">Gas Meter:</span> <span class="gas">Yes</span> </div>
+              <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">${
+                property_data.gas_meter_reading
+              }</span> </div>
+            </div>
             <div class="gas-img">
-             <img src="${API_URL}${
+             <img 
+             src="${API_URL}${
       property_data?.gas_meter_img
-    }" width="100%" height="auto" />
+    }" width="100%" height="auto">
               </div>
           </div>
           <div class="card">
             <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Electricity Meter:</span> 
-                <span class="gas">${property_data.electricity_meter}</span>
-              </div>
-              <div class="col-1"> 
-                <span class="gas">Reading:</span> 
-                <span class="gas">${
-                  property_data.electricity_meter_reading
-                }</span>
-              </div>
+              <div class="col-1"> <span class="gas">Electricity Meter:</span> <span class="gas">${
+                property_data.electricity_meter
+              }</span> </div>
+              <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">${
+                property_data.electricity_meter_reading
+              }</span> </div>
             </div>
-            <div class="gas-img"> 
-              <img src="${API_URL}${
+            <div class="gas-img"> <img src="${API_URL}${
       property_data?.electricity_meter_img
-    }" width="100%" height="auto" /> 
-            </div>
+    }" width="100%" height="auto"> </div>
           </div>
           <div class="card">
             <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Water Meter:</span>
-                  <span class="gas">${property_data.water_meter}</span> 
-              </div>
-              <div class="col-1"> 
-              <span class="gas">Reading:</span> 
-              <span class="gas">${
+              <div class="col-1"> <span class="gas">Water Meter:</span> <span class="gas">${
+                property_data.water_meter
+              }</span> </div>
+              <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">${
                 property_data.water_meter_reading
               }</span> </div>
             </div>
@@ -336,7 +364,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             <div class="gas-img">
              <img src="${API_URL}${
       property_data?.heating_system_img
-    }" width="100%" height="auto" /> </div>
+    }" width="100%" height="auto"> </div>
           </div>
         </div>
       </section>
@@ -351,9 +379,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             <div class="gas-img2"> 
                 <img src="${API_URL}${
       property_data?.smoke_alarm_front_img
-    }" width="45%" height="auto"> 
+    }" width="48%" height="auto"> 
               <img src="${API_URL}${property_data?.smoke_alarm_back_img}"
-                width="45%" height="auto"> </div>
+                width="48%" height="auto"> </div>
           </div>
           <div class="card1">
             <div class="card-header">
@@ -364,67 +392,81 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             <div class="gas-img2"> 
               <img src="${API_URL}${
       property_data?.co_alarm_front_img
-    }" width="45%" height="auto"> 
+    }" width="48%" height="auto"> 
               <img src="${API_URL}${property_data?.co_alarm_back_img}"
-                width="45%" height="auto"> </div>
+                width="48%" height="auto"> </div>
           </div>
         </div>
+       
       </section>
       <section class="top-margin">
        ${property_data?.property_details.map((item, index) => {
          return `<div class="card2">
         <div class="card-header">
           <div class="col-1"> <span class="blue2">${item.name} Details </span>
-            <p class="room-para">${item.floor}</p>
-            <p class="room-para">${item.walls}</p>
-            <p class="room-para">${item.ceiling}</p>
-            <p class="room-para">${item.windows}</p>
-            <p class="room-para">${item.description}</p>
+            <p class="room-para">
+            ${item.floor}
+            </p>
+            <p class="room-para">
+            ${item.walls}
+            </p>
+            <p class="room-para">
+            ${item.ceiling}
+            </p>
+            <p class="room-para">
+            ${item.windows}
+            </p>
+            <p class="room-para">
+            ${item.description}
+            </p>
           </div>
         </div>
         <div class="gas-img2"> 
         ${item.property_images.map((img, index) => {
-          return `<img src="${API_URL}${img?.url}" width="31.5%" height="auto" />`;
+          return ` <img src="${API_URL}${img?.url}" width="31.5%" height="auto"> `;
         })}
+         
         </div>
       </div>`;
        })} 
          
-      </section>`.replace(/,/g, '');
-    let html2 = ` <section>
-       <div class="body">
-         <div class="right" style="background-color: #fff">
-           <h1 class="h1">
-             Tenant Name
-           </h1>
-           <h4>${property_data.tenant_name}</h4> <img class="signatre"
-             src="${arrayBufferToBase64(
-               property_data?.signature_inspector.data,
-             )}"
-             alt="" />
-         </div>
-         <div class="right" style="background-color: #fff"></div>
-         <div class="right" style="background-color: #fff">
-           <h1 class="h1">
-             Inspector Name
-           </h1>
-           <h4>${property_data.inspector_name}</h4> <img class="signatre"
-             src="${arrayBufferToBase64(
-               property_data?.signature_inspector.data,
-             )}"
-             alt="" />
-         </div>
-       </div>
-     </section>
-   </body>
-   
-   </html>`;
+      </section>
+    
+      <section>
+        <div class="body">
+          <div class="right" style="background-color: #fff">
+            <h1 class="h1">
+              Tenant Name
+            </h1>
+            <h4>${property_data.tenant_name}</h4> <img class="signatre"
+              src="${arrayBufferToBase64(
+                property_data?.signature_inspector.data,
+              )}"
+              alt="" />
+          </div>
+          <div class="right" style="background-color: #fff"></div>
+          <div class="right" style="background-color: #fff">
+            <h1 class="h1">
+              Inspector Name
+            </h1>
+            <h4>${property_data.inspector_name}</h4> <img class="signatre"
+              src="${arrayBufferToBase64(
+                property_data?.signature_inspector.data,
+              )}"
+              alt="" />
+          </div>
+        </div>
+      </section>
+    </body>
+    
+    </html>`;
+    console.log(html);
     let options = {
-      html: `${html}${html2}`,
+      html: html,
       fileName: `${property_data?.tenant_name}_${moment().unix()}.pdf`,
       directory: 'Downloads',
       height: 2700,
-      width: 1200,
+      width: 900,
     };
 
     let file = await RNHTMLtoPDF.convert(options);

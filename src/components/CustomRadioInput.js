@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -159,7 +160,22 @@ const CustomRadioInput = ({
                 img1 !== undefined &&
                 img1 !== '' &&
                 img1 !== null ? (
-                <TouchableOpacity onPress={() => onChangeImg1(null)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    Alert.alert(
+                      'Delele Image',
+                      'Are you sure to delete image?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => onChangeImg1(null),
+                        },
+                        {
+                          text: 'Cancel',
+                        },
+                      ],
+                    )
+                  }>
                   <View style={styles.iconView}>
                     <MaterialCommunityIcons
                       name={'delete'}
@@ -180,7 +196,22 @@ const CustomRadioInput = ({
                 img2 !== undefined &&
                 img2 !== '' &&
                 img2 !== null ? (
-                <TouchableOpacity onPress={() => onChangeImg2(null)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    Alert.alert(
+                      'Delele Image',
+                      'Are you sure to delete image?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => onChangeImg2(null),
+                        },
+                        {
+                          text: 'Cancel',
+                        },
+                      ],
+                    )
+                  }>
                   <View style={styles.iconView}>
                     <MaterialCommunityIcons
                       name={'delete'}
