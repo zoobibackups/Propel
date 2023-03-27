@@ -79,14 +79,14 @@ const initialState = {
   user_id: '5',
   main_img: '',
   water_meter_reading: '',
-  electricity_meter_img: 'uploads/default.jpg',
-  gas_meter_img: 'uploads/default.jpg',
-  water_meter_img: 'uploads/default.jpg',
-  smoke_alarm_front_img: 'uploads/default.jpg',
-  smoke_alarm_back_img: 'uploads/default.jpg',
-  co_alarm_front_img: 'uploads/default.jpg',
-  co_alarm_back_img: 'uploads/default.jpg',
-  heating_system_img: 'uploads/default.jpg',
+  electricity_meter_img: '',
+  gas_meter_img: '',
+  water_meter_img: '',
+  smoke_alarm_front_img: '',
+  smoke_alarm_back_img: '',
+  co_alarm_front_img: '',
+  co_alarm_back_img: '',
+  heating_system_img: '',
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -698,7 +698,7 @@ const AddNewPropertyScreen = ({navigation}) => {
           )}
         />
         <MainImgComponent
-          url={null}
+          url={property_data.main_img}
           onChangeText={url => {
             setPropertydata({
               type: 'MAIN_IMG',

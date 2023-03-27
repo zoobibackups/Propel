@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -23,8 +24,8 @@ const MainImgComponent = ({url, onChangeText}) => {
 
   const Pickimage = () => {
     ImagePicker.openPicker({
-      width: 500,
-      height: 500,
+      width: 400,
+      height: 400,
       cropping: true,
     })
       .then(image => {
@@ -36,8 +37,8 @@ const MainImgComponent = ({url, onChangeText}) => {
   };
   const Pickfromcamera = () => {
     ImagePicker.openCamera({
-      width: 800,
-      height: 800,
+      width: 500,
+      height: 500,
       cropping: true,
     })
       .then(image => {
@@ -64,7 +65,7 @@ const MainImgComponent = ({url, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
-        setImg(`https://api.propelinspections.com/${result.path}`);
+        setImg(`https://api.propelinspections.com/inventory/${result.path}`);
         onChangeText(result.path);
         setUpLoading(false);
       })
@@ -92,7 +93,21 @@ const MainImgComponent = ({url, onChangeText}) => {
                 color={colors.primaryColor}
               />
               <TouchableOpacity
-                onPress={() => setImg(null)}
+                onPress={() =>
+                  Alert.alert(
+                    'Delete Image',
+                    'Are you sure to Delete this Image',
+                    [
+                      {
+                        text: 'OK',
+                        onPress: () => setImg(null),
+                      },
+                      {
+                        text: 'Cancel',
+                      },
+                    ],
+                  )
+                }
                 style={{
                   position: 'absolute',
                   top: 0,

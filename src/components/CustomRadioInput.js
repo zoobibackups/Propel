@@ -69,7 +69,6 @@ const CustomRadioInput = ({
   };
 
   const uploadUImage = (image, index) => {
-    console.log(index);
     setUpLoading(true);
     let name = image.path.split('/').pop();
     var formdata = new FormData();
