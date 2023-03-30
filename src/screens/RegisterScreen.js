@@ -42,7 +42,10 @@ const RegisterScreen = ({navigation}) => {
       .then(data => data.json())
       .then(data => {
         setLoading(false);
-        if (data.message == 'Registration successful.') {
+        if (
+          data.message ==
+          'Registration successful, please check your email for verification instructions'
+        ) {
           Alert.alert(
             'Registeration Successfull',
             'Your Accout has been registered successful',
