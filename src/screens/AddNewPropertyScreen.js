@@ -509,7 +509,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ],
     },
     {
-      name: `Rear Garden  `,
+      name: `Rear Garden`,
       description: '',
       floor: '',
       walls: '',
@@ -538,6 +538,12 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       images: [
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
         'uploads/default.jpg',
         'uploads/default.jpg',
         'uploads/default.jpg',
