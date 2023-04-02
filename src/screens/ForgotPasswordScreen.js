@@ -1,6 +1,6 @@
 //
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Alert, Linking, StyleSheet, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {FORGOT_PASS} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
@@ -17,7 +17,7 @@ const ForgotPasswordScreen = ({navigation}) => {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     if (useremail.trim() == '' || useremail == null) {
-      alert('Enter your email');
+      Alert.alert('Empty Email', 'Enter your registered email');
       return;
     }
 
@@ -28,22 +28,35 @@ const ForgotPasswordScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
-        if (
-          data.message ==
-            'Please check your email for password reset instructions' ||
-          data.message == 'Unauthorized'
-        ) {
-          alert(data.message);
+        if (data.status) {
+          Alert.alert(data.title, data.message, [
+            {
+              text: 'Open Email',
+              onPress: () =>
+                Linking.openURL(`mailto:${useremail}`).catch(err =>
+                  console.log(err),
+                ),
+            },
+            {
+              text: 'Cancel',
+            },
+          ]);
         } else {
-          alert('There is some issue. Please try agian later');
+          Alert.alert(data.title, data.message, [
+            {
+              text: 'Try Again',
+            },
+          ]);
         }
-
         setLoading(false);
       })
       .catch(err => {
-        console.log(err);
+        Alert.alert('There is some issue with your request', data.message, [
+          {
+            text: 'Try Again',
+          },
+        ]);
         setLoading(false);
-        alert('Some Error');
       });
   };
   return (
@@ -89,6 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: moderateScale(200),
+    marginTop: moderateScale(50),
   },
   forgotpassword: {
     marginBottom: moderateScale(5),

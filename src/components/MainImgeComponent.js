@@ -14,7 +14,7 @@ import {moderateScale, scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {UPLOAD_IMAGE} from '../apis';
+import {API_URL, UPLOAD_IMAGE} from '../apis';
 import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
@@ -65,7 +65,7 @@ const MainImgComponent = ({url, onChangeText}) => {
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
-        setImg(`https://api.propelinspections.com/inventory/${result.path}`);
+        setImg(`${API_URL}${result.path}`);
         onChangeText(result.path);
         setUpLoading(false);
       })

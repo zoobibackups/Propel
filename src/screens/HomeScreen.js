@@ -29,6 +29,7 @@ const HomeScreen = ({navigation}) => {
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
+  console.log(user);
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (

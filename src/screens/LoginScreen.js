@@ -1,6 +1,13 @@
 //
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Linking,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch} from 'react-redux';
 import {USER_LOGIN} from '../apis';
@@ -23,11 +30,11 @@ const LoginScreen = ({navigation}) => {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     if (useremail.trim() == '' || useremail == null) {
-      alert('Enter emial');
+      Alert.alert("Email Can't be empty", 'Please Enter your registered Email');
       return;
     }
     if (password.trim() == '' || password == null) {
-      alert('Enter password');
+      Alert.alert("Password Can't be empty", 'Please Enter Password');
       return;
     }
     setLoading(true);
@@ -41,24 +48,41 @@ const LoginScreen = ({navigation}) => {
     })
       .then(data => data.json())
       .then(data => {
-        if (data?.message == 'Email or password is incorrect') {
-          alert(data?.message);
-        } else if (
-          data?.message == "Cannot read property 'scope' of undefined"
-        ) {
-          alert(
-            'Please check your email and password. and try again in a while',
-          );
-        } else {
-          dispatch(userLogin(data));
+        if (data.status == true) {
+          dispatch(userLogin(data.data));
+        } else if (data.status == false) {
+          Alert.alert(data.title, data.message, [
+            {
+              text: 'Open Email',
+              onPress: () =>
+                Linking.openURL('mailto:admin@propelinspections.com').catch(
+                  err => console.log(err),
+                ),
+            },
+            {
+              text: 'Try Again',
+            },
+          ]);
         }
 
         setLoading(false);
       })
       .catch(err => {
-        console.log(err);
         setLoading(false);
-        alert('Some Error');
+        Alert.alert(
+          'Login Failed',
+          'There is some issue with your login. Please try again or contact support',
+          [
+            {
+              text: 'Contact Support',
+              onPress: () =>
+                Linking.openURL('mailto:admin@propelinspections.com'),
+            },
+            {
+              text: 'Cancel',
+            },
+          ],
+        );
       });
   };
   return (
@@ -115,6 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: moderateScale(200),
+    marginTop: moderateScale(50),
   },
   forgotpassword: {
     marginBottom: moderateScale(5),
