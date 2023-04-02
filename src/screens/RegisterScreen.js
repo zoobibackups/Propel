@@ -22,10 +22,10 @@ const RegisterScreen = ({navigation}) => {
   const [first_name, setFirstName] = useState('aaa');
   const [isloading, setLoading] = useState(false);
 
-  const [last_name, setLastName] = useState('aaaaaaaa');
+  const [last_name, setLastName] = useState('');
 
-  const [useremail, setEmail] = useState('engr12.aftabufaq@gmail.com');
-  const [password, setPassword] = useState('password');
+  const [useremail, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [emailErrorMessage, setEmailErrorMiessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
