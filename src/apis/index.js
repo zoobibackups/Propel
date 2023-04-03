@@ -1,5 +1,5 @@
-// const API_URL = 'https://api.propelinspections.com/inventory/';
-const API_URL = 'http://localhost:4000/';
+const API_URL = 'https://api.propelinspections.com/inventory/';
+//const API_URL = 'http://localhost:4000/';
 const USER_LOGIN = `${API_URL}accounts/authenticate`;
 const USER_REGISTER = `${API_URL}accounts/register`;
 const ADD_PROPERTY = `${API_URL}properties`;

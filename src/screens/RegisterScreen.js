@@ -19,7 +19,7 @@ import fonts from '../constants/fonts';
 import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 const RegisterScreen = ({navigation}) => {
-  const [first_name, setFirstName] = useState('aaa');
+  const [first_name, setFirstName] = useState('');
   const [isloading, setLoading] = useState(false);
 
   const [last_name, setLastName] = useState('');
