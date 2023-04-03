@@ -109,25 +109,31 @@ const UpLoadComponent = ({data, onChangeText}) => {
       requestMultiple([
         PERMISSIONS.ANDROID.CAMERA,
         PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
-      ]).then(status => {
-        console.log(status);
-        if (status['android.permission.CAMERA'] == 'granted') {
-          ImagePicker.openCamera({
-            width: 400,
-            height: 400,
-            cropping: true,
-          })
-            .then(image => {
-              let temp_images = [...images];
-              uploadUImage(image, index);
-              temp_images[index].path = image.path;
-              temp_images[index].name = image.path.split('/').pop();
-              temp_images[index].ext = image.mime;
-              setImages(temp_images);
+      ])
+        .then(status => {
+          console.log(status);
+          if (status['android.permission.CAMERA'] == 'granted') {
+            ImagePicker.openCamera({
+              width: 400,
+              height: 400,
+              cropping: true,
             })
-            .catch(err => {});
-        }
-      });
+              .then(image => {
+                let temp_images = [...images];
+                uploadUImage(image, index);
+                temp_images[index].path = image.path;
+                temp_images[index].name = image.path.split('/').pop();
+                temp_images[index].ext = image.mime;
+                setImages(temp_images);
+              })
+              .catch(err => {
+                console.log(err, 'ERROR');
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     } else {
       request(PERMISSIONS.IOS.CAMERA).then(status => {
         console.log(status);
