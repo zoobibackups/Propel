@@ -14,7 +14,6 @@ const ImgDateReadingComponent = ({
   img,
   img2 = null,
 }) => {
-  console.log(`${API_URL}${img}`);
   return (
     <View style={styles.ImageCardView}>
       <View style={styles.row}>

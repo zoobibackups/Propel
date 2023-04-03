@@ -47,9 +47,7 @@ const CustomRadioInput = ({
       .then(image => {
         uploadUImage(image, index);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
   const Pickfromcamera = index => {
     setUploadingIndex(index);
@@ -64,7 +62,6 @@ const CustomRadioInput = ({
       })
       .catch(err => {
         setUploadingIndex(null);
-        console.log(err);
       });
   };
 
@@ -87,7 +84,6 @@ const CustomRadioInput = ({
     fetch(UPLOAD_IMAGE, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         if (index == 0) {
           onChangeImg1(result.path);
         } else {
@@ -97,7 +93,6 @@ const CustomRadioInput = ({
         setUploadingIndex(null);
       })
       .catch(error => {
-        console.log(error, 'ERROR');
         setUpLoading(false);
         setUploadingIndex(null);
       });

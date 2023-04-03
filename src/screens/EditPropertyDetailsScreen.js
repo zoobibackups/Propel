@@ -317,7 +317,6 @@ const EditPropertyScreen = ({navigation, route}) => {
     fetch(`${ADD_PROPERTY}/${item.id}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result, 'RESULT');
         setIsLoading(false);
 
         Alert.alert(
@@ -473,16 +472,13 @@ const EditPropertyScreen = ({navigation, route}) => {
           }
           img1={property_data.electricity_meter_img}
           onChangeImg1={url => {
-            console.log(url, 'IMG 1');
             setPropertydata({
               type: ELECTRICY_METER_IMG_URL,
               payload: url,
             });
           }}
           img2={null}
-          onChangeImg2={url => {
-            console.log(url, 'IMG 2');
-          }}
+          onChangeImg2={url => {}}
         />
 
         <CustomRadioInput

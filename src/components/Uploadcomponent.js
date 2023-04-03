@@ -4,12 +4,20 @@ import {
   ActivityIndicator,
   Alert,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import {
+  PERMISSIONS,
+  RESULTS,
+  check,
+  request,
+  requestMultiple,
+} from 'react-native-permissions';
 import {moderateScale, scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -93,25 +101,54 @@ const UpLoadComponent = ({data, onChangeText}) => {
         temp_images[index].ext = image.mime;
         setImages(temp_images);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
   const Pickfromcamera = index => {
-    ImagePicker.openCamera({
-      width: 800,
-      height: 800,
-      cropping: true,
-    })
-      .then(image => {
-        let temp_images = [...images];
-        uploadUImage(image, index);
-        temp_images[index].path = image.path;
-        temp_images[index].name = image.path.split('/').pop();
-        temp_images[index].ext = image.mime;
-        setImages(temp_images);
-      })
-      .catch(err => {});
+    console.log('PickfromcameraPickfromcamera');
+    if (Platform.OS == 'android') {
+      requestMultiple([
+        PERMISSIONS.ANDROID.CAMERA,
+        PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
+      ]).then(status => {
+        console.log(status);
+        if (status['android.permission.CAMERA'] == 'granted') {
+          ImagePicker.openCamera({
+            width: 400,
+            height: 400,
+            cropping: true,
+          })
+            .then(image => {
+              let temp_images = [...images];
+              uploadUImage(image, index);
+              temp_images[index].path = image.path;
+              temp_images[index].name = image.path.split('/').pop();
+              temp_images[index].ext = image.mime;
+              setImages(temp_images);
+            })
+            .catch(err => {});
+        }
+      });
+    } else {
+      request(PERMISSIONS.IOS.CAMERA).then(status => {
+        console.log(status);
+        if (status == 'granted') {
+          ImagePicker.openCamera({
+            width: 400,
+            height: 400,
+            cropping: true,
+          })
+            .then(image => {
+              let temp_images = [...images];
+              uploadUImage(image, index);
+              temp_images[index].path = image.path;
+              temp_images[index].name = image.path.split('/').pop();
+              temp_images[index].ext = image.mime;
+              setImages(temp_images);
+            })
+            .catch(err => {});
+        }
+      });
+    }
   };
 
   const uploadUImage = (image, index) => {
@@ -138,7 +175,6 @@ const UpLoadComponent = ({data, onChangeText}) => {
         onChangeText(`${result.path}`, index);
       })
       .catch(error => {
-        console.log('error', error);
         setUpLoading(false);
         setUploadingIndex(null);
       });

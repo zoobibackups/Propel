@@ -14,6 +14,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
+import useIsReady from '../Hooks/useIsReady';
 import {ADD_PROPERTY} from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
@@ -24,7 +25,6 @@ import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
-import useIsReady from '../Hooks/useIsReady';
 import {
   CO_ALARAM,
   CO_ALARAM_IMG_URL1,
@@ -655,6 +655,8 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       });
   };
+  console.log(isReady, 'isReadyisReady');
+  if (!isReady) return <ActivityIndicator size={'large'} color={'#0090FF'} />;
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>

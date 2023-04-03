@@ -103,7 +103,7 @@ const RegisterScreen = ({navigation}) => {
               text: 'Open Email',
               onPress: () =>
                 Linking.openURL('mailto:admin@propelinspections.com').catch(
-                  err => console.log(err),
+                  err => {},
                 ),
             },
           ]);
@@ -130,7 +130,7 @@ const RegisterScreen = ({navigation}) => {
               text: 'Support Contact',
               onPress: () =>
                 Linking.openURL('mailto:admin@propelinspections.com').catch(
-                  err => console.log(err),
+                  err => {},
                 ),
             },
             {

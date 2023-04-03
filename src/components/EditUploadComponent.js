@@ -35,9 +35,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
       .then(image => {
         uploadUImage(image, index);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
   const Pickfromcamera = index => {
     ImagePicker.openCamera({

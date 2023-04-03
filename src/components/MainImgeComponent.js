@@ -31,14 +31,12 @@ const MainImgComponent = ({url, onChangeText}) => {
       .then(image => {
         uploadUImage(image);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
   const Pickfromcamera = () => {
     ImagePicker.openCamera({
-      width: 500,
-      height: 500,
+      width: 400,
+      height: 400,
       cropping: true,
     })
       .then(image => {

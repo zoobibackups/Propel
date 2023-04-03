@@ -738,7 +738,6 @@ const AddNewPropertyScreen = ({navigation}) => {
     fetch(ADD_PROPERTY, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Success',
@@ -752,7 +751,6 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       })
       .catch(error => {
-        console.log(error);
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Error',

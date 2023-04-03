@@ -15,13 +15,13 @@ import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
+import {SCREEN_WIDTH, moderateScale, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [useremail, setEmail] = useState(''); //
-  const [password, setPassword] = useState(''); //
+  const [useremail, setEmail] = useState('aqeel.saqlain@hotmail.co.uk'); //
+  const [password, setPassword] = useState('DB8W2B6N2I5'); //
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);
@@ -55,9 +55,7 @@ const LoginScreen = ({navigation}) => {
             {
               text: 'Open Email',
               onPress: () =>
-                Linking.openURL('mailto:admin@propelinspections.com').catch(
-                  err => console.log(err),
-                ),
+                Linking.openURL('mailto:admin@propelinspections.com').catch({}),
             },
             {
               text: 'Try Again',

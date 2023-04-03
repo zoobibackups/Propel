@@ -230,7 +230,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         </div>
       </header>
       <section>
-        <p class="top-address"> Property Report Type: ${property_data?.types}</p> 
+        <p class="top-address"> Property Report Type: ${
+          property_data?.types
+        }</p> 
         <p class="top-address">${property_data?.property_address}</p> 
           <img class="property-img" src="${API_URL}${
       property_data?.main_img
@@ -450,7 +452,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         ]);
       })
       .catch(error => {
-        console.log(error);
         alert('Error In Deleting Item');
         setIsDeleting(false);
         setIsVisible(false);
@@ -464,16 +465,10 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       };
       try {
         const result = await Share.open(options);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
       Share.open(options)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          err && console.log(err);
-        });
+        .then(res => {})
+        .catch(err => {});
     } else {
       const options = {
         type: 'application/pdf',
@@ -481,16 +476,10 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       };
       try {
         const result = await Share.open(options);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
       Share.open(options)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          err && console.log(err);
-        });
+        .then(res => {})
+        .catch(err => {});
     }
   }
   return (

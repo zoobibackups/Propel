@@ -7,7 +7,7 @@ import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
+import {SCREEN_WIDTH, moderateScale, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 const ForgotPasswordScreen = ({navigation}) => {
   const [useremail, setEmail] = useState(''); //
@@ -33,9 +33,7 @@ const ForgotPasswordScreen = ({navigation}) => {
             {
               text: 'Open Email',
               onPress: () =>
-                Linking.openURL(`mailto:${useremail}`).catch(err =>
-                  console.log(err),
-                ),
+                Linking.openURL(`mailto:${useremail}`).catch(err => {}),
             },
             {
               text: 'Cancel',

@@ -13,11 +13,12 @@ import {moderateScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/AntDesign';
 import AntDesign from 'react-native-vector-icons/Entypo';
 import {useDispatch, useSelector} from 'react-redux';
+import useIsReady from '../Hooks/useIsReady';
 import {USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
-import fonts from '../constants/fonts';
 import {MainRoutes} from '../constants/Routes';
+import fonts from '../constants/fonts';
 import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 import {userLogOut} from '../store/actions/userActions';
@@ -29,7 +30,8 @@ const HomeScreen = ({navigation}) => {
   const [property, setProperty] = useState([]);
   const [data, setData] = useState([]);
   const [laoding, setLoading] = useState(true);
-  console.log(user);
+  const isReady = useIsReady();
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -62,7 +64,6 @@ const HomeScreen = ({navigation}) => {
         setLoading(false);
       })
       .catch(error => {
-        console.log(error);
         setLoading(false);
         alert('Plase Check Your Internet Connection. Or Try again');
       });
