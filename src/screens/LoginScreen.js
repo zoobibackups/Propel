@@ -20,8 +20,8 @@ import colors from '../constants/theme';
 import {userLogin} from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [useremail, setEmail] = useState('aqeel.saqlain@hotmail.co.uk'); //
-  const [password, setPassword] = useState('DB8W2B6N2I5'); //
+  const [useremail, setEmail] = useState('engr.aftabufaq@gmail.com');
+  const [password, setPassword] = useState('GK1QVT010C');
   const [emailErrorMessage, setEmailErrorMiessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [isloading, setLoading] = useState(false);

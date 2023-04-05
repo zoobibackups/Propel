@@ -14,6 +14,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
+import useIsReady from '../Hooks/useIsReady';
 import {ADD_PROPERTY} from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
@@ -24,7 +25,6 @@ import MainImgComponent from '../components/MainImgeComponent';
 import SignatureComponent from '../components/SignaturePad';
 import fonts from '../constants/fonts';
 import colors from '../constants/theme';
-import useIsReady from '../Hooks/useIsReady';
 import {
   CO_ALARAM,
   CO_ALARAM_IMG_URL1,
@@ -79,14 +79,14 @@ const initialState = {
   user_id: '5',
   main_img: '',
   water_meter_reading: '',
-  electricity_meter_img: 'uploads/default.jpg',
-  gas_meter_img: 'uploads/default.jpg',
-  water_meter_img: 'uploads/default.jpg',
-  smoke_alarm_front_img: 'uploads/default.jpg',
-  smoke_alarm_back_img: 'uploads/default.jpg',
-  co_alarm_front_img: 'uploads/default.jpg',
-  co_alarm_back_img: 'uploads/default.jpg',
-  heating_system_img: 'uploads/default.jpg',
+  electricity_meter_img: '',
+  gas_meter_img: '',
+  water_meter_img: '',
+  smoke_alarm_front_img: '',
+  smoke_alarm_back_img: '',
+  co_alarm_front_img: '',
+  co_alarm_back_img: '',
+  heating_system_img: '',
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -509,7 +509,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ],
     },
     {
-      name: `Rear Garden  `,
+      name: `Rear Garden`,
       description: '',
       floor: '',
       walls: '',
@@ -538,6 +538,12 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       images: [
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
+        'uploads/default.jpg',
         'uploads/default.jpg',
         'uploads/default.jpg',
         'uploads/default.jpg',
@@ -650,6 +656,13 @@ const AddNewPropertyScreen = ({navigation}) => {
       });
   };
 
+  if (!isReady)
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size={'large'} color={'#0090FF'} />
+      </View>
+    );
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
       <ScrollView
@@ -698,7 +711,7 @@ const AddNewPropertyScreen = ({navigation}) => {
           )}
         />
         <MainImgComponent
-          url={null}
+          url={property_data.main_img}
           onChangeText={url => {
             setPropertydata({
               type: 'MAIN_IMG',

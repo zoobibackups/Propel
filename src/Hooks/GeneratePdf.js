@@ -1,0 +1,1 @@
+const GeneratePdf = async () => {};

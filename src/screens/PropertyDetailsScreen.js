@@ -49,375 +49,649 @@ const PropertyDetailsScreen = ({navigation, route}) => {
 
   const createPDF = async () => {
     setIsCreating(true);
-    let html = `<!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Report Title</title>
-      </head>
+    let html = `<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Inventory & Inspection</title>
+    </head>
     <style>
-      body {
-        width: 90%;
-        display: block;
-        margin: auto;
-        background-color: #fff;
-        border: 2px solid #0090ff;
-        padding: 20px;
-        border-radius: 10px;
-      }
-      .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        /* padding: 40px auto; */
-        background-color: #0090ff00;
-        padding: 20px;
-        border-radius: 10px;
-        /* border: 2px solid #0090ff; */
-      }
-      .logo img {
-        max-width: 200px;
-        height: auto;
-        margin: 0 20px 0 0;
-      }
-      .user-info {
-        margin: 0 0 20px 0;
-        margin-top: 20px;
-      }
-      .top-address {
-        font-weight: 600;
-        text-align: left;
-        padding: 10px 30px;
-        background-color:#0090FF;
-        font-size: 20px;
-        color: #fff;
-        border-radius: 0px 0px 0px 0px;
-        margin-bottom: 0px;
-      }
-      .property-img {
-        display: block;
-        margin: auto;
-        width: 100%;
-        height: 300px;
-        border-radius: 0px 0px 0px 0px;
-      }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 10px 0px;
-        table-layout: fixed;
-      }
-      th,
-      td {
-        padding: 12px;
-        text-align: left;
-      }
-      thead {
-        background-color: #333;
-        color: #fff;
-      }
-      tbody tr:nth-child(even) {
-        background-color: #f1f1f1;
-      }
+        body {
+            padding: 40px 0px;
+            width: 90%;
+            display: block;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: block;
+            margin: auto;
+        }
     
-      tbody tr:hover {
-        background-color: #ddd;
-      }
-      td {
-        border: 1px solid #ddd;
-      }
-      th {
-        border: 1px solid #333;
-      }
-      .parent {
-        display: flex;
-      }
-      .card {
-        width: 33%;
-        border: 2px solid #eee;
-        margin: 10px 5px;
-        border-radius: 0px;
-        padding: 20px
-      }
-      .card1 {
-        width: 50%;
-        border: 2px solid #eee;
-        margin: 10px 5px;
-        border-radius: 0px;
-        padding: 20px
-      }
-      .card2 {
-        /* width: 50%; */
-        border: 2px solid #eee;
-        margin: 10px 0px;
-        border-radius: 0px;
-        padding: 20px
-      }
-      .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #0090ff;
-      }
-      .gas {
-        color: #0090ff;
-        font-weight: 600;
-      }
-      .gas-img img {
-        margin-top: 10px;
-        border-radius: 10px;
-      }
-      .gas-img2 {
-        display: flex;
-        flex-wrap: wrap;
-      }
-    
-      .gas-img2 img {
-        margin: 12px;
-        border-radius: 10px;
-        
-      }
-    .body{
-      display: flex;
-      justify-content: flex-end;
-    }
-      .body .right {
-        padding: 10px;
-        margin: 10px;
-      }
-    
-    
-      .blue {
-        color: #0090ff;
-        font-weight: 600;
-        font-size: 18px;
-        padding-right: 10px;
-      }
-      .blue2 {
-        color: #0090ff;
-        font-weight: 600;
-        font-size: 22px;
-        margin-bottom: 0px;
-      }
-    
-      .h1 {
-        font-weight: bold;
-        font-size: 1.2em;
-        background-color: white;
-        color: #0090ff;
-      }
-    
-      .signatre {
-        width: 100px;
-        height: auto;
-       
-      }
-      .blue3{
-        color: #0090ff;
-        max-width:'35%';
-      }
+        .perei {
+            display: block;
+            margin: auto;
+        }
+        h3 {
+            font-size: 22px;
+            color: #000;
+            margin: 10px 0px;
+        }
+        .questions {
+            margin: 15px 0px;
+            border: 2px solid #eee;
+            padding: 10px 20px;
+        }
+        .questions h4 {
+            font-size: 18px;
+            color: #000;
+            margin: 10px 0px;
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-radius: 10px;
+        }
+        .logo img {
+            max-width: 200px;
+            height: auto;
+            margin: 0 20px 0 0;
+        }
+        .user-info {
+            margin: 0 0 20px 0;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .logo {
+                margin: 20px 0;
+            }
+            .user-info {
+                margin: 0;
+                text-align: center;
+            }
+        }
+        .top-address {
+            font-weight: 600;
+            text-align: center;
+            padding: 10px 0px;
+            background-color: #0090ff;
+            font-size: 20px;
+            color: #fff;
+            border-radius: 10px 10px 0px 0px;
+            margin-bottom: 0px;
+        }
+        .bg-blue {
+            background-color: #0a80ea;
+            padding: 10px;
+            margin: auto;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            width: 70%;
+            display: block;
+            margin: auto;
+            border: 2px solid #013664;
+            text-transform: uppercase;
+            /* display: flex; */
+            border-radius: 10px;
+        }
+        .propertyAddress {
+            font-weight: 600;
+            margin: 15px 0px;
+            color: #000;
+            text-align: center;
+        }
+        .propertyimg img {
+            display: block;
+            margin: auto;
+            height: 400px;
+            box-shadow: 1px 1px 19px 0px #b7b3b3;
+            border-radius: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: "100%";
+            margin: 0 auto;
+            table-layout: fixed;
+            margin-top: 20px;
+        }
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #0a80ea;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .summary {
+            /* width: 80%; */
+            display: block;
+            margin: auto
+        }
+        .summaryHeading {
+            font-weight: 600;
+            color: #000;
+            text-align: left;
+            /* margin-left: 20px; */
+            font-size: 22px;
+        }
+        .summary p {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0px;
+            font-size: 16px;
+        }
+        .questions {
+            margin: 15px 0px;
+        }
+        .parent {
+            display: flex;
+            /* margin: 20px 0; */
+        }
+        .card {
+            width: 33.33%;
+            border: 2px solid #eee;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 20px
+        }
+        .card3 {
+            width: 48%;
+            border: 2px solid #eee;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 20px
+        }
+        .card1 {
+            width: 50%;
+            border: 2px solid #eee;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 20px
+        }
+        .card2 {
+            /* width: 50%; */
+            border: 2px solid #eee;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 20px
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #0090ff;
+        }
+        .gas {
+            color: #0090ff;
+            font-weight: 600;
+        }
+        .gas-img img {
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .gas-img2 {
+            display: flex;
+        }
+        .gas-img2 img {
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .meterInfo {
+            font-size: 18px;
+        }
+        .rooms {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .follwg ol li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .imgRoom {
+         margin-bottom: 10px;
+         margin-right: 6px;
+        }
+        .table22 {
+            max-width: "100%" !important;
+        }
+        .image-grid {
+          flex-wrap: wrap;
+          flex-direction:"row";
+          justify-content: space-between;
+        }
+        .room {
+            margin-bottom: 20px;
+        }
+        .tennat {
+            padding-top: 20px
+        }
+        .tennat h3 {
+            font-size: 20px
+        }
+        .tennat p {
+            border-bottom: 2px solid #333;
+            font-size: 18px;
+            padding-bottom: 10px;
+            width: 50%;
+            border-radius: 0px 0px 10px 0px;
+        }
+        .text-center {
+            padding: 20px 0px;
+            text-align: center;
+        }
+        .text-center .blue {
+            text-align: center;
+            /* font-size: 24px; */
+            padding-bottom: 0px;
+            margin-bottom: 15px;
+        }
+        .text-center p {
+            font-size: 17px;
+        }
+        .d-flex {
+            display: flex;
+            justify-content: space-around;
+        }
+        .divone {
+            border: 3px solid #0090ff;
+            padding: 15px;
+            width: 50%;
+            height: 300px;
+            margin: 0px 20px;
+            border-radius: 10px;
+        }
+        .blue {
+            text-align: center;
+            color: #0090ff;
+            font-size: 28px;
+            padding: 10px 0px
+        }
+        .textc {
+            text-align: center;
+        }
+        .blue1 {
+            color: #0090ff;
+            font-weight: 600;
+            font-size: 17px;
+            padding-right: 10px;
+        }
     </style>
     
     <body>
-      <header>
-        <div class="header-container">
-          <div class="logo">
-             <img src="https://api.propelinspections.com/inventory/uploads/pdf_logo.png" alt="Logo" /> 
-          </div>
-        </div>
-      </header>
-      <section>
-        <p class="top-address"> Property Report Type: ${
-          property_data?.types
-        }</p> 
-        <p class="top-address">${property_data?.property_address}</p> 
-          <img class="property-img" src="${API_URL}${
+    
+        <section class="ptb" style="display: block; margin: auto">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="https://api.propelinspections.com/inventory/uploads/pdf_logo.png" alt="Logo">
+                </div>
+                <div class="user-info">
+                    <span class="blue1"><b>Address:</b></span><span> 123 Main St, Anytown USA</span><br>
+                    <span class="blue1"><b>Phone:</b></span><span> (123) 456-7890</span><br>
+                    <span class="blue1"><b>Email:</b></span><span> email.com</span>
+                </div>
+            </div>
+            <h1 class="bg-blue">
+            ${property_data?.types}
+            </h1>
+            <h2 class="propertyAddress">
+            ${property_data?.property_address}
+            </h2>
+    
+            <div class="propertyimg">
+            <img src="${API_URL}${
       property_data?.main_img
-    }" alt="property image" />
-      </section>
-      <section class="top-margin">
-        <div>
-          <table>
-            <tr>
-              <td class="blue3">ECIR Expiry Date:</td>
-              <td>${moment(property_data?.ecir_exp_date).format(
-                'DD-MMM-YYYY',
-              )}</td>
-              <td class="blue3">Gas Safety Certificate Expiry Date:</td>
-              <td>${moment(
-                property_data.gas_safety_certificate_exp_date,
-              ).format('DD-MM-YYYY')}</td>
-              <td class="blue3">Inspection Date:</td>
-              <td>${moment(property_data?.inspection_date).format(
-                'DD-MMM-YYYY',
-              )}</td>
-            </tr>
-            <tr>
-              <td class="blue3">EPC Expiry Date:</td>
-              <td>${moment(property_data?.ecp_exp_date).format(
-                'DD-MMM-YYYY',
-              )}</td>
-              <td class="blue3">Tenant Name:</td>
-              <td>${property_data?.tenant_name}</td>
-              <td class="blue3">Inspector Name:</td>
-              <td>${property_data?.inspector_name}</td>
-            </tr>
-            <tr>
-              <td class="blue3">Advised Tenant To:</td>
-              <td>${property_data?.advised_tenant_to}</td>
-              <td class="blue3">Contractor Instructed:</td>
-              <td>${property_data?.contractor_instructed}</td>
-              <td class="blue3">Asked Landlord To:</td>
-              <td>${property_data?.asked_landlord_to}</td>
-            </tr>
-          </table>
+    }" alt="property Image">
         </div>
-      </section>
-      <section class="top-margin" id="cards">
-        <div class="parent">
-          <div class="card">
-            <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Gas Meter:</span> 
-                <span class="gas">Yes</span> 
-              </div>
-              <div class="col-1"> 
-                <span class="gas">Reading:</span> 
-                <span class="gas">${property_data.gas_meter_reading}</span> 
-              </div>
-              </div>
-            <div class="gas-img">
-             <img src="${API_URL}${
+        <div class="firsttable">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Date of Inspection</td>
+                    <td>${moment(property_data?.inspection_date).format(
+                      'DD-MMM-YYYY',
+                    )}</td>
+                </tr>
+                <tr>
+                    <td>Inspected By</td>
+                    <td>${property_data?.inspector_name}</td>
+                </tr>
+                <tr>
+                    <td>Tenant’s Name</td>
+                    <td>${property_data?.tenant_name}</td>
+                </tr>
+                <tr>
+                    <td>EPC Expiry Date</td>
+                    <td>${moment(property_data?.ecp_exp_date).format(
+                      'DD-MMM-YYYY',
+                    )}</td>
+                </tr>
+                <tr>
+                    <td>Gas Safety Certificate Expiry Date</td>
+                    <td>${moment(
+                      property_data.gas_safety_certificate_exp_date,
+                    ).format('DD-MM-YYYY')}</td>
+                </tr>
+                <tr>
+                    <td>EICR Expiry Date</td>
+                    <td>${moment(property_data?.ecir_exp_date).format(
+                      'DD-MMM-YYYY',
+                    )}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+      <div class="summary">
+            <h3 class="summaryHeading">
+                Summary
+            </h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque velit hic unde nisi magni qui quibusdam
+                ratione animi maxime voluptates ipsa veniam doloremque esse corporis modi beatae, ab impedit
+                praesentium.
+            </p>
+        </div>
+    </section>
+    <section id="ptb">
+    <div class="container">
+        <div class="perei">
+            <h3 class="blue">
+                Important Information
+            </h3>
+
+            <div class="questions">
+                <h4>What is an Inventory Check-In Report? </h4>
+                <p>This Inventory Check-In Report provides a fair, objective and impartial record of the general
+                    condition of
+                    the contents of the Property as well as its internal condition at the outset of the lease of the
+                    Property</p>
+            </div>
+            <div class="questions">
+                <h4>What are the benefits of using this Report?</h4>
+                <p>The importance of a professional inventory and statement of condition cannot be underestimated.
+                    Government advice indicates that Inventories and statements of condition are 'strongly
+                    recommended'
+                    as a means to reduce dispute about the deposit at the end of a tenancy. It is in the Tenant's
+                    interests to
+                    carefully check this Inventory Check-In Report and to highlight any discrepancies as soon as
+                    possible and
+                    in any event no later than five working days after this Inventory Check-In Report is completed.
+                    Any
+                    outstanding discrepancies found at the end of the tenancy will be highlighted in an Inventory
+                    Outgoing
+                    Report and may affect the retention or release of a tenancy deposit.</p>
+            </div>
+            <div class="questions">
+                <h4>Is the report aimed at the landlord or the tenant? </h4>
+                <p>This Inventory Check-In Report is objective and contains photographic evidence, it may be relied
+                    upon
+                    and used by the Landlord, the Tenant and Letting Agent. </p>
+            </div>
+            <div class="questions">
+                <h4>What does this Report tell you? </h4>
+                <p>This Inventory Check-In Report provides a clear and easy to follow statement of condition for
+                    each of the
+                    main elements of the property on a room by room basis, together with its contents if
+                    appropriate. This
+                    report comments on and highlights defects or aspects of poor condition that have been identified
+                    by the
+                    Inventory Clerk. Defects in condition will either be described in the narrative of the report or
+                    evidenced in
+                    the photographs included in the report. Please Note: where no comment on the condition of an
+                    element
+                    or item of contents is made by the Inventory Clerk, the element or item is taken to be in good
+                    condition
+                    and without defect. </p>
+            </div>
+
+            <div class="questions">
+                <h4>What does this report not tell you?</h4>
+                <p>Whilst every effort is made to ensure objectivity and accuracy, this Inventory Check-In Report
+                    provides no
+                    guarantee of the adequacy, compliance with standards or safety of any contents or equipment.
+                    This
+                    report will provide a record that such items exist in the property as at the date of the
+                    Inventory Check-In
+                    Report and the superficial condition of same. This report is not a building survey, a structural
+                    survey or a
+                    valuation, will not necessarily mention structural defects and does not give any advice on the
+                    cost of any
+                    repair work, or the types of repair which should be used.</p>
+            </div>
+
+            <div class="questions">
+                <h4>What is inspected and not inspected? </h4>
+                <p>The Inventory Clerk carries out a visual inspection of the inside of the main building together
+                    with any
+                    contents and will carry out a general inspection of the remainder of the building including the
+                    exterior
+                    cosmetic elements and any permanent outbuildings. For properties let on an unfurnished basis,
+                    the
+                    inspection will include floor coverings, curtains, curtain tracks, blinds and kitchen appliances
+                    if
+                    appropriate, but will exclude other contents. Gardens and their contents will be inspected and
+                    reported
+                    upon. The inspection is non-invasive. This means that the Inventory Clerk does not take up
+                    carpets, floor
+                    coverings or floor boards, move large items of furniture, test services, remove secured panels
+                    or undo
+                    electrical fittings. Especially valuable contents such as antiques, personal items or items of
+                    jewellery are
+                    excluded from this report. Kitchenware will be inspected but individual items will not be
+                    condition rated.
+                    Common parts in relation to flats, exterior structural elements of the main building and the
+                    structure of
+                    any outbuildings will not be inspected. Roof spaces and cellars are not inspected. Areas which
+                    are locked
+                    or where full access is not possible, for example, attics or excessively full cupboards or
+                    outbuildings are
+                    not inspected. </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="ptb">
+        <div class="container">
+            <h3 class="blue">Metres and Alarms</h3>
+            <p class="meterInfo textc">
+                Matre images and information are fine, however, to change it to Pre-paid Gas Mater, Pre-Paid
+                Electricity Meter
+            </p>
+            <div class="parent">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">Pre-Paid Gas Meter:</span> <span class="gas">Yes</span> </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">${
+                          property_data.gas_meter_reading
+                        }</span> </div>
+                    </div>
+                    <div class="gas-img"> <img src="${API_URL}${
       property_data?.gas_meter_img
-    }" width="100%" height="auto" />
-              </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Electricity Meter:</span> 
-                <span class="gas">${property_data.electricity_meter}</span>
-              </div>
-              <div class="col-1"> 
-                <span class="gas">Reading:</span> 
-                <span class="gas">${
-                  property_data.electricity_meter_reading
-                }</span>
-              </div>
-            </div>
-            <div class="gas-img"> 
-              <img src="${API_URL}${
+    }" width="100%" height="auto"> </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">Pre-Paid Electricity Meter:</span> <span class="gas">${
+                          property_data.electricity_meter
+                        }</span>
+                        </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">${
+                          property_data.electricity_meter_reading
+                        }</span> </div>
+                    </div>
+                    <div class="gas-img"> <img src="${API_URL}${
       property_data?.electricity_meter_img
-    }" width="100%" height="auto" /> 
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div class="col-1"> 
-                <span class="gas">Water Meter:</span>
-                  <span class="gas">${property_data.water_meter}</span> 
-              </div>
-              <div class="col-1"> 
-              <span class="gas">Reading:</span> 
-              <span class="gas">${
-                property_data.water_meter_reading
-              }</span> </div>
-            </div>
-            <div class="gas-img"> <img src="${API_URL}${
+    }" width="100%" height="auto"> </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">Heating System:</span> <span class="gas">Yes</span> </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas"></span> </div>
+                    </div>
+                    <div class="gas-img"> <img src="${API_URL}${
+      property_data?.heating_system_img
+    }" width="100%" height="auto"> </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">Water Meter:</span> <span class="gas">${
+                          property_data.water_meter
+                        }</span> </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas"></span>${
+                          property_data.water_meter_reading
+                        } </div>
+                    </div>
+                    <div class="gas-img"> <img src="${API_URL}${
       property_data?.water_meter_img
     }" width="100%" height="auto"> </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div class="col-1"> <span class="gas">Heating System:</span> <span class="gas"></span> </div>
-              <div class="col-1"> <span class="gas">Reading:</span> <span class="gas">Yes</span> </div>
+                </div>
+
             </div>
-            <div class="gas-img">
-             <img src="${API_URL}${
-      property_data?.heating_system_img
-    }" width="100%" height="auto" /> </div>
-          </div>
-        </div>
-      </section>
-      <section class="top-margin">
-        <div class="parent">
-          <div class="card1">
-            <div class="card-header">
-              <div class="col-1"> <span class="gas">Smoke Alarm:</span> <span class="gas">${
-                property_data.smoke_alarm
-              }</span> </div>
-            </div>
-            <div class="gas-img2"> 
-                <img src="${API_URL}${
+            <div class="parent">
+
+                <div class="card3">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">Smoke Alarm:</span> <span class="gas">Yes</span>
+                        </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas"></span> </div>
+                    </div>
+                    <div class="image-grid"> 
+                      <img src="${API_URL}${
       property_data?.smoke_alarm_front_img
-    }" width="45%" height="auto"> 
-              <img src="${API_URL}${property_data?.smoke_alarm_back_img}"
-                width="45%" height="auto"> </div>
-          </div>
-          <div class="card1">
-            <div class="card-header">
-              <div class="col-1"> <span class="gas">CO Alarm:</span> <span class="gas">${
-                property_data.co_alarm
-              }</span> </div>
-            </div>
-            <div class="gas-img2"> 
-              <img src="${API_URL}${
+    }"  style="margin-top: 10px;" width="48%" height="auto">  
+                      <img src="${API_URL}${
+      property_data?.smoke_alarm_back_img
+    }"   style="margin-top: 10px;" width="48%" height="auto"> 
+                    </div>
+                </div>
+
+                <div class="card3">
+                    <div class="card-header">
+                        <div class="col-1"> <span class="gas">CO Alarm:</span> <span class="gas">${
+                          property_data.co_alarm
+                        }</span> </div>
+                        <div class="col-1"> <span class="gas">Reading:</span> <span class="gas"></span> </div>
+                    </div>
+                    <div class="image-grid"> 
+                      <img src="${API_URL}${
       property_data?.co_alarm_front_img
-    }" width="45%" height="auto"> 
-              <img src="${API_URL}${property_data?.co_alarm_back_img}"
-                width="45%" height="auto"> </div>
-          </div>
+    }"  style="margin-top: 10px;" width="48%" height="auto">  
+                      <img src="${API_URL}${
+      property_data?.co_alarm_back_img
+    }"   style="margin-top: 10px;" width="48%" height="auto"> 
+                    </div>
+            
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
       <section class="top-margin">
        ${property_data?.property_details.map((item, index) => {
-         return `<div class="card2">
-        <div class="card-header">
-          <div class="col-1"> <span class="blue2">${item.name} Details </span>
-            <p class="room-para">${item.floor}</p>
-            <p class="room-para">${item.walls}</p>
-            <p class="room-para">${item.ceiling}</p>
-            <p class="room-para">${item.windows}</p>
-            <p class="room-para">${item.description}</p>
-          </div>
-        </div>
-        <div class="gas-img2"> 
-        ${item.property_images.map((img, index) => {
-          return `<img src="${API_URL}${img?.url}" width="30.5%" height="auto" />`;
-        })}
-        </div>
-      </div>`;
+         return `<div class="">   
+         <div class="room">
+             <h3 class="blue">${item.name} Details</h3>
+             <table class="table22">
+                 <thead>
+                     <tr>
+                         <th>Description</th>
+                         <th>Condition</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td>Floor</td>
+                         <td>${item.floor}</td>
+                     </tr>
+                     <tr>
+                         <td>Walls</td>
+                         <td>${item.walls}</td>
+                     </tr>
+                     <tr>
+                         <td>Ceiling</td>
+                         <td>${item.ceiling}</td>
+                     </tr>
+                     <tr>
+                         <td>Windows</td>
+                         <td>${item.windows}</td>
+                     </tr>
+                     <tr>
+                         <td>Floor</td>
+                         <td>${item.description}</td>
+                     </tr>
+                 </tbody>
+             </table>
+         </div>
+         <div class="image-grid">
+         ${item.property_images.map((img, index) => {
+           return `<img src="${API_URL}${img?.url}" class="imgRoom" width="32%" height="auto" />`;
+         })}
+         </div>
+     </div>`;
        })} 
-         
-      </section>`.replace(/,/g, '');
-    let html2 = ` <section>
-       <div class="body">
-         <div class="right" style="background-color: #fff">
-           <h1 class="h1">
-             Tenant Name
-           </h1>
-           <h4>${property_data.tenant_name}</h4> <img class="signatre"
+      </section>  
+      <section>
+      <div class="tennat">
+          <h3 style="color: #0090ff">Advised Tenant To:</h3>
+          <p>${property_data.advised_tenant_to}</p>
+      </div>
+      <div class="tennat">
+          <h3 style="color: #0090ff">Asked Landlord To: </h3>
+          <p>${property_data?.asked_landlord_to}</p>
+      </div>
+  </section>`.replace(/,/g, '');
+
+    let html2 = `
+    <section>
+        <div class="text-center">
+            <h4 class="blue">Declaration</h4>
+            <p>This inventory provides a record of the contents of the property and the property’s internal condition. The person preparing the inventory is not an expert in fabrics, wood, materials, antiques etc nor a qualified surveyor. The inventory should not be used as an accurate description of each piece of furniture and equipment. Any areas of dilapidation or defect at the commencement of the tenancy need to be reported to the landlord/agency within 7 days of the commencement of tenancy. All items and areas listed in the property are in good, clean, serviceable condition unless otherwise stated. I confirm that I have checked the above inventory/inspection content and agree with it.</p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="d-flex">
+            <div class="divone">
+                <h3 class="textc">TENANT’S SIGNATURE</h3>
+                <img class="signatre"
+                src="${arrayBufferToBase64(
+                  property_data?.signature_inspector.data,
+                )}"
+                alt="" />
+            </div>
+            <div class="divone">
+                <h3 class="textc">TENANT’S SIGNATURE</h3>
+                <img class="signatre"
              src="${arrayBufferToBase64(
                property_data?.signature_inspector.data,
              )}"
              alt="" />
-         </div>
-         <div class="right" style="background-color: #fff"></div>
-         <div class="right" style="background-color: #fff">
-           <h1 class="h1">
-             Inspector Name
-           </h1>
-           <h4>${property_data.inspector_name}</h4> <img class="signatre"
-             src="${arrayBufferToBase64(
-               property_data?.signature_inspector.data,
-             )}"
-             alt="" />
-         </div>
-       </div>
-     </section>
+            </div>
+        </div>
+    </section>
    </body>
    
    </html>`;

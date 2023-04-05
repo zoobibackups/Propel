@@ -47,7 +47,7 @@ const TabViewComponent = ({data}) => {
             <TouchableOpacity key={`${index}`} style={styles.imagebg}>
               <Image
                 style={{
-                  width: moderateScale(90),
+                  width: '100%',
                   resizeMode: 'cover',
                   borderRadius: moderateScale(5),
                   height: moderateScale(60),
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   imagebg: {
-    width: moderateScale(92),
+    width: '32%',
     alignItems: 'center',
     borderColor: colors.borderColor,
     backgroundColor: colors.white,
