@@ -18,24 +18,40 @@ const TabViewComponent = ({data}) => {
         }}>
         {data?.name}
       </Text>
-      <Text style={styles.text}>
-        <Text style={styles.boldText}>Floor:</Text> {data?.floor}
-      </Text>
-      <Text style={styles.text}>
-        <Text style={styles.boldText}>Walls:</Text> {data?.walls}
-      </Text>
-      <Text style={styles.text}>
-        <Text style={styles.boldText}>Ceiling : </Text>
-        {data?.ceiling}
-      </Text>
-      <Text style={styles.text}>
-        <Text style={styles.boldText}>Windows : </Text>
-        {data?.windows}
-      </Text>
-      <Text style={styles.text}>
-        <Text style={styles.boldText}>Description: </Text>
-        {data?.description}
-      </Text>
+      {data.floor != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Floor:</Text> {data?.floor}
+        </Text>
+      )}
+      {data.walls != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Walls:</Text> {data?.walls}
+        </Text>
+      )}
+      {data.ceiling != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Ceiling : </Text>
+          {data?.ceiling}
+        </Text>
+      )}
+      {data.windows != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Windows : </Text>
+          {data?.windows}
+        </Text>
+      )}
+      {data.doors != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Doors: </Text>
+          {data?.doors}
+        </Text>
+      )}
+      {data.floor != null && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Description: </Text>
+          {data?.description}
+        </Text>
+      )}
 
       <Text
         style={{...styles.text, marginVertical: 10, fontFamily: fonts.Bold}}>
