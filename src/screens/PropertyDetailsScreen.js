@@ -60,286 +60,291 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <title>Inventory & Inspection</title>
     </head>
     <style>
-        body {
-            padding: 40px 0px;
-            width: 90%;
-            display: block;
-            margin: auto;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: block;
-            margin: auto;
-        }
-    
-        .perei {
-            display: block;
-            margin: auto;
-        }
-        h3 {
-            font-size: 22px;
-            color: #000;
-            margin: 10px 0px;
-        }
-        .questions {
-            margin: 15px 0px;
-            border: 2px solid #eee;
-            padding: 10px 20px;
-        }
-        .questions h4 {
-            font-size: 18px;
-            color: #000;
-            margin: 10px 0px;
-        }
-        p {
-            margin: 0;
-            font-size: 16px;
-        }
+    body {
+        padding: 40px 0px;
+        width: 90%;
+        display: block;
+        margin: auto;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        display: block;
+        margin: auto;
+    }
+
+    .perei {
+        display: block;
+        margin: auto;
+    }
+    h3 {
+        font-size: 22px;
+        color: #000;
+        margin: 10px 0px;
+    }
+    .questions {
+        margin: 15px 0px;
+        border: 2px solid #eee;
+        padding: 10px 20px;
+    }
+    .questions h4 {
+        font-size: 18px;
+        color: #000;
+        margin: 10px 0px;
+    }
+    p {
+        margin: 0;
+        font-size: 16px;
+    }
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        border-radius: 10px;
+    }
+    .logo img {
+        max-width: 200px;
+        height: auto;
+        margin: 0 20px 0 0;
+    }
+    .user-info {
+        margin: 0 0 20px 0;
+        margin-top: 20px;
+    }
+    @media (max-width: 600px) {
         .header-container {
-            display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-            border-radius: 10px;
         }
-        .logo img {
-            max-width: 200px;
-            height: auto;
-            margin: 0 20px 0 0;
+        .logo {
+            margin: 20px 0;
         }
         .user-info {
-            margin: 0 0 20px 0;
-            margin-top: 20px;
-        }
-        @media (max-width: 600px) {
-            .header-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .logo {
-                margin: 20px 0;
-            }
-            .user-info {
-                margin: 0;
-                text-align: center;
-            }
-        }
-        .top-address {
-            font-weight: 600;
-            text-align: center;
-            padding: 10px 0px;
-            background-color: #0090ff;
-            font-size: 20px;
-            color: #fff;
-            border-radius: 10px 10px 0px 0px;
-            margin-bottom: 0px;
-        }
-        .bg-blue {
-            background-color: #0a80ea;
-            padding: 10px;
-            margin: auto;
-            color: #fff;
-            font-weight: 600;
-            text-align: center;
-            width: 70%;
-            display: block;
-            margin: auto;
-            border: 2px solid #013664;
-            text-transform: uppercase;
-            /* display: flex; */
-            border-radius: 10px;
-        }
-        .propertyAddress {
-            font-weight: 600;
-            margin: 15px 0px;
-            color: #000;
+            margin: 0;
             text-align: center;
         }
-        .propertyimg img {
-            display: block;
-            margin: auto;
-            height: 400px;
-            box-shadow: 1px 1px 19px 0px #b7b3b3;
-            border-radius: 10px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: "100%";
-            margin: 0 auto;
-            table-layout: fixed;
-            margin-top: 20px;
-        }
-        th,
-        td {
-            text-align: left;
-            padding: 8px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #0a80ea;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .summary {
-            /* width: 80%; */
-            display: block;
-            margin: auto
-        }
-        .summaryHeading {
-            font-weight: 600;
-            color: #000;
-            text-align: left;
-            /* margin-left: 20px; */
-            font-size: 22px;
-        }
-        .summary p {
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0px;
-            font-size: 16px;
-        }
-        .questions {
-            margin: 15px 0px;
-        }
-        .parent {
-            display: flex;
-            /* margin: 20px 0; */
-        }
-        .card {
-            width: 33.33%;
-            border: 2px solid #eee;
-            margin: 10px;
-            border-radius: 10px;
-            padding: 20px
-        }
-        .card3 {
-            width: 48%;
-            border: 2px solid #eee;
-            margin: 10px;
-            border-radius: 10px;
-            padding: 20px
-        }
-        .card1 {
-            width: 50%;
-            border: 2px solid #eee;
-            margin: 10px;
-            border-radius: 10px;
-            padding: 20px
-        }
-        .card2 {
-            /* width: 50%; */
-            border: 2px solid #eee;
-            margin: 10px;
-            border-radius: 10px;
-            padding: 20px
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #0090ff;
-        }
-        .gas {
-            color: #0090ff;
-            font-weight: 600;
-        }
-        .gas-img img {
-            margin-top: 10px;
-            border-radius: 10px;
-        }
-        .gas-img2 {
-            display: flex;
-        }
-        .gas-img2 img {
-            margin: 10px;
-            border-radius: 10px;
-        }
-        .meterInfo {
-            font-size: 18px;
-        }
-        .rooms {
-            font-size: 18px;
-            font-weight: 500;
-        }
-        .follwg ol li {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .imgRoom {
-         margin-bottom: 10px;
-         margin-right: 6px;
-        }
-        .table22 {
-            max-width: "100%" !important;
-        }
-        .image-grid {
-          flex-wrap: wrap;
-          flex-direction:"row";
-          justify-content: space-between;
-        }
-        .room {
-            margin-bottom: 20px;
-        }
-        .tennat {
-            padding-top: 20px
-        }
-        .tennat h3 {
-            font-size: 20px
-        }
-        .tennat p {
-            border-bottom: 2px solid #333;
-            font-size: 18px;
-            padding-bottom: 10px;
-            width: 50%;
-            border-radius: 0px 0px 10px 0px;
-        }
-        .text-center {
-            padding: 20px 0px;
-            text-align: center;
-        }
-        .text-center .blue {
-            text-align: center;
-            /* font-size: 24px; */
-            padding-bottom: 0px;
-            margin-bottom: 15px;
-        }
-        .text-center p {
-            font-size: 17px;
-        }
-        .d-flex {
-            display: flex;
-            justify-content: space-around;
-        }
-        .divone {
-            border: 3px solid #0090ff;
-            padding: 15px;
-            width: 50%;
-            height: 300px;
-            margin: 0px 20px;
-            border-radius: 10px;
-        }
-        .blue {
-            text-align: center;
-            color: #0090ff;
-            font-size: 28px;
-            padding: 10px 0px
-        }
-        .textc {
-            text-align: center;
-        }
-        .blue1 {
-            color: #0090ff;
-            font-weight: 600;
-            font-size: 17px;
-            padding-right: 10px;
-        }
-    </style>
+    }
+    .top-address {
+        font-weight: 600;
+        text-align: center;
+        padding: 10px 0px;
+        background-color: #0090ff;
+        font-size: 20px;
+        color: #fff;
+        border-radius: 10px 10px 0px 0px;
+        margin-bottom: 0px;
+    }
+    .bg-blue {
+        background-color: #0a80ea;
+        padding: 10px;
+        margin: auto;
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+        width: 70%;
+        display: block;
+        margin: auto;
+        border: 2px solid #013664;
+        text-transform: uppercase;
+        /* display: flex; */
+        border-radius: 10px;
+    }
+    .propertyAddress {
+        font-weight: 600;
+        margin: 15px 0px;
+        color: #000;
+        text-align: center;
+    }
+    .propertyimg img {
+        display: block;
+        margin: auto;
+        height: 400px;
+        box-shadow: 1px 1px 19px 0px #b7b3b3;
+        border-radius: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: "100%";
+        margin: 0 auto;
+        table-layout: fixed;
+        margin-top: 20px;
+    }
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #0a80ea;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .summary {
+        /* width: 80%; */
+        display: block;
+        margin: auto
+    }
+    .summaryHeading {
+        font-weight: 600;
+        color: #000;
+        text-align: left;
+        /* margin-left: 20px; */
+        font-size: 22px;
+    }
+    .summary p {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0px;
+        font-size: 16px;
+    }
+    .questions {
+        margin: 15px 0px;
+    }
+    .parent {
+        display: flex;
+        /* margin: 20px 0; */
+    }
+    .card {
+        width: 33.33%;
+        border: 2px solid #eee;
+        margin: 10px;
+        border-radius: 10px;
+        padding: 20px
+    }
+    .cell1{
+        max-width:"20%";
+    }
+    .card3 {
+        width: 48%;
+        border: 2px solid #eee;
+        margin: 10px;
+        border-radius: 10px;
+        padding: 20px
+    }
+    .card1 {
+        width: 50%;
+        border: 2px solid #eee;
+        margin: 10px;
+        border-radius: 10px;
+        padding: 20px
+    }
+    .card2 {
+        /* width: 50%; */
+        border: 2px solid #eee;
+        margin: 10px;
+        border-radius: 10px;
+        padding: 20px
+    }
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #0090ff;
+    }
+    .gas {
+        color: #0090ff;
+        font-weight: 600;
+    }
+    .gas-img img {
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+    .gas-img2 {
+        display: flex;
+    }
+    .gas-img2 img {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    .meterInfo {
+        font-size: 18px;
+    }
+    .rooms {
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .follwg ol li {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .imgRoom {
+        margin-bottom: 10px;
+        padding-right: 10px;
+    }
+    .table22 {
+        max-width: "100%";
+    }
+    .image-grid {
+        /* display: flex; */
+        width:"100%";
+        flex-wrap: wrap;
+        flex-direction:"row";
+        justify-content: space-between;
+    }
+    .room {
+        margin-bottom: 10px;
+    }
+    .tennat {
+        padding-top: 10px
+    }
+    .tennat h3 {
+        font-size: 20px
+    }
+    .tennat p {
+        border-bottom: 2px solid #333;
+        font-size: 18px;
+        padding-bottom: 10px;
+        width: 50%;
+        
+    }
+    .text-center {
+        padding: 20px 0px;
+        text-align: center;
+    }
+    .text-center .blue {
+        text-align: center;
+        /* font-size: 24px; */
+        padding-bottom: 0px;
+        margin-bottom: 5px;
+    }
+    .text-center p {
+        font-size: 17px;
+    }
+    .d-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+    .divone {
+        border: 3px solid #0090ff;
+        padding: 15px;
+        width: 50%;
+        height: 300px;
+        margin: 0px 20px;
+        border-radius: 10px;
+    }
+    .blue {
+        text-align: left;
+        color: #0090ff;
+        font-size: 20px;
+        padding: 0px 0px
+    }
+    .textc {
+        text-align: center;
+    }
+    .blue1 {
+        color: #0090ff;
+        font-weight: 600;
+        font-size: 17px;
+        padding-right: 10px;
+    }
+</style>
     
     <body>
     
@@ -424,7 +429,11 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     <section id="ptb">
     <div class="container">
         <div class="perei">
-            <h3 class="blue"> <div class="questions">
+        <h3 class="blue">
+            Important Information
+        </h3>
+            
+            <div class="questions">
             <h4>What is an Inventory Check-In Report? </h4>
             <p>This Inventory Check-In Report provides a fair, objective and impartial record of the general
                 condition of

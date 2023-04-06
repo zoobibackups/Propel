@@ -295,7 +295,13 @@ const EditPropertyScreen = ({navigation, route}) => {
       signature_tenant: signature_tenant,
       user_id: user.id,
       account_id: user.id,
-      property_details: images_data,
+      user: user,
+      property_details: images_data.map(item => ({
+        ...item,
+        images: item.images.filter(
+          image => image !== '' && image !== null && image !== undefined,
+        ),
+      })),
     };
     var requestOptions = {
       method: 'PUT',
