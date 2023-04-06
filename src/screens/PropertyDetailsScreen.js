@@ -18,6 +18,7 @@ import Share from 'react-native-share';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useSelector} from 'react-redux';
 import {API_URL, DELETE_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
@@ -30,6 +31,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const {user} = useSelector(state => state.userReducer);
+  console.log(user);
   let property_data = route.params.item;
   arrayBufferToBase64 = buffer => {
     let binary = '';
@@ -346,9 +349,18 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <img src="https://api.propelinspections.com/inventory/uploads/pdf_logo.png" alt="Logo">
                 </div>
                 <div class="user-info">
-                    <span class="blue1"><b>Address:</b></span><span> 123 Main St, Anytown USA</span><br>
-                    <span class="blue1"><b>Phone:</b></span><span> (123) 456-7890</span><br>
-                    <span class="blue1"><b>Email:</b></span><span> email.com</span>
+                    <span class="blue1"><b>Address:</b></span><span>${
+                      user.company_name
+                    }</span><br>
+                    <span class="blue1"><b>Address:</b></span><span>${
+                      user.company_address
+                    }</span><br>
+                    <span class="blue1"><b>Phone:</b></span><span>${
+                      user.company_email
+                    }<br>
+                    <span class="blue1"><b>Email:</b></span><span> ${
+                      user.mobile_number
+                    }</span>
                 </div>
             </div>
             <h1 class="bg-blue">
@@ -366,38 +378,35 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <div class="firsttable">
         <table>
             <tbody>
+               
                 <tr>
-                    <td>Date of Inspection</td>
-                    <td>${moment(property_data?.inspection_date).format(
-                      'DD-MMM-YYYY',
-                    )}</td>
-                </tr>
-                <tr>
-                    <td>Inspected By</td>
+                    <td style="font-weight: bold;">Inspected By</td>
                     <td>${property_data?.inspector_name}</td>
-                </tr>
-                <tr>
-                    <td>Tenant’s Name</td>
+                    <td style="font-weight: bold;">Tenant’s Name</td>
                     <td>${property_data?.tenant_name}</td>
                 </tr>
                 <tr>
-                    <td>EPC Expiry Date</td>
-                    <td>${moment(property_data?.ecp_exp_date).format(
-                      'DD-MMM-YYYY',
-                    )}</td>
-                </tr>
                 <tr>
-                    <td>Gas Safety Certificate Expiry Date</td>
+                <td style="font-weight: bold;">Date of Inspection</td>
+                <td>${moment(property_data?.inspection_date).format(
+                  'DD-MMM-YYYY',
+                )}</td>
+                <td style="font-weight: bold;">EPC Expiry Date</td>
+                <td>${moment(property_data?.ecp_exp_date).format(
+                  'DD-MMM-YYYY',
+                )}</td>
+            </tr>
+                <tr>
+                    <td style="font-weight: bold;">Gas Safety Certificate Expiry Date</td>
                     <td>${moment(
                       property_data.gas_safety_certificate_exp_date,
-                    ).format('DD-MM-YYYY')}</td>
-                </tr>
-                <tr>
-                    <td>EICR Expiry Date</td>
+                    ).format('DD-MMM-YYYY')}</td>
+                    <td style="font-weight: bold;">EICR Expiry Date</td>
                     <td>${moment(property_data?.ecir_exp_date).format(
                       'DD-MMM-YYYY',
                     )}</td>
                 </tr>
+              
             </tbody>
         </table>
     </div> 
@@ -415,108 +424,98 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     <section id="ptb">
     <div class="container">
         <div class="perei">
-            <h3 class="blue">
+            <h3 class="blue"> <div class="questions">
+            <h4>What is an Inventory Check-In Report? </h4>
+            <p>This Inventory Check-In Report provides a fair, objective and impartial record of the general
+                condition of
+                the contents of the Property as well as its internal condition at the outset of the lease of the
+                Property
+            </p>
+            <h4>What are the benefits of using this Report?</h4>
+            <p>The importance of a professional inventory and statement of condition cannot be underestimated.
+                Government advice indicates that Inventories and statements of condition are 'strongly
+                recommended'
+                as a means to reduce dispute about the deposit at the end of a tenancy. It is in the Tenant's
+                interests to
+                carefully check this Inventory Check-In Report and to highlight any discrepancies as soon as
+                possible and
+                in any event no later than five working days after this Inventory Check-In Report is completed.
+                Any
+                outstanding discrepancies found at the end of the tenancy will be highlighted in an Inventory
+                Outgoing
+                Report and may affect the retention or release of a tenancy deposit.
+            </p>
+            <h4>Is the report aimed at the landlord or the tenant? </h4>
+            <p>This Inventory Check-In Report is objective and contains photographic evidence, it may be relied
+                upon
+                and used by the Landlord, the Tenant and Letting Agent. 
+            </p>
+            <h4>What does this Report tell you? </h4>
+            <p>This Inventory Check-In Report provides a clear and easy to follow statement of condition for
+                each of the
+                main elements of the property on a room by room basis, together with its contents if
+                appropriate. This
+                report comments on and highlights defects or aspects of poor condition that have been identified
+                by the
+                Inventory Clerk. Defects in condition will either be described in the narrative of the report or
+                evidenced in
+                the photographs included in the report. Please Note: where no comment on the condition of an
+                element
+                or item of contents is made by the Inventory Clerk, the element or item is taken to be in good
+                condition
+                and without defect.
+            </p>
+            <h4>What does this report not tell you?</h4>
+            <p>Whilst every effort is made to ensure objectivity and accuracy, this Inventory Check-In Report
+                provides no
+                guarantee of the adequacy, compliance with standards or safety of any contents or equipment.
+                This
+                report will provide a record that such items exist in the property as at the date of the
+                Inventory Check-In
+                Report and the superficial condition of same. This report is not a building survey, a structural
+                survey or a
+                valuation, will not necessarily mention structural defects and does not give any advice on the
+                cost of any
+                repair work, or the types of repair which should be used.
+            </p>
+            <h4>What is inspected and not inspected? </h4>
+            <p>The Inventory Clerk carries out a visual inspection of the inside of the main building together
+                with any
+                contents and will carry out a general inspection of the remainder of the building including the
+                exterior
+                cosmetic elements and any permanent outbuildings. For properties let on an unfurnished basis,
+                the
+                inspection will include floor coverings, curtains, curtain tracks, blinds and kitchen appliances
+                if
+                appropriate, but will exclude other contents. Gardens and their contents will be inspected and
+                reported
+                upon. The inspection is non-invasive. This means that the Inventory Clerk does not take up
+                carpets, floor
+                coverings or floor boards, move large items of furniture, test services, remove secured panels
+                or undo
+                electrical fittings. Especially valuable contents such as antiques, personal items or items of
+                jewellery are
+                excluded from this report. Kitchenware will be inspected but individual items will not be
+                condition rated.
+                Common parts in relation to flats, exterior structural elements of the main building and the
+                structure of
+                any outbuildings will not be inspected. Roof spaces and cellars are not inspected. Areas which
+                are locked
+                or where full access is not possible, for example, attics or excessively full cupboards or
+                outbuildings are
+                not inspected.
+            </p>
+        </div>
                 Important Information
             </h3>
 
-            <div class="questions">
-                <h4>What is an Inventory Check-In Report? </h4>
-                <p>This Inventory Check-In Report provides a fair, objective and impartial record of the general
-                    condition of
-                    the contents of the Property as well as its internal condition at the outset of the lease of the
-                    Property</p>
-            </div>
-            <div class="questions">
-                <h4>What are the benefits of using this Report?</h4>
-                <p>The importance of a professional inventory and statement of condition cannot be underestimated.
-                    Government advice indicates that Inventories and statements of condition are 'strongly
-                    recommended'
-                    as a means to reduce dispute about the deposit at the end of a tenancy. It is in the Tenant's
-                    interests to
-                    carefully check this Inventory Check-In Report and to highlight any discrepancies as soon as
-                    possible and
-                    in any event no later than five working days after this Inventory Check-In Report is completed.
-                    Any
-                    outstanding discrepancies found at the end of the tenancy will be highlighted in an Inventory
-                    Outgoing
-                    Report and may affect the retention or release of a tenancy deposit.</p>
-            </div>
-            <div class="questions">
-                <h4>Is the report aimed at the landlord or the tenant? </h4>
-                <p>This Inventory Check-In Report is objective and contains photographic evidence, it may be relied
-                    upon
-                    and used by the Landlord, the Tenant and Letting Agent. </p>
-            </div>
-            <div class="questions">
-                <h4>What does this Report tell you? </h4>
-                <p>This Inventory Check-In Report provides a clear and easy to follow statement of condition for
-                    each of the
-                    main elements of the property on a room by room basis, together with its contents if
-                    appropriate. This
-                    report comments on and highlights defects or aspects of poor condition that have been identified
-                    by the
-                    Inventory Clerk. Defects in condition will either be described in the narrative of the report or
-                    evidenced in
-                    the photographs included in the report. Please Note: where no comment on the condition of an
-                    element
-                    or item of contents is made by the Inventory Clerk, the element or item is taken to be in good
-                    condition
-                    and without defect. </p>
-            </div>
-
-            <div class="questions">
-                <h4>What does this report not tell you?</h4>
-                <p>Whilst every effort is made to ensure objectivity and accuracy, this Inventory Check-In Report
-                    provides no
-                    guarantee of the adequacy, compliance with standards or safety of any contents or equipment.
-                    This
-                    report will provide a record that such items exist in the property as at the date of the
-                    Inventory Check-In
-                    Report and the superficial condition of same. This report is not a building survey, a structural
-                    survey or a
-                    valuation, will not necessarily mention structural defects and does not give any advice on the
-                    cost of any
-                    repair work, or the types of repair which should be used.</p>
-            </div>
-
-            <div class="questions">
-                <h4>What is inspected and not inspected? </h4>
-                <p>The Inventory Clerk carries out a visual inspection of the inside of the main building together
-                    with any
-                    contents and will carry out a general inspection of the remainder of the building including the
-                    exterior
-                    cosmetic elements and any permanent outbuildings. For properties let on an unfurnished basis,
-                    the
-                    inspection will include floor coverings, curtains, curtain tracks, blinds and kitchen appliances
-                    if
-                    appropriate, but will exclude other contents. Gardens and their contents will be inspected and
-                    reported
-                    upon. The inspection is non-invasive. This means that the Inventory Clerk does not take up
-                    carpets, floor
-                    coverings or floor boards, move large items of furniture, test services, remove secured panels
-                    or undo
-                    electrical fittings. Especially valuable contents such as antiques, personal items or items of
-                    jewellery are
-                    excluded from this report. Kitchenware will be inspected but individual items will not be
-                    condition rated.
-                    Common parts in relation to flats, exterior structural elements of the main building and the
-                    structure of
-                    any outbuildings will not be inspected. Roof spaces and cellars are not inspected. Areas which
-                    are locked
-                    or where full access is not possible, for example, attics or excessively full cupboards or
-                    outbuildings are
-                    not inspected. </p>
-            </div>
+            
         </div>
     </div>
 </section>
 <section id="ptb">
         <div class="container">
             <h3 class="blue">Metres and Alarms</h3>
-            <p class="meterInfo textc">
-                Matre images and information are fine, however, to change it to Pre-paid Gas Mater, Pre-Paid
-                Electricity Meter
-            </p>
             <div class="parent">
 
                 <div class="card">
@@ -623,25 +622,30 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                  </thead>
                  <tbody>
                      <tr>
-                         <td>Floor</td>
+                         <td style="font-weight: bold;">Floor</td>
                          <td>${item.floor}</td>
                      </tr>
                      <tr>
-                         <td>Walls</td>
+                         <td style="font-weight: bold;">Walls</td>
                          <td>${item.walls}</td>
                      </tr>
                      <tr>
-                         <td>Ceiling</td>
+                         <td style="font-weight: bold;">Ceiling</td>
                          <td>${item.ceiling}</td>
                      </tr>
                      <tr>
-                         <td>Windows</td>
+                         <td style="font-weight: bold;">Windows</td>
                          <td>${item.windows}</td>
                      </tr>
+                    
                      <tr>
-                         <td>Floor</td>
-                         <td>${item.description}</td>
-                     </tr>
+                     <td style="font-weight: bold;">Doors</td>
+                     <td>${item.doors}</td>
+                     <tr>
+                     <td style="font-weight: bold;">Description</td>
+                     <td>${item.description}</td>
+                 </tr>
+                 </tr>
                  </tbody>
              </table>
          </div>
@@ -900,10 +904,10 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>
       </View>
 
-      <View style={styles.row}>
+      {/* <View style={styles.row}>
         <Text style={styles.bluetxt}>Contractor Instructed : </Text>
         <Text style={styles.title}>{property_data?.contractor_instructed}</Text>
-      </View>
+      </View> */}
 
       <View style={styles.row}>
         <Text style={styles.bluetxt}>Asked landlord To : </Text>

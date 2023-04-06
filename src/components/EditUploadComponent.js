@@ -99,7 +99,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
                   style={{
                     flexDirection: 'row',
                     flex: 1,
-                    width: moderateScale(92),
+                    width: moderateScale(100),
                     padding: moderateScale(10),
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -145,7 +145,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
                   </View>
                   <Image
                     style={{
-                      width: moderateScale(90),
+                      width: moderateScale(100),
                       resizeMode: 'cover',
                       borderRadius: moderateScale(5),
                       height: moderateScale(60),
@@ -190,11 +190,11 @@ const styles = StyleSheet.create({
     margin: moderateScale(10),
     marginBottom: 0,
     flexDirection: 'row',
+
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
   },
   imagebg: {
-    width: moderateScale(92),
+    width: moderateScale(96),
     alignItems: 'center',
     borderColor: colors.borderColor,
     backgroundColor: colors.white,

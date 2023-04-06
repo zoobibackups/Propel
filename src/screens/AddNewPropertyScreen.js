@@ -1,8 +1,8 @@
 import moment from 'moment';
 import React, {useReducer, useState} from 'react';
 import {
+  ActivityIndicator,
   Alert,
-  FlatList,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -10,9 +10,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
+import useIsReady from '../Hooks/useIsReady';
 import {ADD_PROPERTY} from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
@@ -51,21 +53,21 @@ import {
 } from './types';
 
 const initialState = {
-  property_address: 'bahria town phase 8 rawalpindi topwn wazir abad',
-  tenant_name: 'Aqeel Saqalin',
-  inspector_name: 'Aftab Ameen',
-  asked_landlord_to: 'there is some ask to landloard',
+  property_address: '',
+  tenant_name: '',
+  inspector_name: '',
+  asked_landlord_to: '',
   advised_tenant_to:
     'Not to hang wet clothes on the radiators, to heat up the house adequately and to open windows regularly to keep the house ventilated.',
-  contractor_instructed: 'here is some text',
+  contractor_instructed: '',
   inspectiondate: moment().format('DD-MMM-YYYY'),
   epc_expiry_date: moment().format('DD-MMM-YYYY'),
   ecir_expirydate: moment().format('DD-MMM-YYYY'),
   gas_safety_certificate_expiry_date: moment().format('DD-MMM-YYYY'),
   electricity_meter: 'Yes',
-  electricity_meter_reading: '100',
+  electricity_meter_reading: '',
   gas_meter: 'Yes',
-  gas_meter_reading: '100',
+  gas_meter_reading: '',
   water_meter: 'Yes',
   smoke_alarm: 'Yes',
   co_alarm: 'Yes',
@@ -73,17 +75,18 @@ const initialState = {
   signature_inspector: '',
   signature_tenant: '',
   types: 'Inventory Report',
-  final_remarks: 'there arethe final remarks',
-  main_img: 'uploads/default.jpg',
-  water_meter_reading: '122',
-  electricity_meter_img: 'uploads/default.jpg',
-  gas_meter_img: 'uploads/default.jpg',
-  water_meter_img: 'uploads/default.jpg',
-  smoke_alarm_front_img: 'uploads/default.jpg',
-  smoke_alarm_back_img: 'uploads/default.jpg',
-  co_alarm_front_img: 'uploads/default.jpg',
-  co_alarm_back_img: 'uploads/default.jpg',
-  heating_system_img: 'uploads/default.jpg',
+  final_remarks: '',
+  user_id: '5',
+  main_img: '',
+  water_meter_reading: '',
+  electricity_meter_img: '',
+  gas_meter_img: '',
+  water_meter_img: '',
+  smoke_alarm_front_img: '',
+  smoke_alarm_back_img: '',
+  co_alarm_front_img: '',
+  co_alarm_back_img: '',
+  heating_system_img: '',
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -255,315 +258,147 @@ const reducer = (state, action) => {
 const AddNewPropertyScreen = ({navigation}) => {
   const [property_data, setPropertydata] = useReducer(reducer, initialState);
   const {user} = useSelector(state => state.userReducer);
+  const isReady = useIsReady();
   const types = ['Inventory Report', 'Mid-Term Inspection', 'Checkout Report'];
   const [images_data, setImagesdata] = useState([
     {
       name: `Main Aspect`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: null,
-      windows: 'there are some windows',
+      description: '',
       floor: null,
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-      ],
+      walls: '',
+      ceiling: null,
+      windows: '',
+      doors: null,
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Entrance Hall`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Lounge 1`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Lounge 2`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Kitchen`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Landing`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bedroom 1`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bedroom 2`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bedroom 3`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bedroom 4`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bedroom 5`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bathroom 1`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
     {
       name: `Bathroom 2`,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        '',
-        null,
-        '',
-        null,
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
-
     {
-      name: `Rear Garden  `,
-      description:
-        'here i am writing some test desctiption for you and all of you',
-      floor:
-        'this is default floor flah and the lorem isporm text for you and your alll family we are here for',
-      walls:
-        'this is the walls the gear garden are we are here for you to update all of the things for you are your family',
-      ceiling: 'this is just a celing description for a testing string',
-      windows: 'there are some windows',
-      images: [
-        '',
-        null,
-        '',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      name: `Rear Garden`,
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     },
   ]);
   const [isloading, setIsLoading] = useState(false);
@@ -575,17 +410,8 @@ const AddNewPropertyScreen = ({navigation}) => {
       walls: '',
       ceiling: '',
       windows: '',
-      images: [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        'uploads/default.jpg',
-      ],
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -593,7 +419,7 @@ const AddNewPropertyScreen = ({navigation}) => {
   };
 
   const validate_data = () => {
-    let empty_filed = false;
+    // let empty_filed = false;
     if (property_data.property_address == '') {
       alert("Property Address can't be empty");
       return;
@@ -643,10 +469,10 @@ const AddNewPropertyScreen = ({navigation}) => {
     //     empty_filed = true;
     //   }
     // });
-    if (empty_filed == true) {
-      alert('Please check all input fileds');
-      return;
-    }
+    // if (empty_filed == true) {
+    //   alert('Please check all input fileds');
+    //   return;
+    // }
 
     UploadProperty();
   };
@@ -676,7 +502,7 @@ const AddNewPropertyScreen = ({navigation}) => {
         setIsLoading(false);
         Alert.alert(
           'Property Uploading Success',
-          'Your Property has been uploaded successfully',
+          'Your Property has been uploaded',
           [
             {
               text: 'OK',
@@ -693,12 +519,28 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       });
   };
+
+  // if (isReady)
+  //   return (
+  //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  //       <ActivityIndicator size={'large'} color={'#0090FF'} />
+  //     </View>
+  //   );
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={{flexGrow: 1, paddingBottom: moderateScale(20)}}>
         <View style={{height: moderateScale(10)}} />
+        <Text
+          style={{
+            marginLeft: moderateScale(10),
+            color: '#0090FF',
+            fontFamily: fonts.Bold,
+          }}>
+          Property Report Type
+        </Text>
         <FlatList
           data={types}
           horizontal={true}
@@ -733,7 +575,7 @@ const AddNewPropertyScreen = ({navigation}) => {
           )}
         />
         <MainImgComponent
-          url={null}
+          url={property_data.main_img}
           onChangeText={url => {
             setPropertydata({
               type: 'MAIN_IMG',
@@ -1014,13 +856,6 @@ const AddNewPropertyScreen = ({navigation}) => {
           value={property_data.advised_tenant_to}
           onChangeText={text =>
             setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
-          }
-        />
-        <CustomInput
-          label={'Contractor Instructed'}
-          value={property_data.contractor_instructed}
-          onChangeText={text =>
-            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
           }
         />
 

@@ -39,28 +39,36 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
           borderRadius: moderateScale(5),
         }}>
         <CustomInput
-          label={'Floor Details :'}
+          label={'Floor :'}
           placeholder={null}
           onChangeText={text => setItem({...item, floor: text})}
           value={item.floor}
           containerStyle={styles.containerStyle}
         />
         <CustomInput
-          label={'Walls Details :'}
+          label={'Walls :'}
           placeholder={null}
           onChangeText={text => setItem({...item, walls: text})}
           value={item.walls}
           containerStyle={styles.containerStyle}
         />
         <CustomInput
-          label={'Ceiling  Details :'}
+          label={'Ceiling :'}
           placeholder={null}
           onChangeText={text => setItem({...item, ceiling: text})}
           value={item.ceiling}
           containerStyle={styles.containerStyle}
         />
         <CustomInput
-          label={'Window Details :'}
+          label={'Doors :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, doors: text})}
+          value={item.doors}
+          containerStyle={styles.containerStyle}
+        />
+
+        <CustomInput
+          label={'Window :'}
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
@@ -68,8 +76,8 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
         />
       </View>
       <CustomInput
-        label={'Enter Comments'}
-        placeholder={'Comments'}
+        label={'Enter Desctipion'}
+        placeholder={'Desctipion'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />

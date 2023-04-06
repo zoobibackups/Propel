@@ -234,17 +234,7 @@ const EditPropertyScreen = ({navigation, route}) => {
       walls: '',
       ceiling: '',
       windows: '',
-      images: [
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-        'uploads/default.jpg',
-      ],
+      images: ['', '', '', '', '', '', '', '', ''],
     };
     let temp_array = [...images_data];
     temp_array.push(item);
@@ -665,13 +655,7 @@ const EditPropertyScreen = ({navigation, route}) => {
             setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
           }
         />
-        <CustomInput
-          label={'Contractor Instructed to'}
-          value={property_data.contractor_instructed}
-          onChangeText={text =>
-            setPropertydata({type: 'CONSTRACTED_INSTRUCTED_TO', payload: text})
-          }
-        />
+
         <CustomInput
           label={'Final Remarks'}
           value={property_data.final_remarks}

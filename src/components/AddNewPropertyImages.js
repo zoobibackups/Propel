@@ -68,11 +68,19 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
+          containerStyle={styles.containerStyle}
+        />
+
+        <CustomInput
+          label={'Doors :'}
+          placeholder={null}
+          onChangeText={text => setItem({...item, doors: text})}
+          value={item.doors}
           containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
         />
       </View>
       <CustomInput
-        placeholder={'Comments'}
+        placeholder={'Descrption'}
         label={'Comments'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
