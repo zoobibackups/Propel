@@ -102,6 +102,7 @@ const EditUploadComponent = ({data, onChangeText}) => {
                     width: moderateScale(100),
                     padding: moderateScale(10),
                     alignItems: 'center',
+                    //   backgroundColor: 'red',
                     justifyContent: 'space-between',
                   }}>
                   <TouchableOpacity onPress={() => Pickfromcamera(index)}>
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   imagebg: {
-    width: moderateScale(96),
+    width: moderateScale(105),
     alignItems: 'center',
     borderColor: colors.borderColor,
     backgroundColor: colors.white,

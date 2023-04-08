@@ -324,11 +324,12 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     .divone {
         border: 3px solid #0090ff;
         padding: 15px;
-        width: 50%;
-        height: 300px;
+        width: 45%;
+        height: auto;
         margin: 0px 20px;
         border-radius: 10px;
     }
+
     .blue {
         text-align: left;
         color: #0090ff;

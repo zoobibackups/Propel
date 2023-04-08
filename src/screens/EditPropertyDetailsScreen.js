@@ -54,6 +54,11 @@ import {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'MAIN_IMG':
+      return {
+        ...state,
+        main_img: action.payload,
+      };
     case 'TYPES':
       return {
         ...state,
@@ -409,42 +414,42 @@ const EditPropertyScreen = ({navigation, route}) => {
         <DataInput
           label={'Inspection Date'}
           value={moment(property_data.inspection_date).format('DD-MM-YYYY')}
-          onChangeText={date =>
+          onChangeText={date => {
             setPropertydata({
               type: SET_INSPECTION_DATE,
-              payload: moment(date).format('DD-MM-YYYY'),
-            })
-          }
+              payload: date,
+            });
+          }}
         />
         <DataInput
           label={'ECP Expiry Date'}
           value={moment(property_data.ecp_exp_date).format('DD-MM-YYYY')}
-          onChangeText={date =>
+          onChangeText={date => {
             setPropertydata({
               type: ECP_EXPIRY_DATE,
-              payload: moment(date).format('DD-MM-YYYY'),
-            })
-          }
+              payload: date,
+            });
+          }}
         />
         <DataInput
           label={'ECIR Expiry Date'}
-          value={moment(property_data.ecir_exp_date).format('dd-mm-yyyy')}
-          onChangeText={date =>
+          value={moment(property_data.ecir_exp_date).format('DD-MMM-YYYY')}
+          onChangeText={date => {
             setPropertydata({
               type: ECIR_EXPIRY_DATE,
-              payload: moment(date).format('DD-MM-YYYY'),
-            })
-          }
+              payload: date,
+            });
+          }}
         />
         <DataInput
           label={'Gas Safety Certificate Expiry Date'}
-          value={moment(property_data.gas_safety_certificate_exp_date).format(
-            'dd-mm-yyyy',
-          )}
+          value={moment(
+            property_data.gas_safety_certificate_expiry_date,
+          ).format('DD-MMM-YYYY')}
           onChangeText={date =>
             setPropertydata({
               type: GAS_SAFETY_METER_DATE,
-              payload: moment(date).format('DD-MM-YYYY'),
+              payload: date,
             })
           }
         />
