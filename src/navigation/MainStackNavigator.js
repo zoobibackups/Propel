@@ -1,3 +1,4 @@
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {Easing} from 'react-native';
@@ -8,8 +9,9 @@ import AddNewPropertyScreen from '../screens/AddNewPropertyScreen';
 import EditPropertyDetailsScreen from '../screens/EditPropertyDetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PropertyDetailsScreen from '../screens/PropertyDetailsScreen';
+import CustomDrawer from './DrawerContent';
 const Stack = createNativeStackNavigator();
-
+const Drawer = createDrawerNavigator();
 function MainStack() {
   return (
     <Stack.Navigator
@@ -83,4 +85,18 @@ function MainStack() {
   );
 }
 
-export default MainStack;
+const StackNavigator = () => (
+  <Drawer.Navigator
+    gestureEnabled={false}
+    screenOptions={{
+      swipeEnabled: true,
+      headerShown: false,
+    }}
+    drawerContent={props => <CustomDrawer {...props} />}>
+    <Drawer.Screen name="MainStack" headerShown={false}>
+      {props => <MainStack {...props} />}
+    </Drawer.Screen>
+  </Drawer.Navigator>
+);
+
+export default StackNavigator;
