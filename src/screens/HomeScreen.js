@@ -12,7 +12,7 @@ import {
 import { moderateScale } from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/AntDesign';
 import AntDesign from 'react-native-vector-icons/Entypo';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useIsReady from '../Hooks/useIsReady';
 import { USER_LIST_PROPERTY } from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
@@ -21,9 +21,8 @@ import { MainRoutes } from '../constants/Routes';
 import fonts from '../constants/fonts';
 import { SCREEN_WIDTH } from '../constants/scaling';
 import colors from '../constants/theme';
-import { userLogOut } from '../store/actions/userActions';
 const HomeScreen = ({navigation}) => {
-  const dispatch = useDispatch();
+  
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
@@ -32,7 +31,19 @@ const HomeScreen = ({navigation}) => {
   const [laoding, setLoading] = useState(true);
   const isReady = useIsReady();
 
-  
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <View style={{backgroundColor: '#0000'}}>
+          <TouchableOpacity
+            onPress={() => navigation.openDrawer() }
+            style={styles.button2}>
+            <Entypo name={'menuunfold'} color={'#fff'} size={moderateScale(25)} />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, [navigation]);
   useEffect(() => {
     updatePropertyList();
   }, [isFocused]);
