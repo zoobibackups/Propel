@@ -37,7 +37,7 @@ const CustomDrawer = ({navigation}) => {
         style={styles.DrawerContentScrollView}>
         <TouchableOpacity
           style={styles.btnView}
-          onPress={() => navigation.navigate("ResetPasswordScreens")}>
+          onPress={() => navigation.navigate("ResetPasswordScreen")}>
           <View
             style={{
               width: wp(6),
