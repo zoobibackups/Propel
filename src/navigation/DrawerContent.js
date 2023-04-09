@@ -1,30 +1,43 @@
-import {DrawerContentScrollView} from '@react-navigation/drawer';
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 import React from 'react';
 import {
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {RFValue} from 'react-native-responsive-fontsize';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import { API_URL } from '../apis';
 import fonts from '../constants/fonts';
-import {hp, moderateScale} from '../constants/scaling';
+import { hp, moderateScale } from '../constants/scaling';
 import colors from '../constants/theme';
+import { userLogOut } from '../store/actions/userActions';
 const CustomDrawer = ({navigation}) => {
+  const {user} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch()
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#0A80EA'}}>
-      <View style={styles.drawercontent}></View>
+      <View style={styles.drawercontent}>
+        <Image
+          source={{uri:`${API_URL}${user.company_logo}`}} 
+          style={{width:wp(40),resizeMode:"contain", height:wp(40 )}} 
+        />
+         <Text style={styles.textStyle2}>{user.company_name}</Text>
+         <Text style={styles.textStyle2}>{user.company_email}</Text>
+      </View>
       <DrawerContentScrollView
         contentContainerStyle={styles.contentContainerStyle}
         style={styles.DrawerContentScrollView}>
         <TouchableOpacity
           style={styles.btnView}
-          onPress={() => navigation.navigate(item.route)}>
+          onPress={() => navigation.navigate("ResetPasswordScreens")}>
           <View
             style={{
               width: wp(6),
@@ -45,7 +58,8 @@ const CustomDrawer = ({navigation}) => {
           />
         </TouchableOpacity>
       </DrawerContentScrollView>
-      <TouchableOpacity style={{...styles.btnView, backgroundColor: '#ffff'}}>
+      <TouchableOpacity onPress={() => dispatch(userLogOut(null)) } 
+        style={{...styles.btnView, backgroundColor: '#ffff'}}>
         <View
           style={{
             width: wp(6),
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
     padding: wp(1),
     width: '100%',
     alignSelf: 'flex-start',
-    flexDirection: 'row',
+  
     justifyContent: 'center',
     paddingVertical: wp(5),
     alignItems: 'center',
@@ -106,5 +120,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.Medium,
     includeFontPadding: false,
     color: colors.textColor,
+  },
+  textStyle2: {
+    marginLeft: wp(8),
+    fontSize: RFValue(12),
+    fontFamily: fonts.Bold,
+    includeFontPadding: false,
+    color: colors.white,
   },
 });

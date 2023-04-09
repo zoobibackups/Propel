@@ -1,14 +1,15 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import {Easing} from 'react-native';
+import { Easing } from 'react-native';
 import fonts from '../constants/fonts';
-import {moderateScale} from '../constants/scaling';
+import { moderateScale } from '../constants/scaling';
 import colors from '../constants/theme';
 import AddNewPropertyScreen from '../screens/AddNewPropertyScreen';
 import EditPropertyDetailsScreen from '../screens/EditPropertyDetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PropertyDetailsScreen from '../screens/PropertyDetailsScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import CustomDrawer from './DrawerContent';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -81,6 +82,16 @@ function MainStack() {
           title: 'Edit Property Details',
         }}
       />
+      <Stack.Screen
+        name="ResetPasswordScreen"
+        component={ResetPasswordScreen}
+        options={{
+          headerShown: true,
+          title: 'Reset Password',
+        }}
+      />
+
+
     </Stack.Navigator>
   );
 }

@@ -9,6 +9,7 @@ const EDIT_PROPERTY = `${API_URL}properties`;
 const DELETE_PROPERTY = `${API_URL}properties`;
 const UPLOAD_IMAGE = `${API_URL}properties/upload_image`;
 const FORGOT_PASS = `${API_URL}accounts/forgot-password`;
+const RESET_PASSWORD = `${API_URL}accounts/forgot-password`;
 export {
   USER_REGISTER,
   API_URL,
@@ -20,4 +21,5 @@ export {
   USER_LIST_PROPERTY,
   LIST_PROPERTY,
   FORGOT_PASS,
+  RESET_PASSWORD
 };
