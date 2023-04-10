@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -11,28 +11,28 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import {RFValue} from 'react-native-responsive-fontsize';
+import { RFValue } from 'react-native-responsive-fontsize';
 import Share from 'react-native-share';
-import {moderateScale} from 'react-native-size-matters';
+import { moderateScale } from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useSelector} from 'react-redux';
-import {API_URL, DELETE_PROPERTY} from '../apis';
+import { useSelector } from 'react-redux';
+import { API_URL, DELETE_PROPERTY } from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
 import ImgDateReadingComponent from '../components/ImgDateReadingComponent';
 import TabViewComponent from '../components/TabViewComponent';
 import fonts from '../constants/fonts';
-import {SCREEN_WIDTH, wp} from '../constants/scaling';
+import { SCREEN_WIDTH, wp } from '../constants/scaling';
 import colors from '../constants/theme';
 const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const {user} = useSelector(state => state.userReducer);
-  console.log(user);
+
   let property_data = route.params.item;
   arrayBufferToBase64 = buffer => {
     let binary = '';

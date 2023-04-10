@@ -21,6 +21,3 @@ const data = [
   },
 ];
 
-console.log(
-  ,
-);

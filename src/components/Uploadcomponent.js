@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -18,13 +18,13 @@ import {
   request,
   requestMultiple,
 } from 'react-native-permissions';
-import {moderateScale, scale} from 'react-native-size-matters';
+import { moderateScale, scale } from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {UPLOAD_IMAGE} from '../apis';
+import { UPLOAD_IMAGE } from '../apis';
 import fonts from '../constants/fonts';
-import {SCREEN_WIDTH} from '../constants/scaling';
+import { SCREEN_WIDTH } from '../constants/scaling';
 import colors from '../constants/theme';
 const UpLoadComponent = ({data, onChangeText}) => {
   const [uploadingindex, setUploadingIndex] = useState(null);
@@ -104,14 +104,14 @@ const UpLoadComponent = ({data, onChangeText}) => {
       .catch(err => {});
   };
   const Pickfromcamera = index => {
-    console.log('PickfromcameraPickfromcamera');
+  
     if (Platform.OS == 'android') {
       requestMultiple([
         PERMISSIONS.ANDROID.CAMERA,
         PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
       ])
         .then(status => {
-          console.log(status);
+         
           if (status['android.permission.CAMERA'] == 'granted') {
             ImagePicker.openCamera({
               width: 400,
@@ -127,16 +127,16 @@ const UpLoadComponent = ({data, onChangeText}) => {
                 setImages(temp_images);
               })
               .catch(err => {
-                console.log(err, 'ERROR');
+                
               });
           }
         })
         .catch(err => {
-          console.log(err);
+         
         });
     } else {
       request(PERMISSIONS.IOS.CAMERA).then(status => {
-        console.log(status);
+      
         if (status == 'granted') {
           ImagePicker.openCamera({
             width: 400,

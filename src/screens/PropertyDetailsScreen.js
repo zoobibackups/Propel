@@ -33,7 +33,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const {user} = useSelector(state => state.userReducer);
-  console.log(user);
+  
   let property_data = route.params.item;
   arrayBufferToBase64 = buffer => {
     let binary = '';
@@ -748,7 +748,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     };
 
     let file = await RNHTMLtoPDF.convert(options).catch((err) => {
-      console.log(err);
+      
+      setIsCreating(false);
+      alert("Error in generating pdf report")
     })
     loadAndSharePDF(file.filePath);
     setIsCreating(false);

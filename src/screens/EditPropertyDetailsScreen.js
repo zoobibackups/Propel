@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useEffect, useReducer, useState} from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -11,10 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {moderateScale} from 'react-native-size-matters';
+import { moderateScale } from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useSelector} from 'react-redux';
-import {ADD_PROPERTY, API_URL} from '../apis';
+import { useSelector } from 'react-redux';
+import { ADD_PROPERTY, API_URL } from '../apis';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import CustomRadioInput from '../components/CustomRadioInput';
@@ -652,7 +652,7 @@ const EditPropertyScreen = ({navigation, route}) => {
           </Text>
         </TouchableOpacity>
         <CustomInput
-          label={'Asked Landord To'}
+          label={'Advise For Landord'}
           value={property_data.asked_landlord_to}
           onChangeText={text =>
             setPropertydata({type: 'ASKED_LANDLORD_TO', payload: text})
@@ -660,7 +660,7 @@ const EditPropertyScreen = ({navigation, route}) => {
         />
 
         <CustomInput
-          label={'Advised Tenant To'}
+          label={'Advise For Tenant'}
           value={property_data.advised_tenant_to}
           onChangeText={text =>
             setPropertydata({type: 'ADVISED_TENANT_TO', payload: text})
