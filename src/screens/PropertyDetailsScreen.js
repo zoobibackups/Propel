@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import { log } from 'react-native-reanimated';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Share from 'react-native-share';
 import { moderateScale } from 'react-native-size-matters';
@@ -214,7 +215,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
 
     .summaryHeading {
         font-weight: 600;
-        color: #000;
+        color: #0a80ea;
         text-align: left;
         /* margin-left: 20px; */
         font-size: 22px;
@@ -348,7 +349,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         border-bottom: 2px solid #333;
         font-size: 18px;
         padding-bottom: 10px;
-        width: 50%;
+        width: 100%;
 
     }
 
@@ -426,7 +427,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             <h1 class="bg-blue">${property_data?.types}</h1>
             <h2 class="propertyAddress">${property_data?.property_address}s</h2>
             <div class="propertyimg">
-                <img src="${API_URL}${property_data?.main_img}" alt="property Image">
+            ${property_data?.main_img != '' && property_data.main_img != null ?  
+              `<img src="${API_URL}${property_data?.main_img}" alt="property Image">`:``}
             </div>
         <div class="firsttable">
         <table>
@@ -551,37 +553,37 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <div class="container">
             <h3 class="blue">Metres and Alarms</h3>
             <div class="parent">
-
                 <div class="card">
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Pre-Paid Gas Meter:</span> 
-                          <span class="gas">Yes</span> 
+                          <span  style="color:#000000" class="gas">${property_data.gas_meter}</span> 
                         </div>
                         <div class="col-1"> 
                           <span class="gas">Reading:</span> 
-                          <span class="gas">${property_data.gas_meter_reading}</span>
+                          <span style="color:#000000" class="gas">${property_data.gas_meter_reading}</span>
                         </div>
                     </div>
-                    <div class="gas-img"> 
+                    ${property_data?.gas_meter_img != null && property_data?.gas_meter_img != "" ?`<div class="gas-img"> 
                       <img src="${API_URL}${property_data?.gas_meter_img}" width="100%" height="auto"> 
-                    </div>
+                    </div>`:``}
                 </div>
                 
                 <div class="card">
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Pre-Paid Electricity Meter:</span> 
-                          <span class="gas">${property_data.electricity_meter}</span>
+                          <span  style="color:#000000" class="gas">${property_data.electricity_meter}</span>
                         </div>
                         <div class="col-1">
                           <span class="gas">Reading:</span>
-                          <span class="gas">${property_data.electricity_meter_reading}</span>
+                          <span style="color:#000000" class="gas">${property_data.electricity_meter_reading}</span>
                         </div>
                     </div>
-                    <div class="gas-img"> 
+                   ${property_data?.electricity_meter_img != null && property_data?.electricity_meter_img != "" ? 
+                    `<div class="gas-img"> 
                       <img src="${API_URL}${property_data?.electricity_meter_img}" width="100%" height="auto"> 
-                    </div>
+                    </div>`:``}
                 </div>
 
                 
@@ -590,12 +592,14 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                 <div class="card">
                     <div class="card-header">
                         <div class="col-1"> 
-                          <span class="gas">Heating System:</span> <span class="gas">Yes</span>
+                          <span class="gas">Heating System:</span> 
+                          <span style="color:#000000" class="gas">${property_data.heating_system}</span>
                         </div>
                     </div>
-                    <div class="gas-img">
+                    ${property_data?.heating_system_img != "" && property_data?.heating_system_img != null ? 
+                    `<div class="gas-img">
                       <img src="${API_URL}${property_data?.heating_system_img}" width="100%" height="auto">
-                    </div>
+                    </div>`:``}
                 </div>
 
 
@@ -603,16 +607,16 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Water Meter:</span> 
-                          <span class="gas">${property_data.water_meter}</span> 
+                          <span  style="color:#000000" class="gas">${property_data.water_meter}</span> 
                         </div>
                         <div class="col-1"> 
                           <span class="gas">Reading:</span> 
-                          <span class="gas"></span>${property_data.water_meter_reading}
+                          <span  style="color:#000000" class="gas">${property_data.water_meter_reading}</span>
                         </div>
                     </div>
-                    <div class="gas-img">
+                   ${property_data?.water_meter_img != "" && property_data?.water_meter_img != null ? `<div class="gas-img">
                       <img src="${API_URL}${property_data?.water_meter_img}" width="100%" height="auto">
-                    </div>
+                    </div>`:``}
                 </div> 
             </div>
             <div class="parent">
@@ -621,12 +625,12 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Smoke Alarm:</span> 
-                          <span class="gas">Yes</span>
+                          <span style="color:#000000" class="gas">${property_data.smoke_alarm}</span>
                         </div>
                     </div>
                     <div class="image-grid"> 
-                      <img src="${API_URL}${property_data?.smoke_alarm_front_img}" style="margin-top: 10px;" width="48%" height="auto" />  
-                      <img src="${API_URL}${property_data?.smoke_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" /> 
+                      ${property_data?.smoke_alarm_front_img != "" && property_data?.smoke_alarm_front_img != null ?`<img src="${API_URL}${property_data?.smoke_alarm_front_img}" style="margin-top: 10px;" width="48%" height="auto" />`:``}  
+                      ${property_data?.smoke_alarm_back_img != "" && property_data?.smoke_alarm_back_img != null ?`<img src="${API_URL}${property_data?.smoke_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`:``}
                     </div>
                 </div>
 
@@ -634,12 +638,12 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1">
                           <span class="gas">CO Alarm:</span>
-                          <span class="gas">${property_data.co_alarm}</span>
+                          <span style="color:#000000" class="gas">${property_data.co_alarm}</span>
                         </div>
                     </div>
                     <div class="image-grid"> 
-                      <img src="${API_URL}${property_data?.co_alarm_front_img}"  style="margin-top: 10px;" width="48%" height="auto" />  
-                      <img src="${API_URL}${property_data?.co_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" /> 
+                    ${property_data?.co_alarm_front_img != "" && property_data?.co_alarm_front_img != null ? `<img src="${API_URL}${property_data?.co_alarm_front_img}"  style="margin-top: 10px;" width="48%" height="auto" />`:``}
+                    ${property_data?.co_alarm_back_img != "" && property_data?.co_alarm_back_img != null ?  `<img src="${API_URL}${property_data?.co_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`:``}
                     </div>
                 </div>
             </div>
@@ -650,17 +654,21 @@ const PropertyDetailsScreen = ({navigation, route}) => {
        ${property_data?.property_details.map((item, index) => {
          return `<div class="">   
          <div class="room">
-             <h3 class="blue">${item.name} Details</h3>
+             <h3 class="blue">${item.name}</h3>
              <table class="table22"  style="width:100%; margin-bottom:10px ">
                  <thead>
                      <tr>
-                         <th style="width: 150px;">Description</th>
-                         <th>Condition</th>
+                         <th style="width: 100px;">Description</th>
+                         <th>Details</th>
                      </tr>
                  </thead>
                  <tbody>
                      <tr>
-                         <td style="font-weight: bold;">Floor</td>
+                     ${item.name == "Rear Garden" ? 
+                        `<td style="font-weight: bold;">Lawn</td>` : 
+                        `<td style="font-weight: bold;">Floor</td>`
+                      }
+                     
                          <td>${item.floor}</td>
                      </tr>
                      <tr>
@@ -668,7 +676,12 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                          <td>${item.walls}</td>
                      </tr>
                      <tr>
-                         <td style="font-weight: bold;">Ceiling</td>
+                        ${item.name == "Kitchen" ? 
+                        `<td style="font-weight: bold;">Appliances</td>` : 
+                        item.name == "Rear Garden" ?
+                        `<td style="font-weight: bold;">Fence</td>` :
+                        `<td style="font-weight: bold;">Ceiling</td>`
+                      }
                          <td>${item.ceiling}</td>
                      </tr>
                      <tr>
@@ -693,15 +706,15 @@ const PropertyDetailsScreen = ({navigation, route}) => {
             }).join("")}
          </div>
      </div>`;
-       })} 
+       }).join("")} 
       </section>  
       <section>
       <div class="tennat">
-          <h3 style="color: #0090ff">Advised Tenant To:</h3>
+          <h3 style="color: #0090ff">Advise For Tenant:</h3>
           <p>${property_data.advised_tenant_to}</p>
       </div>
       <div class="tennat">
-          <h3 style="color: #0090ff">Asked Landlord To: </h3>
+          <h3 style="color: #0090ff">Advise For Landlord: </h3>
           <p>${property_data?.asked_landlord_to}</p>
       </div>
   </section>
@@ -715,7 +728,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     <section>
         <div class="d-flex">
             <div class="divone">
-                <h3 class="textc">TENANT’S SIGNATURE</h3>
+                <h3 class="textc">Tenant’S Signature</h3>
                 <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_inspector.data)}" alt="" />
             </div>
             <div class="divone">
@@ -734,7 +747,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       width: 1200,
     };
 
-    let file = await RNHTMLtoPDF.convert(options);
+    let file = await RNHTMLtoPDF.convert(options).catch((err) => {
+      console.log(err);
+    })
     loadAndSharePDF(file.filePath);
     setIsCreating(false);
   };
@@ -903,7 +918,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         />
         <ImgDateReadingComponent
           title={'Heating System Working'}
-          is_meter={property_data?.smoke_alarm}
+          is_meter={property_data?.heating_system}
           img={property_data?.heating_system_img}
         />
       </View>
@@ -927,18 +942,18 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       />
       {active_tab_data && <TabViewComponent data={active_tab_data} />}
       <View style={styles.row}>
-        <Text style={styles.bluetxt}>Advised Tenant to : </Text>
+        <Text style={styles.bluetxt}>Advise For Tenant: </Text>
         <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>
       </View>
 
      
 
       <View style={styles.row}>
-        <Text style={styles.bluetxt}>Asked landlord To : </Text>
+        <Text style={styles.bluetxt}>Advise For Landlord: </Text>
         <Text style={styles.title}>{property_data?.asked_landlord_to}</Text>
       </View>
       <View style={styles.row}>
-        <Text style={styles.bluetxt}>Summay : </Text>
+        <Text style={styles.bluetxt}>Summary : </Text>
         <Text style={styles.title}>{property_data?.final_remarks}</Text>
       </View>
       <View

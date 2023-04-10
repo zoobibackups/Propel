@@ -54,7 +54,7 @@ const CustomDrawer = ({navigation}) => {
             size={wp(6)}
             style={{position: 'absolute', right: wp(3)}}
             name={'chevron-small-right'}
-            color={'//#endregion0002'}
+            color={'#0002'}
           />
         </TouchableOpacity>
       </DrawerContentScrollView>
