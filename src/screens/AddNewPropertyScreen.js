@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {useReducer, useState} from 'react';
+import React, { useReducer, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -10,12 +10,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
-import {moderateScale} from 'react-native-size-matters';
+import { FlatList } from 'react-native-gesture-handler';
+import { moderateScale } from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import useIsReady from '../Hooks/useIsReady';
-import {ADD_PROPERTY} from '../apis';
+import { ADD_PROPERTY } from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
@@ -262,7 +262,7 @@ const AddNewPropertyScreen = ({navigation}) => {
   const types = ['Inventory Report', 'Mid-Term Inspection', 'Checkout Report'];
   const [images_data, setImagesdata] = useState([
     {
-      name: `Main Aspect`,
+      name: `Front Aspect`,
       description: '',
       floor: null,
       walls: '',
@@ -293,26 +293,6 @@ const AddNewPropertyScreen = ({navigation}) => {
     },
     {
       name: `Lounge 2`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      doors: '',
-      images: ['', '', '', '', '', '', '', '', ''],
-    },
-    {
-      name: `Kitchen`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      doors: '',
-      images: ['', '', '', '', '', '', '', '', ''],
-    },
-    {
-      name: `Landing`,
       description: '',
       floor: '',
       walls: '',
@@ -391,6 +371,16 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
+      name: `Kitchen`,
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
+    },
+    {
       name: `Rear Garden`,
       description: '',
       floor: '',
@@ -432,48 +422,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       alert("Inspector name can't be empty");
       return;
     }
-    // if (property_data.asked_landlord_to == '') {
-    //   alert("Ask to Landlord can't be empty");
-    //   return;
-    // }
-    // if (property_data.advised_tenant_to == '') {
-    //   alert("Tenant advice can't be empty");
-    //   return;
-    // }
-    // if (property_data.contractor_instructed == '') {
-    //   alert("Contractor Instruction can't be empty");
-    //   return;
-    // }
-
-    // if (property_data.electricity_meter_reading == '') {
-    //   alert("Electricity Meter Reading can't be empty");
-    //   return;
-    // }
-    // if (property_data.gas_meter_reading == '') {
-    //   alert("Gas Meter Reading can't be empty");
-    //   return;
-    // }
-    // if (property_data.signature_inspector == '') {
-    //   alert("Inspector Signature can't be empty");
-    //   return;
-    // }
-    // if (property_data.signature_tenant == '') {
-    //   alert("Gas Meter Reading can't be empty");
-    //   return;
-    // }
-    // images_data.map(item => {
-    //   if (item.name == '') {
-    //     empty_filed = true;
-    //   }
-    //   if (item.description == '') {
-    //     empty_filed = true;
-    //   }
-    // });
-    // if (empty_filed == true) {
-    //   alert('Please check all input fileds');
-    //   return;
-    // }
-
+   
     UploadProperty();
   };
 

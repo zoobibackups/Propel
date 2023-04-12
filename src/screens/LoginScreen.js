@@ -1,5 +1,5 @@
 //
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Linking,
@@ -8,16 +8,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useDispatch} from 'react-redux';
-import {USER_LOGIN} from '../apis';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch } from 'react-redux';
+import { USER_LOGIN } from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {SCREEN_WIDTH, moderateScale, wp} from '../constants/scaling';
+import { SCREEN_WIDTH, moderateScale, wp } from '../constants/scaling';
 import colors from '../constants/theme';
-import {userLogin} from '../store/actions/userActions';
+import { userLogin } from '../store/actions/userActions';
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const [useremail, setEmail] = useState('');
@@ -53,9 +53,8 @@ const LoginScreen = ({navigation}) => {
         } else if (data.status == false) {
           Alert.alert(data.title, data.message, [
             {
-              text: 'Open Email',
-              onPress: () =>
-                Linking.openURL('mailto:admin@propelinspections.com').catch({}),
+              text: 'Login',
+              onPress: () => navigation.goBack(),
             },
             {
               text: 'Try Again',

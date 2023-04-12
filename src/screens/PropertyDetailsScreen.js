@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import { log } from 'react-native-reanimated';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Share from 'react-native-share';
 import { moderateScale } from 'react-native-size-matters';
@@ -21,7 +20,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import { API_URL, DELETE_PROPERTY } from '../apis';
-import LOGO from '../assets/svgs/logo.svg';
 import DeleteModal from '../components/DeleteModal';
 import ImgDateReadingComponent from '../components/ImgDateReadingComponent';
 import TabViewComponent from '../components/TabViewComponent';
@@ -414,14 +412,14 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <img src="${API_URL}${user.company_logo}" alt="Logo">
                 </div>
                 <div class="user-info">
-                    <span class="blue1"><b>Address:</b></span>
+                    <span class="blue1"><b>Company:</b></span>
                     <span>${user.company_name}</span><br>
                     <span class="blue1"><b>Address:</b></span>
                     <span>${user.company_address}</span><br>
                     <span class="blue1"><b>Phone:</b></span>
-                    <span>${user.company_email}<br>
+                    <span>${user.mobile_number}<br>
                     <span class="blue1"><b>Email:</b></span>
-                    <span> ${user.mobile_number}</span>
+                    <span> ${user.company_email}</span>
                 </div>
             </div>
             <h1 class="bg-blue">${property_data?.types}</h1>
@@ -676,7 +674,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                          <td>${item.walls}</td>
                      </tr>
                      <tr>
-                        ${item.name == "Kitchen" ? 
+                        ${item.name.trim() == "Kitchen" ? 
                         `<td style="font-weight: bold;">Appliances</td>` : 
                         item.name == "Rear Garden" ?
                         `<td style="font-weight: bold;">Fence</td>` :
@@ -693,7 +691,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                       <td style="font-weight: bold;">Doors</td>
                       <td>${item.doors}</td>
                      <tr>
-                      <td style="font-weight: bold;">Description</td>
+                      <td style="font-weight: bold;">Other Details</td>
                       <td>${item.description}</td>
                  </tr>
                  </tr>
@@ -710,11 +708,11 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       </section>  
       <section>
       <div class="tennat">
-          <h3 style="color: #0090ff">Advise For Tenant:</h3>
+          <h3 style="color: #0090ff">Advice For Tenant:</h3>
           <p>${property_data.advised_tenant_to}</p>
       </div>
       <div class="tennat">
-          <h3 style="color: #0090ff">Advise For Landlord: </h3>
+          <h3 style="color: #0090ff">Advice For Landlord: </h3>
           <p>${property_data?.asked_landlord_to}</p>
       </div>
   </section>
@@ -728,12 +726,12 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     <section>
         <div class="d-flex">
             <div class="divone">
-                <h3 class="textc">Tenant’S Signature</h3>
+                <h3 class="textc">Tenant’s Signature</h3>
                 <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_inspector.data)}" alt="" />
             </div>
             <div class="divone">
                 <h3 class="textc">Inspector’s Signature</h3>
-                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_inspector.data)}" alt="" />
+                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_tenant.data)}" alt="" />
             </div>
         </div>
     </section>
@@ -944,14 +942,14 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       />
       {active_tab_data && <TabViewComponent data={active_tab_data} />}
       <View style={styles.row}>
-        <Text style={styles.bluetxt}>Advise For Tenant: </Text>
+        <Text style={styles.bluetxt}>Advice For Tenant: </Text>
         <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>
       </View>
 
      
 
       <View style={styles.row}>
-        <Text style={styles.bluetxt}>Advise For Landlord: </Text>
+        <Text style={styles.bluetxt}>Advice For Landlord: </Text>
         <Text style={styles.title}>{property_data?.asked_landlord_to}</Text>
       </View>
       <View style={styles.row}>
