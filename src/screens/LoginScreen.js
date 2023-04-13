@@ -53,8 +53,9 @@ const LoginScreen = ({navigation}) => {
         } else if (data.status == false) {
           Alert.alert(data.title, data.message, [
             {
-              text: 'Login',
-              onPress: () => navigation.goBack(),
+              text: 'Open Email',
+              onPress: () =>
+                Linking.openURL('mailto:admin@propelinspections.com').catch({}),
             },
             {
               text: 'Try Again',

@@ -138,7 +138,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         font-weight: 600;
         text-align: center;
         padding: 10px 0px;
-        background-color: #0090ff;
         font-size: 16px;
         color: #fff;
         border-radius: 10px 10px 0px 0px;
@@ -149,7 +148,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         background-color: #0a80ea;
         padding: 10px;
         margin: auto;
-        color: #fff;
+        color: #000;
         font-weight: 300;
         text-align: center;
         width: 70%;
@@ -188,22 +187,20 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         /* Optional, to allow table to expand to fit its parent container */
         border-collapse: collapse;
     }
-
-    th,
     td {
-        text-align: left;
+      text-align: left;
         padding: 8px;
         border: 1px solid #ddd;
     }
 
     th {
-        background-color: #0a80ea;
-        color: white;
+        background-color: #0090FF;
+        color: #000;
+        text-align: left;
+        padding: 8px;
     }
 
-    tr:nth-child(even) {
-        /* background-color: #f2f2f2; */
-    }
+    
 
     .summary {
         /* width: 80%; */
@@ -412,18 +409,18 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <img src="${API_URL}${user.company_logo}" alt="Logo">
                 </div>
                 <div class="user-info">
-                    <span class="blue1"><b>Company:</b></span>
+                    <span class="blue1"><b>Company: </b></span>
                     <span>${user.company_name}</span><br>
-                    <span class="blue1"><b>Address:</b></span>
+                    <span class="blue1"><b>Address: </b></span>
                     <span>${user.company_address}</span><br>
-                    <span class="blue1"><b>Phone:</b></span>
-                    <span>${user.mobile_number}<br>
-                    <span class="blue1"><b>Email:</b></span>
+                    <span class="blue1"><b>Phone:   </b></span>
+                    <span>${user.mobile_number}<br> 
+                    <span class="blue1"><b>Email:   </b></span>
                     <span> ${user.company_email}</span>
                 </div>
             </div>
             <h1 class="bg-blue">${property_data?.types}</h1>
-            <h2 class="propertyAddress">${property_data?.property_address}s</h2>
+            <h2 class="propertyAddress">${property_data?.property_address}</h2>
             <div class="propertyimg">
             ${property_data?.main_img != '' && property_data.main_img != null ?  
               `<img src="${API_URL}${property_data?.main_img}" alt="property Image">`:``}
@@ -656,8 +653,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
              <table class="table22"  style="width:100%; margin-bottom:10px ">
                  <thead>
                      <tr>
-                         <th style="width: 100px;">Description</th>
-                         <th>Details</th>
+                         <th  style="background-color: #0090FF; color:#000; width: 100px;">Description</th>
+                         <th  >Details</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -693,8 +690,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                      <tr>
                       <td style="font-weight: bold;">Other Details</td>
                       <td>${item.description}</td>
-                 </tr>
-                 </tr>
+                    </tr>
                  </tbody>
              </table>
          </div>
@@ -743,6 +739,8 @@ const PropertyDetailsScreen = ({navigation, route}) => {
       directory: 'Downloads',
       height: 2700,
       width: 1200,
+      bgColor:"#0090FF",
+      
     };
 
     let file = await RNHTMLtoPDF.convert(options).catch((err) => {

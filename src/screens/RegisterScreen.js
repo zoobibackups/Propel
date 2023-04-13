@@ -1,5 +1,5 @@
 //
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Linking,
@@ -9,14 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {USER_REGISTER} from '../apis';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { USER_REGISTER } from '../apis';
 
 import LOGO from '../assets/svgs/logo.svg';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
 import fonts from '../constants/fonts';
-import {moderateScale, SCREEN_WIDTH, wp} from '../constants/scaling';
+import { moderateScale, SCREEN_WIDTH, wp } from '../constants/scaling';
 import colors from '../constants/theme';
 const RegisterScreen = ({navigation}) => {
   const [first_name, setFirstName] = useState('');
@@ -100,11 +100,8 @@ const RegisterScreen = ({navigation}) => {
         if (data.status) {
           Alert.alert(data.title, data.message, [
             {
-              text: 'Open Email',
-              onPress: () =>
-                Linking.openURL('mailto:admin@propelinspections.com').catch(
-                  err => {},
-                ),
+              text: 'Login ',
+              onPress: () => navigation.goBack(),
             },
           ]);
         } else {
