@@ -1015,7 +1015,9 @@ const PropertyDetailsScreen = ({navigation, route}) => {
           );
         }}
       />
-      {active_tab_data && <TabViewComponent data={active_tab_data} />}
+      {active_tab_data && property_data.property_details.length > 0 && (
+        <TabViewComponent data={active_tab_data} />
+      )}
       <View style={styles.row}>
         <Text style={styles.bluetxt}>Advice For Tenant: </Text>
         <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { moderateScale, scale } from 'react-native-size-matters';
-import { API_URL } from '../apis';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {moderateScale, scale} from 'react-native-size-matters';
+import {API_URL} from '../apis';
 import fonts from '../constants/fonts';
-import { SCREEN_WIDTH } from '../constants/scaling';
+import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 const TabViewComponent = ({data}) => {
   return (
@@ -20,7 +20,10 @@ const TabViewComponent = ({data}) => {
       </Text>
       {data.floor != null && (
         <Text style={styles.text}>
-          <Text style={styles.boldText}>{data?.name == "Rear Garden" ? "Lawn":"Floor"}:</Text> {data?.floor}
+          <Text style={styles.boldText}>
+            {data?.name == 'Rear Garden' ? 'Lawn' : 'Floor'}:
+          </Text>{' '}
+          {data?.floor}
         </Text>
       )}
       {data.walls != null && (
@@ -30,7 +33,14 @@ const TabViewComponent = ({data}) => {
       )}
       {data.ceiling != null && (
         <Text style={styles.text}>
-          <Text style={styles.boldText}>{data.name == "Kitchen" ? "Appliances": data.name == "Rear Garden"?"Fence":"Ceiling"}  : </Text>
+          <Text style={styles.boldText}>
+            {data.name == 'Kitchen'
+              ? 'Appliances'
+              : data.name == 'Rear Garden'
+              ? 'Fence'
+              : 'Ceiling'}{' '}
+            :{' '}
+          </Text>
           {data?.ceiling}
         </Text>
       )}

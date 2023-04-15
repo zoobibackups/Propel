@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { } from 'react-native-gesture-handler';
-import { moderateScale } from 'react-native-size-matters';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {} from 'react-native-gesture-handler';
+import {moderateScale} from 'react-native-size-matters';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { SCREEN_WIDTH } from '../constants/scaling';
+import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 import CustomInput from './CustomInput';
 import UpLoadComponent from './Uploadcomponent';
@@ -40,7 +40,7 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
         }}>
         {item.floor !== null && (
           <CustomInput
-            label={item?.name == "Rear Garden" ? "Lawn :":"Floor :"}
+            label={item?.name == 'Rear Garden' ? 'Lawn :' : 'Floor :'}
             placeholder={null}
             onChangeText={text => setItem({...item, floor: text})}
             value={item.floor}
@@ -56,7 +56,13 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
         />
         {item.ceiling !== null && (
           <CustomInput
-            label={item.name == "Kitchen" ? "Appliances :": item.name == "Rear Garden"?"Fence :":"Ceiling :"}
+            label={
+              item.name == 'Kitchen'
+                ? 'Appliances :'
+                : item.name == 'Rear Garden'
+                ? 'Fence :'
+                : 'Ceiling :'
+            }
             placeholder={null}
             onChangeText={text => setItem({...item, ceiling: text})}
             value={item.ceiling}
@@ -71,13 +77,15 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
           containerStyle={styles.containerStyle}
         />
 
-        <CustomInput
-          label={'Doors :'}
-          placeholder={null}
-          onChangeText={text => setItem({...item, doors: text})}
-          value={item.doors}
-          containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
-        />
+        {item.doors !== null && (
+          <CustomInput
+            label={'Doors :'}
+            placeholder={null}
+            onChangeText={text => setItem({...item, doors: text})}
+            value={item.doors}
+            containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
+          />
+        )}
       </View>
       <CustomInput
         placeholder={'Descrption'}
