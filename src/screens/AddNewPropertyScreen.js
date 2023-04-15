@@ -268,7 +268,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       walls: '',
       ceiling: null,
       windows: '',
-      doors: null,
+      doors: '',
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
