@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -11,27 +11,27 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import { RFValue } from 'react-native-responsive-fontsize';
+import {RFValue} from 'react-native-responsive-fontsize';
 import Share from 'react-native-share';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useSelector } from 'react-redux';
-import { API_URL, DELETE_PROPERTY } from '../apis';
+import {useSelector} from 'react-redux';
+import {API_URL, DELETE_PROPERTY} from '../apis';
 import DeleteModal from '../components/DeleteModal';
 import ImgDateReadingComponent from '../components/ImgDateReadingComponent';
 import TabViewComponent from '../components/TabViewComponent';
 import fonts from '../constants/fonts';
-import { SCREEN_WIDTH, wp } from '../constants/scaling';
+import {SCREEN_WIDTH, wp} from '../constants/scaling';
 import colors from '../constants/theme';
 const PropertyDetailsScreen = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const {user} = useSelector(state => state.userReducer);
-  
+
   let property_data = route.params.item;
   arrayBufferToBase64 = buffer => {
     let binary = '';
@@ -148,7 +148,7 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         background-color: #0a80ea;
         padding: 10px;
         margin: auto;
-        color: #000;
+        color: #ffffff;
         font-weight: 300;
         text-align: center;
         width: 70%;
@@ -409,28 +409,33 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <img src="${API_URL}${user.company_logo}" alt="Logo">
                 </div>
                 <div class="user-info">
-                    <span class="blue1"><b>Company: </b></span>
+                    <span class="blue1"><b>Company:&nbsp</b></span>
                     <span>${user.company_name}</span><br>
-                    <span class="blue1"><b>Address: </b></span>
+                    <span class="blue1"><b>Address:&nbsp;&nbsp;&nbsp;</b></span>
                     <span>${user.company_address}</span><br>
-                    <span class="blue1"><b>Phone:   </b></span>
+                    <span class="blue1"><b>Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                     <span>${user.mobile_number}<br> 
-                    <span class="blue1"><b>Email:   </b></span>
+                    <span class="blue1"><b>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                     <span> ${user.company_email}</span>
                 </div>
             </div>
             <h1 class="bg-blue">${property_data?.types}</h1>
             <h2 class="propertyAddress">${property_data?.property_address}</h2>
             <div class="propertyimg">
-            ${property_data?.main_img != '' && property_data.main_img != null ?  
-              `<img src="${API_URL}${property_data?.main_img}" alt="property Image">`:``}
+            ${
+              property_data?.main_img != '' && property_data.main_img != null
+                ? `<img src="${API_URL}${property_data?.main_img}" alt="property Image">`
+                : ``
+            }
             </div>
         <div class="firsttable">
         <table>
             <tbody>
                 <tr>
                   <td style="font-weight: bold;">Inspected By</td>
-                  <td style="width: 340px;">${property_data?.inspector_name}</td>
+                  <td style="width: 340px;">${
+                    property_data?.inspector_name
+                  }</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold;">Tenant’s Name</td>
@@ -439,19 +444,27 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                 
                 <tr>
                   <td style="font-weight: bold;">Date of Inspection</td>
-                  <td>${moment(property_data?.inspection_date).format('DD-MMM-YYYY')}</td>
+                  <td>${moment(property_data?.inspection_date).format(
+                    'DD-MMM-YYYY',
+                  )}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold;">EPC Expiry Date</td>
-                  <td>${moment(property_data?.ecp_exp_date).format('DD-MMM-YYYY')}</td>
+                  <td>${moment(property_data?.ecp_exp_date).format(
+                    'DD-MMM-YYYY',
+                  )}</td>
                 </tr>
                 <tr>
                     <td style="font-weight: bold;">Gas Safety Certificate Expiry Date</td>
-                    <td>${moment(property_data.gas_safety_certificate_exp_date).format('DD-MMM-YYYY')}</td>
+                    <td>${moment(
+                      property_data.gas_safety_certificate_exp_date,
+                    ).format('DD-MMM-YYYY')}</td>
                 </tr>
                 <tr>
                     <td style="font-weight: bold;">EICR Expiry Date</td>
-                    <td>${moment(property_data?.ecir_exp_date).format('DD-MMM-YYYY')}</td>
+                    <td>${moment(property_data?.ecir_exp_date).format(
+                      'DD-MMM-YYYY',
+                    )}</td>
                 </tr>
               
             </tbody>
@@ -552,33 +565,50 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Pre-Paid Gas Meter:</span> 
-                          <span  style="color:#000000" class="gas">${property_data.gas_meter}</span> 
+                          <span  style="color:#000000" class="gas">${
+                            property_data.gas_meter
+                          }</span> 
                         </div>
                         <div class="col-1"> 
                           <span class="gas">Reading:</span> 
-                          <span style="color:#000000" class="gas">${property_data.gas_meter_reading}</span>
+                          <span style="color:#000000" class="gas">${
+                            property_data.gas_meter_reading
+                          }</span>
                         </div>
                     </div>
-                    ${property_data?.gas_meter_img != null && property_data?.gas_meter_img != "" ?`<div class="gas-img"> 
+                    ${
+                      property_data?.gas_meter_img != null &&
+                      property_data?.gas_meter_img != ''
+                        ? `<div class="gas-img"> 
                       <img src="${API_URL}${property_data?.gas_meter_img}" width="100%" height="auto"> 
-                    </div>`:``}
+                    </div>`
+                        : ``
+                    }
                 </div>
                 
                 <div class="card">
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Pre-Paid Electricity Meter:</span> 
-                          <span  style="color:#000000" class="gas">${property_data.electricity_meter}</span>
+                          <span  style="color:#000000" class="gas">${
+                            property_data.electricity_meter
+                          }</span>
                         </div>
                         <div class="col-1">
                           <span class="gas">Reading:</span>
-                          <span style="color:#000000" class="gas">${property_data.electricity_meter_reading}</span>
+                          <span style="color:#000000" class="gas">${
+                            property_data.electricity_meter_reading
+                          }</span>
                         </div>
                     </div>
-                   ${property_data?.electricity_meter_img != null && property_data?.electricity_meter_img != "" ? 
-                    `<div class="gas-img"> 
+                   ${
+                     property_data?.electricity_meter_img != null &&
+                     property_data?.electricity_meter_img != ''
+                       ? `<div class="gas-img"> 
                       <img src="${API_URL}${property_data?.electricity_meter_img}" width="100%" height="auto"> 
-                    </div>`:``}
+                    </div>`
+                       : ``
+                   }
                 </div>
 
                 
@@ -588,13 +618,19 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Heating System:</span> 
-                          <span style="color:#000000" class="gas">${property_data.heating_system}</span>
+                          <span style="color:#000000" class="gas">${
+                            property_data.heating_system
+                          }</span>
                         </div>
                     </div>
-                    ${property_data?.heating_system_img != "" && property_data?.heating_system_img != null ? 
-                    `<div class="gas-img">
+                    ${
+                      property_data?.heating_system_img != '' &&
+                      property_data?.heating_system_img != null
+                        ? `<div class="gas-img">
                       <img src="${API_URL}${property_data?.heating_system_img}" width="100%" height="auto">
-                    </div>`:``}
+                    </div>`
+                        : ``
+                    }
                 </div>
 
 
@@ -602,16 +638,25 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Water Meter:</span> 
-                          <span  style="color:#000000" class="gas">${property_data.water_meter}</span> 
+                          <span  style="color:#000000" class="gas">${
+                            property_data.water_meter
+                          }</span> 
                         </div>
                         <div class="col-1"> 
                           <span class="gas">Reading:</span> 
-                          <span  style="color:#000000" class="gas">${property_data.water_meter_reading}</span>
+                          <span  style="color:#000000" class="gas">${
+                            property_data.water_meter_reading
+                          }</span>
                         </div>
                     </div>
-                   ${property_data?.water_meter_img != "" && property_data?.water_meter_img != null ? `<div class="gas-img">
+                   ${
+                     property_data?.water_meter_img != '' &&
+                     property_data?.water_meter_img != null
+                       ? `<div class="gas-img">
                       <img src="${API_URL}${property_data?.water_meter_img}" width="100%" height="auto">
-                    </div>`:``}
+                    </div>`
+                       : ``
+                   }
                 </div> 
             </div>
             <div class="parent">
@@ -620,12 +665,24 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1"> 
                           <span class="gas">Smoke Alarm:</span> 
-                          <span style="color:#000000" class="gas">${property_data.smoke_alarm}</span>
+                          <span style="color:#000000" class="gas">${
+                            property_data.smoke_alarm
+                          }</span>
                         </div>
                     </div>
                     <div class="image-grid"> 
-                      ${property_data?.smoke_alarm_front_img != "" && property_data?.smoke_alarm_front_img != null ?`<img src="${API_URL}${property_data?.smoke_alarm_front_img}" style="margin-top: 10px;" width="48%" height="auto" />`:``}  
-                      ${property_data?.smoke_alarm_back_img != "" && property_data?.smoke_alarm_back_img != null ?`<img src="${API_URL}${property_data?.smoke_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`:``}
+                      ${
+                        property_data?.smoke_alarm_front_img != '' &&
+                        property_data?.smoke_alarm_front_img != null
+                          ? `<img src="${API_URL}${property_data?.smoke_alarm_front_img}" style="margin-top: 10px;" width="48%" height="auto" />`
+                          : ``
+                      }  
+                      ${
+                        property_data?.smoke_alarm_back_img != '' &&
+                        property_data?.smoke_alarm_back_img != null
+                          ? `<img src="${API_URL}${property_data?.smoke_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`
+                          : ``
+                      }
                     </div>
                 </div>
 
@@ -633,12 +690,24 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                     <div class="card-header">
                         <div class="col-1">
                           <span class="gas">CO Alarm:</span>
-                          <span style="color:#000000" class="gas">${property_data.co_alarm}</span>
+                          <span style="color:#000000" class="gas">${
+                            property_data.co_alarm
+                          }</span>
                         </div>
                     </div>
                     <div class="image-grid"> 
-                    ${property_data?.co_alarm_front_img != "" && property_data?.co_alarm_front_img != null ? `<img src="${API_URL}${property_data?.co_alarm_front_img}"  style="margin-top: 10px;" width="48%" height="auto" />`:``}
-                    ${property_data?.co_alarm_back_img != "" && property_data?.co_alarm_back_img != null ?  `<img src="${API_URL}${property_data?.co_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`:``}
+                    ${
+                      property_data?.co_alarm_front_img != '' &&
+                      property_data?.co_alarm_front_img != null
+                        ? `<img src="${API_URL}${property_data?.co_alarm_front_img}"  style="margin-top: 10px;" width="48%" height="auto" />`
+                        : ``
+                    }
+                    ${
+                      property_data?.co_alarm_back_img != '' &&
+                      property_data?.co_alarm_back_img != null
+                        ? `<img src="${API_URL}${property_data?.co_alarm_back_img}"   style="margin-top: 10px;" width="48%" height="auto" />`
+                        : ``
+                    }
                     </div>
                 </div>
             </div>
@@ -646,23 +715,25 @@ const PropertyDetailsScreen = ({navigation, route}) => {
     </section>
     
       <section class="top-margin">
-       ${property_data?.property_details.map((item, index) => {
-         return `<div class="">   
+       ${property_data?.property_details
+         .map((item, index) => {
+           return `<div class="">   
          <div class="room">
              <h3 class="blue">${item.name}</h3>
              <table class="table22"  style="width:100%; margin-bottom:10px ">
                  <thead>
                      <tr>
-                         <th  style="background-color: #0090FF; color:#000; width: 100px;">Description</th>
-                         <th  >Details</th>
+                         <th  style="background-color: #0090FF; color:#ffffff; width: 100px;">Description</th>
+                         <th  style="background-color: #0090FF; color:#ffffff;">Details</th>
                      </tr>
                  </thead>
                  <tbody>
                      <tr>
-                     ${item.name == "Rear Garden" ? 
-                        `<td style="font-weight: bold;">Lawn</td>` : 
-                        `<td style="font-weight: bold;">Floor</td>`
-                      }
+                     ${
+                       item.name == 'Rear Garden'
+                         ? `<td style="font-weight: bold;">Lawn</td>`
+                         : `<td style="font-weight: bold;">Floor</td>`
+                     }
                      
                          <td>${item.floor}</td>
                      </tr>
@@ -671,12 +742,13 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                          <td>${item.walls}</td>
                      </tr>
                      <tr>
-                        ${item.name.trim() == "Kitchen" ? 
-                        `<td style="font-weight: bold;">Appliances</td>` : 
-                        item.name == "Rear Garden" ?
-                        `<td style="font-weight: bold;">Fence</td>` :
-                        `<td style="font-weight: bold;">Ceiling</td>`
-                      }
+                        ${
+                          item.name.trim() == 'Kitchen'
+                            ? `<td style="font-weight: bold;">Appliances</td>`
+                            : item.name == 'Rear Garden'
+                            ? `<td style="font-weight: bold;">Fence</td>`
+                            : `<td style="font-weight: bold;">Ceiling</td>`
+                        }
                          <td>${item.ceiling}</td>
                      </tr>
                      <tr>
@@ -695,12 +767,15 @@ const PropertyDetailsScreen = ({navigation, route}) => {
              </table>
          </div>
          <div class="image-grid">
-            ${item.property_images.map((img, index) => {
+            ${item.property_images
+              .map((img, index) => {
                 return `<img src="${API_URL}${img?.url}" class="imgRoom" width="32%" height="auto" />`;
-            }).join("")}
+              })
+              .join('')}
          </div>
      </div>`;
-       }).join("")} 
+         })
+         .join('')} 
       </section>  
       <section>
       <div class="tennat">
@@ -723,31 +798,33 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <div class="d-flex">
             <div class="divone">
                 <h3 class="textc">Tenant’s Signature</h3>
-                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_inspector.data)}" alt="" />
+                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(
+                  property_data?.signature_tenant.data,
+                )}" alt="" />
             </div>
             <div class="divone">
                 <h3 class="textc">Inspector’s Signature</h3>
-                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(property_data?.signature_tenant.data)}" alt="" />
+                <img  style="margin-top: 10px;" width="100%" height="400px" src="${arrayBufferToBase64(
+                  property_data?.signature_inspector.data,
+                )}" alt="" />
             </div>
         </div>
     </section>
    </body>
    </html>`;
     let options = {
-      html:html,
+      html: html,
       fileName: `${property_data?.tenant_name}_${moment().unix()}.pdf`,
       directory: 'Downloads',
       height: 2700,
       width: 1200,
-      bgColor:"#0090FF",
-      
+      bgColor: '#ffffff',
     };
 
-    let file = await RNHTMLtoPDF.convert(options).catch((err) => {
-      
+    let file = await RNHTMLtoPDF.convert(options).catch(err => {
       setIsCreating(false);
-      alert("Error in generating pdf report")
-    })
+      alert('Error in generating pdf report');
+    });
     loadAndSharePDF(file.filePath);
     setIsCreating(false);
   };
@@ -943,8 +1020,6 @@ const PropertyDetailsScreen = ({navigation, route}) => {
         <Text style={styles.bluetxt}>Advice For Tenant: </Text>
         <Text style={styles.title}>{property_data?.advised_tenant_to}</Text>
       </View>
-
-     
 
       <View style={styles.row}>
         <Text style={styles.bluetxt}>Advice For Landlord: </Text>

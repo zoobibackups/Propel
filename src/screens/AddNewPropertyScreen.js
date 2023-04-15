@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useReducer, useState } from 'react';
+import React, {useReducer, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -10,12 +10,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { moderateScale } from 'react-native-size-matters';
+import {FlatList} from 'react-native-gesture-handler';
+import {moderateScale} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import useIsReady from '../Hooks/useIsReady';
-import { ADD_PROPERTY } from '../apis';
+import {ADD_PROPERTY} from '../apis';
 import AddNewPropertyImages from '../components/AddNewPropertyImages';
 import CustomButton from '../components/CustomButton';
 import CustomInput from '../components/CustomInput';
@@ -302,6 +302,26 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
+      name: `Kitchen`,
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
+    },
+    {
+      name: `Rear Garden`,
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
+    },
+    {
       name: `Bedroom 1`,
       description: '',
       floor: '',
@@ -370,26 +390,6 @@ const AddNewPropertyScreen = ({navigation}) => {
       doors: '',
       images: ['', '', '', '', '', '', '', '', ''],
     },
-    {
-      name: `Kitchen`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      doors: '',
-      images: ['', '', '', '', '', '', '', '', ''],
-    },
-    {
-      name: `Rear Garden`,
-      description: '',
-      floor: '',
-      walls: '',
-      ceiling: '',
-      windows: '',
-      doors: '',
-      images: ['', '', '', '', '', '', '', '', ''],
-    },
   ]);
   const [isloading, setIsLoading] = useState(false);
   const addNewItem = () => {
@@ -422,7 +422,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       alert("Inspector name can't be empty");
       return;
     }
-   
+
     UploadProperty();
   };
 
@@ -474,13 +474,6 @@ const AddNewPropertyScreen = ({navigation}) => {
         );
       });
   };
-
-  // if (isReady)
-  //   return (
-  //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-  //       <ActivityIndicator size={'large'} color={'#0090FF'} />
-  //     </View>
-  //   );
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
