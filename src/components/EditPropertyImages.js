@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { SCREEN_WIDTH } from '../constants/scaling';
+import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 import CustomInput from './CustomInput';
 import EditUploadComponent from './EditUploadComponent';
@@ -39,7 +39,7 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
           borderRadius: moderateScale(5),
         }}>
         <CustomInput
-         label={item?.name == "Rear Garden" ? "Lawn :":"Floor :"}
+          label={item?.name == 'Rear Garden' ? 'Lawn :' : 'Floor :'}
           placeholder={null}
           onChangeText={text => setItem({...item, floor: text})}
           value={item.floor}
@@ -53,7 +53,13 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
           containerStyle={styles.containerStyle}
         />
         <CustomInput
-          label={item.name == "Kitchen" ? "Appliances :": item.name == "Rear Garden"?"Fence :":"Ceiling :"}  
+          label={
+            item.name == 'Kitchen'
+              ? 'Appliances :'
+              : item.name == 'Rear Garden'
+              ? 'Fence :'
+              : 'Ceiling :'
+          }
           placeholder={null}
           onChangeText={text => setItem({...item, ceiling: text})}
           value={item.ceiling}
@@ -68,7 +74,7 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
         />
 
         <CustomInput
-          label={'Window :'}
+          label={'Windows :'}
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
@@ -76,8 +82,8 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
         />
       </View>
       <CustomInput
-        label={'Enter Desctipion'}
-        placeholder={'Desctipion'}
+        label={'Other Details'}
+        placeholder={'Other Details'}
         onChangeText={text => setItem({...item, description: text})}
         value={item.description}
       />

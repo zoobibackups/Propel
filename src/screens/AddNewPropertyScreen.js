@@ -322,6 +322,16 @@ const AddNewPropertyScreen = ({navigation}) => {
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
+      name: `Landing`,
+      description: '',
+      floor: '',
+      walls: '',
+      ceiling: '',
+      windows: '',
+      doors: '',
+      images: ['', '', '', '', '', '', '', '', ''],
+    },
+    {
       name: `Bedroom 1`,
       description: '',
       floor: '',
