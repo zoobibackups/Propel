@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   imagebg: {
-    width: moderateScale(105),
+    width: moderateScale(96),
     alignItems: 'center',
     borderColor: colors.borderColor,
     backgroundColor: colors.white,

@@ -70,13 +70,21 @@ const AddNewPropertyImages = ({index, item, setItem, onDelete}) => {
           />
         )}
         <CustomInput
-          label={'Window :'}
+          label={'Windows :'}
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
           containerStyle={styles.containerStyle}
         />
-
+        {item.units !== null && (
+          <CustomInput
+            label={'Units :'}
+            placeholder={null}
+            onChangeText={text => setItem({...item, units: text})}
+            value={item.units}
+            containerStyle={styles.containerStyle}
+          />
+        )}
         {item.doors !== null && (
           <CustomInput
             label={'Doors :'}

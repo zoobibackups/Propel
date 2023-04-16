@@ -78,8 +78,18 @@ const EditPropertyImages = ({index, item, setItem, onDelete}) => {
           placeholder={null}
           onChangeText={text => setItem({...item, windows: text})}
           value={item.windows}
-          containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
+          containerStyle={styles.containerStyle}
         />
+
+        {item.name == 'Kitchen' && (
+          <CustomInput
+            label={'Units :'}
+            placeholder={null}
+            onChangeText={text => setItem({...item, units: text})}
+            value={item.units}
+            containerStyle={{...styles.containerStyle, borderBottomWidth: 0}}
+          />
+        )}
       </View>
       <CustomInput
         label={'Other Details'}

@@ -1,5 +1,5 @@
-import { useIsFocused } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import {useIsFocused} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -9,20 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/AntDesign';
 import AntDesign from 'react-native-vector-icons/Entypo';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import useIsReady from '../Hooks/useIsReady';
-import { USER_LIST_PROPERTY } from '../apis';
+import {USER_LIST_PROPERTY} from '../apis';
 import LOGO from '../assets/svgs/logo.svg';
 import ListItem from '../components/ListItem';
-import { MainRoutes } from '../constants/Routes';
+import {MainRoutes} from '../constants/Routes';
 import fonts from '../constants/fonts';
-import { SCREEN_WIDTH } from '../constants/scaling';
+import {SCREEN_WIDTH} from '../constants/scaling';
 import colors from '../constants/theme';
 const HomeScreen = ({navigation}) => {
-  
   const isFocused = useIsFocused();
   const {user} = useSelector(state => state.userReducer);
   const [search, setSearch] = useState('');
@@ -36,9 +35,13 @@ const HomeScreen = ({navigation}) => {
       headerLeft: () => (
         <View style={{backgroundColor: '#0000'}}>
           <TouchableOpacity
-            onPress={() => navigation.openDrawer() }
+            onPress={() => navigation.openDrawer()}
             style={styles.button2}>
-            <Entypo name={'menuunfold'} color={'#fff'} size={moderateScale(25)} />
+            <Entypo
+              name={'menuunfold'}
+              color={'#fff'}
+              size={moderateScale(25)}
+            />
           </TouchableOpacity>
         </View>
       ),

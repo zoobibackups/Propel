@@ -21,24 +21,24 @@ const TabViewComponent = ({data}) => {
       {data.floor != null && (
         <Text style={styles.text}>
           <Text style={styles.boldText}>
-            {data?.name == 'Rear Garden' ? 'Lawn' : 'Floor'}:
-          </Text>{' '}
+            {data?.name == 'Rear Garden ' ? 'Lawn ' : 'Floor '}:{' '}
+          </Text>
           {data?.floor}
         </Text>
       )}
       {data.walls != null && (
         <Text style={styles.text}>
-          <Text style={styles.boldText}>Walls:</Text> {data?.walls}
+          <Text style={styles.boldText}>Walls : </Text> {data?.walls}
         </Text>
       )}
       {data.ceiling != null && (
         <Text style={styles.text}>
           <Text style={styles.boldText}>
             {data.name == 'Kitchen'
-              ? 'Appliances'
+              ? 'Appliances '
               : data.name == 'Rear Garden'
-              ? 'Fence'
-              : 'Ceiling'}{' '}
+              ? 'Fence '
+              : 'Ceiling '}
             :{' '}
           </Text>
           {data?.ceiling}
@@ -50,15 +50,22 @@ const TabViewComponent = ({data}) => {
           {data?.windows}
         </Text>
       )}
-      {data.doors != null && (
+
+      {data.units != null && (
         <Text style={styles.text}>
-          <Text style={styles.boldText}>Doors: </Text>
+          <Text style={styles.boldText}>Units : </Text>
+          {data?.units}
+        </Text>
+      )}
+      {data.doors != null && data.name == 'Kitchen' && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Doors : </Text>
           {data?.doors}
         </Text>
       )}
-      {data.floor != null && (
+      {data.description != null && (
         <Text style={styles.text}>
-          <Text style={styles.boldText}>Description: </Text>
+          <Text style={styles.boldText}>Other Details : </Text>
           {data?.description}
         </Text>
       )}

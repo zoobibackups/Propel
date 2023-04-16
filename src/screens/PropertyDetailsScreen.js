@@ -756,6 +756,14 @@ const PropertyDetailsScreen = ({navigation, route}) => {
                          <td>${item.windows}</td>
                      </tr>
                     
+                     ${
+                       item.name.trim() == 'Kitchen'
+                         ? `<tr>
+                      <td style="font-weight: bold;">Units</td>
+                      <td>${item.units}</td>
+                     <tr>`
+                         : ``
+                     }
                      <tr>
                       <td style="font-weight: bold;">Doors</td>
                       <td>${item.doors}</td>

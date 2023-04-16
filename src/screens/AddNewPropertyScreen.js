@@ -269,6 +269,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: null,
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -279,6 +280,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -289,6 +291,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -299,6 +302,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -309,6 +313,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: '',
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -319,6 +324,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -329,6 +335,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -348,6 +355,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -358,6 +366,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -368,6 +377,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -378,6 +388,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -388,6 +399,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
     {
@@ -398,6 +410,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     },
   ]);
@@ -411,6 +424,7 @@ const AddNewPropertyScreen = ({navigation}) => {
       ceiling: '',
       windows: '',
       doors: '',
+      units: null,
       images: ['', '', '', '', '', '', '', '', ''],
     };
     let temp_array = [...images_data];
